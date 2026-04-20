@@ -68,7 +68,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
           LogoWear
         </div>
         
-        <img v-if="generatedIcon" :src="generatedIcon" class="w-full h-full shadow-[0_4px_12px_rgba(0,0,0,0.3)]" alt="Mac App Icon" />
+        <img v-if="generatedIcon" :src="generatedIcon" class="w-full h-full " alt="Mac App Icon" />
         <div v-else class="w-full h-full bg-gray-300 dark:bg-gray-700 rounded-2xl shadow-sm"></div>
         <!-- Dot indicator -->
         <div class="w-1 h-1 rounded-full bg-white/80 absolute -bottom-2.5"></div>
