@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { inject, ref, type Ref } from 'vue'
+import { inject, ref, onMounted, computed, type Ref } from 'vue'
 import { generateAllIcons } from '../utils/exportZip'
-import { BACKGROUNDS, getBgCss } from '../utils/backgrounds'
+import { BACKGROUNDS, type BgType } from '../utils/backgrounds'
+import { generateIconDataUrl } from '../utils/iconGenerator'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -12,6 +13,59 @@ const fileInput = ref<HTMLInputElement | null>(null)
 const isDragging = ref(false)
 const isExporting = ref(false)
 
+const backgroundPreviews = ref<Record<string, string>>({})
+
+const generatePreviews = async () => {
+  // We generate blank icons without foreground images to show just the background
+  // For previews, we use a 1x1 transparent image to trick the generator into just drawing the background
+  const transparent1x1 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+  
+  // We don't want to block the UI, so we generate them in the background
+  for (const bg of BACKGROUNDS) {
+    if (!backgroundPreviews.value[bg.id]) {
+      try {
+        const url = await generateIconDataUrl({
+          imageUrl: transparent1x1,
+          backgroundId: bg.id,
+          padding: 0,
+          borderRadius: 22.5,
+          size: 64, // small size for thumbnails
+          transparentBg: false
+        })
+        backgroundPreviews.value = { ...backgroundPreviews.value, [bg.id]: url }
+      } catch (e) {
+        console.error('Failed to generate preview for', bg.id, e)
+      }
+    }
+  }
+}
+
+const groupedBackgrounds = computed(() => {
+  const map: Record<string, typeof BACKGROUNDS> = {
+    '极简纯色 (Solid)': [],
+    '色彩渐变 (Gradient)': [],
+    '网格极光 (Mesh & Grid)': [],
+    '玻璃拟物 (Glass)': [],
+    '纹理质感 (Noise & Pattern)': [],
+    '点缀光晕 (Glow & Accent)': []
+  }
+
+  BACKGROUNDS.forEach(bg => {
+    if (bg.type === 'solid') map['极简纯色 (Solid)'].push(bg)
+    else if (bg.type === 'linear') map['色彩渐变 (Gradient)'].push(bg)
+    else if (bg.type === 'mesh' || bg.type === 'grid') map['网格极光 (Mesh & Grid)'].push(bg)
+    else if (bg.type === 'glass') map['玻璃拟物 (Glass)'].push(bg)
+    else if (bg.type === 'noise' || bg.type === 'confetti' || bg.type === 'dots' || bg.type === 'stripes' || bg.type === 'checkerboard') map['纹理质感 (Noise & Pattern)'].push(bg)
+    else if (bg.type === 'radial' || bg.type === 'spotlight' || bg.type === 'accent') map['点缀光晕 (Glow & Accent)'].push(bg)
+  })
+
+  // Filter out empty groups
+  return Object.entries(map).filter(([_, list]) => list.length > 0)
+})
+
+onMounted(() => {
+  generatePreviews()
+})
 const handleFileUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
@@ -102,22 +156,28 @@ const handleExport = async () => {
     </div>
 
     <template v-if="uploadedImage">
-      <!-- Background Style -->
-      <div class="space-y-3">
+      <!-- Background Style Categories -->
+      <div class="space-y-5">
         <div class="flex justify-between items-center">
           <label class="text-sm font-medium text-gray-700 dark:text-gray-300">底色模板</label>
           <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
         </div>
-        <div class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-6 xl:grid-cols-8 gap-2">
-          <button
-            v-for="bg in BACKGROUNDS"
-            :key="bg.id"
-            @click="backgroundId = bg.id"
-            :title="bg.name"
-            class="w-10 h-10 rounded-xl border border-gray-200 dark:border-gray-700 transition-all overflow-hidden"
-            :class="backgroundId === bg.id ? 'ring-2 ring-blue-500 scale-110 shadow-md z-10' : 'hover:scale-105'"
-            :style="getBgCss(bg)"
-          ></button>
+        
+        <div v-for="[groupName, bgList] in groupedBackgrounds" :key="groupName" class="space-y-2">
+          <p class="text-xs text-gray-500 font-medium">{{ groupName }}</p>
+          <div class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-6 xl:grid-cols-8 gap-2">
+            <button
+              v-for="bg in bgList"
+              :key="bg.id"
+              @click="backgroundId = bg.id"
+              :title="bg.name"
+              class="w-10 h-10 rounded-xl border border-gray-200 dark:border-gray-700 transition-all overflow-hidden bg-gray-100 dark:bg-gray-800"
+              :class="backgroundId === bg.id ? 'ring-2 ring-blue-500 scale-110 shadow-md z-10' : 'hover:scale-105'"
+            >
+              <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]" class="w-full h-full object-cover" />
+              <div v-else class="w-full h-full animate-pulse bg-gray-200 dark:bg-gray-700"></div>
+            </button>
+          </div>
         </div>
       </div>
 
