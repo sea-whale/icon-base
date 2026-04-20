@@ -1,7 +1,7 @@
 const base = 'http://localhost:3000'
 
 const testImgUrl =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X0ioAAAAASUVORK5CYII='
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQIW2NkYGD4z8DAwMgAI0AMDA4YAQEB2zQ/AAAAAElFTkSuQmCC'
 
 const email = `test_${Date.now()}@example.com`
 const password = 'password123'

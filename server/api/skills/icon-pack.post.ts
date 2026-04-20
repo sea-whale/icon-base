@@ -4,6 +4,8 @@ import { requireUserIdFromApiKey } from '../../utils/auth'
 import { renderIconPng, type IconJob } from '../../utils/iconPack'
 import { getBackground } from '../../utils/backgrounds'
 
+import pngToIco from 'png-to-ico'
+
 const DEFAULT_ICONS = [
   { name: 'favicon-16x16.png', size: 16 },
   { name: 'favicon-32x32.png', size: 32 },
@@ -38,6 +40,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const zip = new JSZip()
+  let favicon32Buffer: Buffer | null = null
+
   for (const icon of icons) {
     const png = await renderIconPng({
       imageDataUrl,
@@ -47,6 +51,21 @@ export default defineEventHandler(async (event) => {
       size: icon.size
     })
     zip.file(icon.name, png)
+    
+    // Save 32x32 for ICO conversion
+    if (icon.name === 'favicon-32x32.png') {
+      favicon32Buffer = png
+    }
+  }
+
+  // Add favicon.ico if we generated the 32x32 png
+  if (favicon32Buffer) {
+    try {
+      const icoBuffer = await pngToIco(favicon32Buffer)
+      zip.file('favicon.ico', icoBuffer)
+    } catch (e) {
+      console.error('Failed to convert png to ico:', e)
+    }
   }
 
   const bgConfig = getBackground(backgroundId)

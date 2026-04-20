@@ -66,7 +66,8 @@ export const renderIconPng = async (job: IconJob) => {
   if (!decoded) throw new Error('Invalid imageDataUrl')
   if (decoded.mime === 'image/svg+xml') throw new Error('SVG is not supported in server mode')
 
-  const src = await Jimp.read(Buffer.from(decoded.buffer))
+  const buffer = Buffer.from(decoded.buffer)
+  const src = await Jimp.read(buffer)
   const size = Math.max(16, Math.min(2048, Math.floor(job.size)))
   const padPx = Math.max(0, Math.min(0.5, job.padding / 100)) * size
   const target = size - padPx * 2

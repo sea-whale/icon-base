@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '#imports'
 import { ref, provide, onMounted } from 'vue'
-import { useAuth } from './composables/useAuth'
 
 useHead({
   title: 'LogoWear - Apple-Style Icon Generator',
@@ -16,8 +15,6 @@ const backgroundId = ref<string>('apple-dark') // Default apple-like dark backgr
 const padding = ref<number>(20) // Percentage of padding (0-50)
 const borderRadius = ref<number>(22.5) // Apple standard is roughly 22.5% of width
 const isDarkMode = ref<boolean>(true) // default to dark mode preview for tech tools
-const authOpen = ref(false)
-const { isAuthed, user, restore } = useAuth()
 
 // Provide state to components
 provide('uploadedImage', uploadedImage)
@@ -41,7 +38,6 @@ const updateThemeClass = () => {
 
 onMounted(() => {
   updateThemeClass()
-  restore()
 })
 </script>
 
