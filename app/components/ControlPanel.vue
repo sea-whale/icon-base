@@ -3,6 +3,7 @@ import { inject, ref, onMounted, computed, type Ref } from 'vue'
 import { generateAllIcons } from '../utils/exportZip'
 import { BACKGROUNDS, type BgType } from '../utils/backgrounds'
 import { generateIconDataUrl } from '../utils/iconGenerator'
+import { Upload, Shuffle, Download, Loader2 } from 'lucide-vue-next'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -85,13 +86,27 @@ const processFile = (file: File) => {
   }
   const reader = new FileReader()
   reader.onload = (e) => {
-    if (uploadedImage) uploadedImage.value = e.target?.result as string
+    if (uploadedImage) {
+      uploadedImage.value = e.target?.result as string
+      // Randomly select a background template on upload
+      const randomBg = BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
+      if (backgroundId) {
+        backgroundId.value = randomBg.id
+      }
+    }
   }
   reader.readAsDataURL(file)
 }
 
 const triggerUpload = () => {
   fileInput.value?.click()
+}
+
+const randomizeBackground = () => {
+  const randomBg = BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)]
+  if (backgroundId) {
+    backgroundId.value = randomBg.id
+  }
 }
 
 const handleExport = async () => {
@@ -160,7 +175,16 @@ const handleExport = async () => {
       <div class="space-y-5">
         <div class="flex justify-between items-center">
           <label class="text-sm font-medium text-gray-700 dark:text-gray-300">底色模板</label>
-          <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
+          <div class="flex items-center gap-2">
+            <button 
+              @click="randomizeBackground" 
+              class="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors text-gray-500 hover:text-blue-500 dark:hover:text-blue-400"
+              title="随机切换"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l4.1-5.6"/><path d="M3 6h1.4c1.3 0 2.5.6 3.3 1.7l4.1 5.6"/><path d="m21 16-3 3 3 3"/><path d="m21 8-3-3 3-3"/><path d="M22 18h-4.8c-1.3 0-2.5-.6-3.3-1.7l-.8-1.1"/><path d="M22 6h-4.8c-1.3 0-2.5.6-3.3 1.7l-.8 1.1"/></svg>
+            </button>
+            <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
+          </div>
         </div>
         
         <div v-for="[groupName, bgList] in groupedBackgrounds" :key="groupName" class="space-y-2">
