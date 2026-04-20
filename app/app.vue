@@ -52,15 +52,6 @@ onMounted(() => {
         <h1 class="text-xl font-semibold tracking-tight">LogoWear</h1>
       </div>
       <div class="flex items-center gap-4">
-        <button
-          class="h-9 px-3 rounded-full border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-medium flex items-center gap-2"
-          @click="authOpen = true"
-        >
-          <span class="w-6 h-6 rounded-full bg-gray-900 text-white dark:bg-white dark:text-black flex items-center justify-center text-[11px] font-semibold">
-            {{ isAuthed ? (user?.email?.slice(0, 1).toUpperCase() || 'U') : 'U' }}
-          </span>
-          <span class="hidden sm:inline">{{ isAuthed ? '账户 / Key' : '登录 / 注册' }}</span>
-        </button>
         <button 
           @click="toggleTheme" 
           class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-500 hover:text-gray-900 dark:hover:text-gray-100"
@@ -92,8 +83,6 @@ onMounted(() => {
       </section>
     </main>
   </div>
-
-  <AuthModal :open="authOpen" @close="authOpen = false" />
 </template>
 
 <style>
