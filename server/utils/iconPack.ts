@@ -1,12 +1,16 @@
 import { Jimp } from 'jimp'
 import { getBackground } from './backgrounds'
 
-const parseHexToRGB = (hex: string) => {
-  const normalized = hex.trim().replace(/^#/, '')
+const parseColor = (colorStr: string) => {
+  if (colorStr.startsWith('rgba')) {
+    const match = colorStr.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/)
+    if (match) return { r: parseInt(match[1]), g: parseInt(match[2]), b: parseInt(match[3]), a: parseFloat(match[4]) }
+  }
+  const normalized = colorStr.trim().replace(/^#/, '')
   const r = parseInt(normalized.slice(0, 2), 16) || 0
   const g = parseInt(normalized.slice(2, 4), 16) || 0
   const b = parseInt(normalized.slice(4, 6), 16) || 0
-  return { r, g, b }
+  return { r, g, b, a: 1 }
 }
 
 const applyRoundedCorners = (image: any, radiusPx: number) => {
@@ -68,8 +72,10 @@ export const renderIconPng = async (job: IconJob) => {
   const target = size - padPx * 2
 
   const bgConfig = getBackground(job.backgroundId)
-  const c1 = parseHexToRGB(bgConfig.colors[0])
-  const c2 = bgConfig.colors[1] ? parseHexToRGB(bgConfig.colors[1]) : c1
+  const c1 = parseColor(bgConfig.colors[0])
+  const c2 = bgConfig.colors[1] ? parseColor(bgConfig.colors[1]) : c1
+  const c3 = bgConfig.colors[2] ? parseColor(bgConfig.colors[2]) : c1
+  const c4 = bgConfig.colors[3] ? parseColor(bgConfig.colors[3]) : c1
 
   const bg = new Jimp({ width: size, height: size, color: 0x00000000 })
   const spacing = (bgConfig.params?.spacing || 20) * (size / 200)
@@ -104,12 +110,89 @@ export const renderIconPng = async (job: IconJob) => {
       if (x % spacing < thickness || y % spacing < thickness) {
         r = c2.r; g = c2.g; b = c2.b
       }
-    } else if (bgConfig.type === 'stripes') {
-      const s = spacing || 18
-      const t = Math.max(1, (bgConfig.params?.thickness || 6) * (size / 200))
-      if (((x + y) % s) < t) {
+    } else if (bgConfig.type === 'checkerboard') {
+      const checkerSize = (bgConfig.params?.size || 20) * (size / 200)
+      if ((Math.floor(x / checkerSize) + Math.floor(y / checkerSize)) % 2 === 0) {
         r = c2.r; g = c2.g; b = c2.b
       }
+    } else if (bgConfig.type === 'stripes') {
+      const spacingStr = (bgConfig.params?.spacing || 18) * (size / 200)
+      const thicknessStr = (bgConfig.params?.thickness || 6) * (size / 200)
+      // Angle logic simplified to 45 deg or 135 deg for Jimp
+      const dist = (x + y) % spacingStr
+      if (dist < thicknessStr) {
+        r = c2.r; g = c2.g; b = c2.b
+      }
+    } else if (bgConfig.type === 'spotlight') {
+      const cx = (bgConfig.params?.cx ?? 0.25) * size
+      const cy = (bgConfig.params?.cy ?? 0.2) * size
+      const dist = Math.sqrt((x - cx)**2 + (y - cy)**2)
+      const t = Math.max(0, Math.min(1, dist / size))
+      r = c1.r + (c2.r - c1.r) * t
+      g = c1.g + (c2.g - c1.g) * t
+      b = c1.b + (c2.b - c1.b) * t
+    } else if (bgConfig.type === 'accent') {
+      const band = bgConfig.params?.band
+      if (typeof band === 'number') {
+        const w = Math.max(0.05, Math.min(0.5, band)) * size
+        const start = size * 0.15
+        const diag = (size - x) + y // simplified diagonal
+        if (diag > start && diag < start + w * 2) {
+          r = c2.r; g = c2.g; b = c2.b
+        }
+      } else {
+        const cx = (bgConfig.params?.cx ?? 0.15) * size
+        const cy = (bgConfig.params?.cy ?? 0.15) * size
+        const rr = (bgConfig.params?.r ?? 0.55) * size
+        const dist = Math.sqrt((x - cx)**2 + (y - cy)**2)
+        if (dist <= rr) {
+          const t = Math.max(0, Math.min(1, dist / rr))
+          r = c2.r + (c1.r - c2.r) * t
+          g = c2.g + (c1.g - c2.g) * t
+          b = c2.b + (c1.b - c2.b) * t
+        }
+      }
+    } else if (bgConfig.type === 'confetti') {
+      const density = Math.max(0, Math.min(0.2, bgConfig.params?.density ?? 0.06))
+      const seed = bgConfig.params?.seed ?? 1337
+      const dotRadius = Math.max(0.8, size / 220)
+      const step = Math.max(6, Math.floor(size / 28))
+      const basex = Math.floor(x / step) * step
+      const basey = Math.floor(y / step) * step
+      const h = ((basex * 73856093) ^ (basey * 19349663) ^ seed) >>> 0
+      if ((h % 1000) / 1000 <= density) {
+        const dx = x - (basex + (h % step))
+        const dy = y - (basey + ((h >>> 8) % step))
+        if (dx*dx + dy*dy <= dotRadius*dotRadius) {
+          r = c2.r; g = c2.g; b = c2.b
+        }
+      }
+    } else if (bgConfig.type === 'noise') {
+      const intensity = bgConfig.params?.intensity || 20
+      const noise = (Math.random() - 0.5) * (intensity / 100) * 255
+      r = Math.min(255, Math.max(0, r + noise))
+      g = Math.min(255, Math.max(0, g + noise))
+      b = Math.min(255, Math.max(0, b + noise))
+    } else if (bgConfig.type === 'mesh') {
+      const tx = x / size
+      const ty = y / size
+      r = c1.r * (1-tx)*(1-ty) + c2.r * tx*(1-ty) + c4.r * (1-tx)*ty + c3.r * tx*ty
+      g = c1.g * (1-tx)*(1-ty) + c2.g * tx*(1-ty) + c4.g * (1-tx)*ty + c3.g * tx*ty
+      b = c1.b * (1-tx)*(1-ty) + c2.b * tx*(1-ty) + c4.b * (1-tx)*ty + c3.b * tx*ty
+    } else if (bgConfig.type === 'glass') {
+      // top highlight
+      const tTop = Math.max(0, Math.min(1, y / (size * 0.4)))
+      const aTop = c2.a * (1 - tTop)
+      r = r * (1 - aTop) + c2.r * aTop
+      g = g * (1 - aTop) + c2.g * aTop
+      b = b * (1 - aTop) + c2.b * aTop
+      // bottom glow
+      const dist = Math.sqrt((x - size/2)**2 + (y - size)**2)
+      const tBot = Math.max(0, Math.min(1, dist / (size * 0.7)))
+      const aBot = c3.a * (1 - tBot)
+      r = r * (1 - aBot) + c3.r * aBot
+      g = g * (1 - aBot) + c3.g * aBot
+      b = b * (1 - aBot) + c3.b * aBot
     } else if (bgConfig.type === 'spotlight') {
       const cx = (bgConfig.params?.cx ?? 0.25) * size
       const cy = (bgConfig.params?.cy ?? 0.2) * size

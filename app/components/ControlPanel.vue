@@ -108,7 +108,7 @@ const handleExport = async () => {
           <label class="text-sm font-medium text-gray-700 dark:text-gray-300">底色模板</label>
           <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
         </div>
-        <div class="grid grid-cols-6 gap-2">
+        <div class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-6 xl:grid-cols-8 gap-2">
           <button
             v-for="bg in BACKGROUNDS"
             :key="bg.id"

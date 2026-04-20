@@ -9,6 +9,14 @@ export interface IconConfig {
   transparentBg?: boolean
 }
 
+const hexToRgba = (hex: string, alpha: number) => {
+  const normalized = hex.trim().replace(/^#/, '')
+  const r = parseInt(normalized.slice(0, 2), 16) || 0
+  const g = parseInt(normalized.slice(2, 4), 16) || 0
+  const b = parseInt(normalized.slice(4, 6), 16) || 0
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
 export const generateIconDataUrl = async (config: IconConfig): Promise<string> => {
   return new Promise((resolve, reject) => {
     const img = new Image()
@@ -147,6 +155,60 @@ export const generateIconDataUrl = async (config: IconConfig): Promise<string> =
               ctx.beginPath()
               ctx.arc(x + (h % step), y + ((h >>> 8) % step), dotRadius, 0, Math.PI * 2)
               ctx.fill()
+            }
+          }
+        } else if (bg.type === 'glass') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          const gTop = ctx.createLinearGradient(0, 0, 0, config.size * 0.4)
+          gTop.addColorStop(0, bg.colors[1])
+          gTop.addColorStop(1, bg.colors[1].replace(/[\d.]+\)$/g, '0)'))
+          ctx.fillStyle = gTop
+          ctx.fill()
+          const gBot = ctx.createRadialGradient(config.size/2, config.size, 0, config.size/2, config.size, config.size * 0.7)
+          gBot.addColorStop(0, bg.colors[2])
+          gBot.addColorStop(1, bg.colors[2].replace(/[\d.]+\)$/g, '0)'))
+          ctx.fillStyle = gBot
+          ctx.fill()
+        } else if (bg.type === 'mesh') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          const corners = [
+            { x: 0, y: 0, c: bg.colors[0] },
+            { x: config.size, y: 0, c: bg.colors[1] },
+            { x: config.size, y: config.size, c: bg.colors[2] },
+            { x: 0, y: config.size, c: bg.colors[3] }
+          ]
+          corners.forEach(corner => {
+            const g = ctx.createRadialGradient(corner.x, corner.y, 0, corner.x, corner.y, config.size * 0.8)
+            g.addColorStop(0, corner.c)
+            g.addColorStop(1, corner.c.startsWith('#') ? hexToRgba(corner.c, 0) : corner.c.replace(/[\d.]+\)$/g, '0)'))
+            ctx.fillStyle = g
+            ctx.fill()
+          })
+        } else if (bg.type === 'noise') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          const imgData = ctx.getImageData(0, 0, config.size, config.size)
+          const data = imgData.data
+          const intensity = bg.params?.intensity || 20
+          for (let i = 0; i < data.length; i += 4) {
+            const noise = (Math.random() - 0.5) * (intensity / 100) * 255
+            data[i] = Math.min(255, Math.max(0, data[i] + noise))
+            data[i+1] = Math.min(255, Math.max(0, data[i+1] + noise))
+            data[i+2] = Math.min(255, Math.max(0, data[i+2] + noise))
+          }
+          ctx.putImageData(imgData, 0, 0)
+        } else if (bg.type === 'checkerboard') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          ctx.fillStyle = bg.colors[1]
+          const size = (bg.params?.size || 20) * (config.size / 200)
+          for (let y = 0; y < config.size; y += size) {
+            for (let x = 0; x < config.size; x += size) {
+              if ((Math.floor(x / size) + Math.floor(y / size)) % 2 === 0) {
+                ctx.fillRect(x, y, size, size)
+              }
             }
           }
         }
