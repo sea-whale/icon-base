@@ -1,4 +1,4 @@
-import Jimp from 'jimp'
+import { Jimp } from 'jimp'
 
 const parseHexColor = (hex: string) => {
   const normalized = hex.trim().replace(/^#/, '')
@@ -6,7 +6,7 @@ const parseHexColor = (hex: string) => {
   const r = parseInt(normalized.slice(0, 2), 16)
   const g = parseInt(normalized.slice(2, 4), 16)
   const b = parseInt(normalized.slice(4, 6), 16)
-  return Jimp.rgbaToInt(r, g, b, 255)
+  return ((r << 24) | (g << 16) | (b << 8) | 255) >>> 0
 }
 
 const applyRoundedCorners = (image: Jimp, radiusPx: number) => {
@@ -62,10 +62,11 @@ export const renderIconPng = async (job: IconJob) => {
   if (!decoded) throw new Error('Invalid imageDataUrl')
   if (decoded.mime === 'image/svg+xml') throw new Error('SVG is not supported in server mode')
 
-  const src = await Jimp.read(decoded.buffer)
+  const src = await Jimp.read(Buffer.from(decoded.buffer))
   const size = Math.max(16, Math.min(2048, Math.floor(job.size)))
   const padPx = Math.max(0, Math.min(0.5, job.padding / 100)) * size
   const target = size - padPx * 2
+  // Background setup
   const bg = new Jimp({ width: size, height: size, color: parseHexColor(job.backgroundColor) })
 
   const ratio = src.bitmap.width / src.bitmap.height
@@ -74,11 +75,11 @@ export const renderIconPng = async (job: IconJob) => {
   if (ratio > 1) drawH = target / ratio
   else drawW = target * ratio
 
-  const resized = src.clone().resize({ w: Math.max(1, Math.round(drawW)), h: Math.max(1, Math.round(drawH)) })
+  const resized = src.resize({ w: Math.max(1, Math.round(drawW)), h: Math.max(1, Math.round(drawH)) })
   const x = Math.round((size - resized.bitmap.width) / 2)
   const y = Math.round((size - resized.bitmap.height) / 2)
   bg.composite(resized, x, y)
 
-  applyRoundedCorners(bg, (job.borderRadius / 100) * size)
-  return bg.getBufferAsync(Jimp.MIME_PNG)
+  applyRoundedCorners(bg as any, (job.borderRadius / 100) * size)
+  return bg.getBuffer('image/png')
 }
