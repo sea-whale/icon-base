@@ -12,7 +12,7 @@ useHead({
 
 // Global State
 const uploadedImage = ref<string | null>(null)
-const backgroundColor = ref<string>('#000000') // Default apple-like dark background
+const backgroundId = ref<string>('apple-dark') // Default apple-like dark background
 const padding = ref<number>(20) // Percentage of padding (0-50)
 const borderRadius = ref<number>(22.5) // Apple standard is roughly 22.5% of width
 const isDarkMode = ref<boolean>(true) // default to dark mode preview for tech tools
@@ -21,7 +21,7 @@ const { isAuthed, user, restore } = useAuth()
 
 // Provide state to components
 provide('uploadedImage', uploadedImage)
-provide('backgroundColor', backgroundColor)
+provide('backgroundId', backgroundId)
 provide('padding', padding)
 provide('borderRadius', borderRadius)
 provide('isDarkMode', isDarkMode)

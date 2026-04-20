@@ -2,7 +2,7 @@
 import { inject, ref, watch, type Ref } from 'vue'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundColor = inject<Ref<string>>('backgroundColor')
+const backgroundId = inject<Ref<string>>('backgroundId')
 const padding = inject<Ref<number>>('padding')
 const borderRadius = inject<Ref<number>>('borderRadius')
 
@@ -10,14 +10,14 @@ const iosIcon = ref<string>('')
 const androidIcon = ref<string>('')
 
 const updateIcons = async () => {
-  if (!uploadedImage?.value || !backgroundColor || !padding || !borderRadius) return
+  if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
   
   try {
     const { generateIconDataUrl } = await import('../utils/iconGenerator')
     // iOS: Force standard border radius for preview (iOS does it automatically anyway)
     iosIcon.value = await generateIconDataUrl({
       imageUrl: uploadedImage.value,
-      backgroundColor: backgroundColor.value,
+      backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: 22.5, // Force iOS radius for visual preview
       size: 180,
@@ -27,7 +27,7 @@ const updateIcons = async () => {
     // Android: often uses circular or slight rounded corners, but we show the raw generated one
     androidIcon.value = await generateIconDataUrl({
       imageUrl: uploadedImage.value,
-      backgroundColor: backgroundColor.value,
+      backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value, // User selected
       size: 192,
@@ -38,7 +38,7 @@ const updateIcons = async () => {
   }
 }
 
-watch([uploadedImage, backgroundColor, padding, borderRadius], updateIcons, { immediate: true })
+watch([uploadedImage, backgroundId, padding, borderRadius], updateIcons, { immediate: true })
 </script>
 
 <template>

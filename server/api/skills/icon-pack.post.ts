@@ -1,7 +1,8 @@
 import { createError, readBody, setHeader } from 'h3'
 import JSZip from 'jszip'
 import { requireUserIdFromApiKey } from '../../utils/auth'
-import { renderIconPng } from '../../utils/iconPack'
+import { renderIconPng, type IconJob } from '../../utils/iconPack'
+import { getBackground } from '../../utils/backgrounds'
 
 const DEFAULT_ICONS = [
   { name: 'favicon-16x16.png', size: 16 },
@@ -19,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<{
     imageDataUrl?: string
-    backgroundColor?: string
+    backgroundId?: string
     padding?: number
     borderRadius?: number
     icons?: Array<{ name: string; size: number }>
@@ -27,7 +28,7 @@ export default defineEventHandler(async (event) => {
   }>(event)
 
   const imageDataUrl = body.imageDataUrl || ''
-  const backgroundColor = body.backgroundColor || '#000000'
+  const backgroundId = body.backgroundId || 'apple-dark'
   const padding = typeof body.padding === 'number' ? body.padding : 20
   const borderRadius = typeof body.borderRadius === 'number' ? body.borderRadius : 22.5
   const icons = Array.isArray(body.icons) && body.icons.length ? body.icons : DEFAULT_ICONS
@@ -40,13 +41,16 @@ export default defineEventHandler(async (event) => {
   for (const icon of icons) {
     const png = await renderIconPng({
       imageDataUrl,
-      backgroundColor,
+      backgroundId,
       padding,
       borderRadius,
       size: icon.size
     })
     zip.file(icon.name, png)
   }
+
+  const bgConfig = getBackground(backgroundId)
+  const themeColor = bgConfig.colors[0]
 
   zip.file(
     'site.webmanifest',
@@ -59,8 +63,8 @@ export default defineEventHandler(async (event) => {
           { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
           { src: '/icon-maskable-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
         ],
-        theme_color: backgroundColor,
-        background_color: backgroundColor,
+        theme_color: themeColor,
+        background_color: themeColor,
         display: 'standalone'
       },
       null,

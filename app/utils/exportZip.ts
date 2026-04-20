@@ -1,10 +1,11 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { generateIconDataUrl } from './iconGenerator'
+import { getBackground } from './backgrounds'
 
 export interface ExportConfig {
   imageUrl: string
-  backgroundColor: string
+  backgroundId: string
   padding: number
   borderRadius: number
 }
@@ -35,6 +36,9 @@ export const generateAllIcons = async (config: ExportConfig) => {
   })
 
   // Add a manifest.json or browserconfig.xml
+  const bgConfig = getBackground(config.backgroundId)
+  const themeColor = bgConfig.colors[0]
+  
   const webmanifest = {
     name: "My App",
     short_name: "App",
@@ -56,8 +60,8 @@ export const generateAllIcons = async (config: ExportConfig) => {
         purpose: "maskable"
       }
     ],
-    theme_color: config.backgroundColor,
-    background_color: config.backgroundColor,
+    theme_color: themeColor,
+    background_color: themeColor,
     display: "standalone"
   }
   

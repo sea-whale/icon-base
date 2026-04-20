@@ -2,14 +2,14 @@
 import { inject, ref, watch, type Ref } from 'vue'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundColor = inject<Ref<string>>('backgroundColor')
+const backgroundId = inject<Ref<string>>('backgroundId')
 const padding = inject<Ref<number>>('padding')
 const borderRadius = inject<Ref<number>>('borderRadius')
 
 const generatedIcon = ref<string>('')
 
 const updateIcon = async () => {
-  if (!uploadedImage?.value || !backgroundColor || !padding || !borderRadius) return
+  if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
   
   try {
     const { generateIconDataUrl } = await import('../utils/iconGenerator')
@@ -17,7 +17,7 @@ const updateIcon = async () => {
     // However, we should also provide a small version.
     generatedIcon.value = await generateIconDataUrl({
       imageUrl: uploadedImage.value,
-      backgroundColor: backgroundColor.value,
+      backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value,
       size: 128,
@@ -28,7 +28,7 @@ const updateIcon = async () => {
   }
 }
 
-watch([uploadedImage, backgroundColor, padding, borderRadius], updateIcon, { immediate: true })
+watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immediate: true })
 </script>
 
 <template>

@@ -36,7 +36,7 @@
 ```json
 {
   "imageDataUrl": "data:image/png;base64,...",
-  "backgroundColor": "#000000",
+  "backgroundId": "apple-dark",
   "padding": 20,
   "borderRadius": 22.5,
   "responseType": "json"
@@ -44,13 +44,11 @@
 ```
 
 字段说明：
-- `imageDataUrl`：必填，Data URL（Base64）。服务端模式暂不支持 SVG。
-- `backgroundColor`：背景色（#RRGGBB）
-- `padding`：0-50（百分比），越大代表图标离边缘越远
-- `borderRadius`：0-50（百分比），Apple 风格建议 22.5
-- `responseType`：
-  - `json`：返回 Base64 ZIP（默认）
-  - `binary`：直接返回二进制 ZIP（便于浏览器下载）
+- `imageDataUrl` (string): 必须，包含图像数据的 Base64 URI（支持 PNG, JPEG, WEBP，服务端暂不支持 SVG）
+- `backgroundId` (string): 可选，底色模板 ID，默认 `apple-dark`。支持：`apple-dark`, `apple-light`, `solid-black`, `solid-white`, `grad-sunset`, `grad-ocean`, `grad-purple`, `grad-midnight`, `pattern-dots`, `pattern-grid`, `glow-blue`, `glow-purple`
+- `padding` (number): 可选，图标缩放间距百分比 (0-50)，默认 `20`
+- `borderRadius` (number): 可选，图标圆角曲率百分比 (0-50)，默认 `22.5`
+- `responseType` (string): 可选，`"json"` 或 `"blob"`，默认 `"blob"`。返回 JSON 会包含 ZIP 文件的 base64 字段，返回 Blob 则直接返回二进制流
 
 ### 3.2 响应（JSON 模式）
 ```json

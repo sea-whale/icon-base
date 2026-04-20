@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { inject, ref, type Ref } from 'vue'
 import { generateAllIcons } from '../utils/exportZip'
+import { BACKGROUNDS, getBgCss } from '../utils/backgrounds'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundColor = inject<Ref<string>>('backgroundColor')
+const backgroundId = inject<Ref<string>>('backgroundId')
 const padding = inject<Ref<number>>('padding')
 const borderRadius = inject<Ref<number>>('borderRadius')
 
@@ -40,12 +41,12 @@ const triggerUpload = () => {
 }
 
 const handleExport = async () => {
-  if (!uploadedImage?.value || !backgroundColor || !padding || !borderRadius) return
+  if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
   isExporting.value = true
   try {
     await generateAllIcons({
       imageUrl: uploadedImage.value,
-      backgroundColor: backgroundColor.value,
+      backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value
     })
@@ -101,25 +102,22 @@ const handleExport = async () => {
     </div>
 
     <template v-if="uploadedImage">
-      <!-- Background Color -->
+      <!-- Background Style -->
       <div class="space-y-3">
         <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700 dark:text-gray-300">背景颜色</label>
-          <span class="text-xs font-mono text-gray-500">{{ backgroundColor }}</span>
+          <label class="text-sm font-medium text-gray-700 dark:text-gray-300">底色模板</label>
+          <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
         </div>
-        <div class="flex items-center gap-3">
-          <input 
-            type="color" 
-            v-model="backgroundColor" 
-            class="w-10 h-10 rounded cursor-pointer border-0 p-0 bg-transparent"
-          />
-          <div class="flex-1 flex gap-2">
-            <button @click="backgroundColor = '#000000'" class="w-6 h-6 rounded-full bg-black border border-gray-300 shadow-sm" title="纯黑"></button>
-            <button @click="backgroundColor = '#FFFFFF'" class="w-6 h-6 rounded-full bg-white border border-gray-300 shadow-sm" title="纯白"></button>
-            <button @click="backgroundColor = '#1c1c1e'" class="w-6 h-6 rounded-full bg-[#1c1c1e] border border-gray-300 shadow-sm" title="Apple 深色"></button>
-            <button @click="backgroundColor = '#f5f5f7'" class="w-6 h-6 rounded-full bg-[#f5f5f7] border border-gray-300 shadow-sm" title="Apple 浅色"></button>
-            <button @click="backgroundColor = '#007aff'" class="w-6 h-6 rounded-full bg-[#007aff] border border-gray-300 shadow-sm" title="Apple 蓝色"></button>
-          </div>
+        <div class="grid grid-cols-6 gap-2">
+          <button
+            v-for="bg in BACKGROUNDS"
+            :key="bg.id"
+            @click="backgroundId = bg.id"
+            :title="bg.name"
+            class="w-10 h-10 rounded-xl border border-gray-200 dark:border-gray-700 transition-all overflow-hidden"
+            :class="backgroundId === bg.id ? 'ring-2 ring-blue-500 scale-110 shadow-md z-10' : 'hover:scale-105'"
+            :style="getBgCss(bg)"
+          ></button>
         </div>
       </div>
 
