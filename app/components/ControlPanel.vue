@@ -3,10 +3,10 @@ import { inject, ref, type Ref } from 'vue'
 import { generateAllIcons } from '../utils/exportZip'
 import { BACKGROUNDS, getBgCss } from '../utils/backgrounds'
 
-const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundId = inject<Ref<string>>('backgroundId')
-const padding = inject<Ref<number>>('padding')
-const borderRadius = inject<Ref<number>>('borderRadius')
+const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
+const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
+const padding = inject<Ref<number>>('padding', ref(20))
+const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const isDragging = ref(false)

@@ -45,10 +45,11 @@
 
 字段说明：
 - `imageDataUrl` (string): 必须，包含图像数据的 Base64 URI（支持 PNG, JPEG, WEBP，服务端暂不支持 SVG）
-- `backgroundId` (string): 可选，底色模板 ID，默认 `apple-dark`。支持：`apple-dark`, `apple-light`, `solid-black`, `solid-white`, `grad-sunset`, `grad-ocean`, `grad-purple`, `grad-midnight`, `pattern-dots`, `pattern-grid`, `glow-blue`, `glow-purple`
+- `backgroundId` (string): 可选，底色模板 ID，默认 `apple-dark`。支持：`apple-dark`, `apple-light`, `solid-black`, `solid-white`, `solid-graphite`, `solid-cream`, `grad-sunset`, `grad-ocean`, `grad-purple`, `grad-midnight`, `grad-lime`, `grad-peach`, `pattern-dots`, `pattern-grid`, `glow-blue`, `glow-purple`, `stripes-slate`, `spotlight-rose`, `spotlight-sky`, `accent-corner`, `accent-diagonal`, `confetti-mono`
+- 可用模板列表接口：`GET http://localhost:3000/api/backgrounds`
 - `padding` (number): 可选，图标缩放间距百分比 (0-50)，默认 `20`
 - `borderRadius` (number): 可选，图标圆角曲率百分比 (0-50)，默认 `22.5`
-- `responseType` (string): 可选，`"json"` 或 `"blob"`，默认 `"blob"`。返回 JSON 会包含 ZIP 文件的 base64 字段，返回 Blob 则直接返回二进制流
+- `responseType` (string): 可选，`"json"` 或 `"binary"`。`"json"` 返回 base64，`"binary"` 直接返回 ZIP 二进制
 
 ### 3.2 响应（JSON 模式）
 ```json
@@ -62,4 +63,3 @@
 ## 4. 安全建议
 - API Key 视作密码，不要写入仓库或日志。
 - 建议为不同 Agent / 不同工作流创建不同的 API Key，便于轮换。
-

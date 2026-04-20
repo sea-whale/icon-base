@@ -30,7 +30,6 @@ export const generateAllIcons = async (config: ExportConfig) => {
       transparentBg: false
     })
     
-    // Convert data URL to blob
     const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "")
     zip.file(icon.name, base64Data, { base64: true })
   })

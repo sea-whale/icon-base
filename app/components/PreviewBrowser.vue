@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { inject, watch, ref, type Ref } from 'vue'
 
-const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundId = inject<Ref<string>>('backgroundId')
-const padding = inject<Ref<number>>('padding')
-const borderRadius = inject<Ref<number>>('borderRadius')
-const isDarkMode = inject<Ref<boolean>>('isDarkMode')
+const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
+const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
+const padding = inject<Ref<number>>('padding', ref(20))
+const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const isDarkMode = inject<Ref<boolean>>('isDarkMode', ref(true))
 
 const generatedIcon = ref<string>('')
 
@@ -19,7 +19,7 @@ const updateIcon = async () => {
       backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value,
-      size: 64, // favicon size approximation for preview
+      size: 64,
       transparentBg: false
     })
   } catch (e) {

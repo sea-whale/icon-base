@@ -3,10 +3,10 @@ import { getBackground } from './backgrounds'
 export interface IconConfig {
   imageUrl: string
   backgroundId: string
-  padding: number // 0-50 percentage
-  borderRadius: number // 0-50 percentage
-  size: number // Target width/height in px
-  transparentBg?: boolean // if true, don't draw the background color
+  padding: number
+  borderRadius: number
+  size: number
+  transparentBg?: boolean
 }
 
 export const generateIconDataUrl = async (config: IconConfig): Promise<string> => {
@@ -24,11 +24,10 @@ export const generateIconDataUrl = async (config: IconConfig): Promise<string> =
       canvas.width = config.size
       canvas.height = config.size
 
-      // Draw background with border radius
       if (!config.transparentBg) {
         const bg = getBackground(config.backgroundId)
         const radius = (config.borderRadius / 100) * config.size
-        
+
         ctx.beginPath()
         ctx.moveTo(radius, 0)
         ctx.lineTo(config.size - radius, 0)
@@ -86,24 +85,86 @@ export const generateIconDataUrl = async (config: IconConfig): Promise<string> =
             ctx.lineTo(config.size, y)
           }
           ctx.stroke()
+        } else if (bg.type === 'stripes') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          ctx.fillStyle = bg.colors[1]
+          const spacing = (bg.params?.spacing || 18) * (config.size / 200)
+          const thickness = (bg.params?.thickness || 6) * (config.size / 200)
+          for (let k = -config.size; k < config.size * 2; k += spacing) {
+            ctx.beginPath()
+            ctx.moveTo(k, 0)
+            ctx.lineTo(k + config.size, config.size)
+            ctx.lineTo(k + config.size + thickness, config.size)
+            ctx.lineTo(k + thickness, 0)
+            ctx.closePath()
+            ctx.fill()
+          }
+        } else if (bg.type === 'spotlight') {
+          const cx = (bg.params?.cx ?? 0.25) * config.size
+          const cy = (bg.params?.cy ?? 0.2) * config.size
+          const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, config.size)
+          g.addColorStop(0, bg.colors[0])
+          g.addColorStop(1, bg.colors[1])
+          ctx.fillStyle = g
+          ctx.fill()
+        } else if (bg.type === 'accent') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          const band = bg.params?.band
+          if (typeof band === 'number') {
+            const w = Math.max(0.05, Math.min(0.5, band)) * config.size
+            ctx.fillStyle = bg.colors[1]
+            ctx.beginPath()
+            ctx.moveTo(config.size * 0.15, 0)
+            ctx.lineTo(config.size * 0.15 + w, 0)
+            ctx.lineTo(config.size, config.size * 0.85 + w)
+            ctx.lineTo(config.size, config.size * 0.85)
+            ctx.closePath()
+            ctx.fill()
+          } else {
+            const cx = (bg.params?.cx ?? 0.15) * config.size
+            const cy = (bg.params?.cy ?? 0.15) * config.size
+            const r = (bg.params?.r ?? 0.55) * config.size
+            const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r)
+            g.addColorStop(0, bg.colors[1])
+            g.addColorStop(1, bg.colors[0])
+            ctx.fillStyle = g
+            ctx.fill()
+          }
+        } else if (bg.type === 'confetti') {
+          ctx.fillStyle = bg.colors[0]
+          ctx.fill()
+          ctx.fillStyle = bg.colors[1]
+          const density = Math.max(0, Math.min(0.2, bg.params?.density ?? 0.06))
+          const seed = bg.params?.seed ?? 1337
+          const dotRadius = Math.max(0.8, config.size / 220)
+          const step = Math.max(6, Math.floor(config.size / 28))
+          for (let x = 0; x < config.size; x += step) {
+            for (let y = 0; y < config.size; y += step) {
+              const h = ((x * 73856093) ^ (y * 19349663) ^ seed) >>> 0
+              if ((h % 1000) / 1000 > density) continue
+              ctx.beginPath()
+              ctx.arc(x + (h % step), y + ((h >>> 8) % step), dotRadius, 0, Math.PI * 2)
+              ctx.fill()
+            }
+          }
         }
       }
 
-      // Calculate padding and image placement
       const padPx = (config.padding / 100) * config.size
       const drawSize = config.size - (padPx * 2)
-      
-      // Keep aspect ratio
+
       const imgRatio = img.width / img.height
       let drawW = drawSize
       let drawH = drawSize
-      
+
       if (imgRatio > 1) {
         drawH = drawSize / imgRatio
       } else {
         drawW = drawSize * imgRatio
       }
-      
+
       const x = (config.size - drawW) / 2
       const y = (config.size - drawH) / 2
 

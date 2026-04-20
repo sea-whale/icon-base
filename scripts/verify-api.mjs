@@ -1,23 +1,7 @@
-import { PNG } from 'pngjs'
-
 const base = 'http://localhost:3000'
 
-const makePngDataUrl = () => {
-  const png = new PNG({ width: 8, height: 8 })
-  for (let y = 0; y < png.height; y++) {
-    for (let x = 0; x < png.width; x++) {
-      const i = (png.width * y + x) << 2
-      png.data[i] = 255
-      png.data[i + 1] = 255
-      png.data[i + 2] = 255
-      png.data[i + 3] = x < 4 && y < 4 ? 0 : 255
-    }
-  }
-  const buf = PNG.sync.write(png)
-  return `data:image/png;base64,${buf.toString('base64')}`
-}
-
-const testImgUrl = makePngDataUrl()
+const testImgUrl =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X0ioAAAAASUVORK5CYII='
 
 const email = `test_${Date.now()}@example.com`
 const password = 'password123'

@@ -67,7 +67,6 @@ export const renderIconPng = async (job: IconJob) => {
   const padPx = Math.max(0, Math.min(0.5, job.padding / 100)) * size
   const target = size - padPx * 2
 
-  // Background setup
   const bgConfig = getBackground(job.backgroundId)
   const c1 = parseHexToRGB(bgConfig.colors[0])
   const c2 = bgConfig.colors[1] ? parseHexToRGB(bgConfig.colors[1]) : c1
@@ -103,6 +102,51 @@ export const renderIconPng = async (job: IconJob) => {
       }
     } else if (bgConfig.type === 'grid') {
       if (x % spacing < thickness || y % spacing < thickness) {
+        r = c2.r; g = c2.g; b = c2.b
+      }
+    } else if (bgConfig.type === 'stripes') {
+      const s = spacing || 18
+      const t = Math.max(1, (bgConfig.params?.thickness || 6) * (size / 200))
+      if (((x + y) % s) < t) {
+        r = c2.r; g = c2.g; b = c2.b
+      }
+    } else if (bgConfig.type === 'spotlight') {
+      const cx = (bgConfig.params?.cx ?? 0.25) * size
+      const cy = (bgConfig.params?.cy ?? 0.2) * size
+      const dx = x - cx
+      const dy = y - cy
+      const dist = Math.sqrt(dx * dx + dy * dy)
+      const maxDist = size * 1.1
+      const t = Math.max(0, Math.min(1, dist / maxDist))
+      r = c1.r + (c2.r - c1.r) * t
+      g = c1.g + (c2.g - c1.g) * t
+      b = c1.b + (c2.b - c1.b) * t
+    } else if (bgConfig.type === 'accent') {
+      const band = bgConfig.params?.band
+      if (typeof band === 'number') {
+        const w = Math.max(0.05, Math.min(0.5, band)) * size
+        const v = x + y
+        const start = size * 1.05 - w
+        if (v >= start && v <= start + w) {
+          r = c2.r; g = c2.g; b = c2.b
+        }
+      } else {
+        const cx = (bgConfig.params?.cx ?? 0.15) * size
+        const cy = (bgConfig.params?.cy ?? 0.15) * size
+        const rr = (bgConfig.params?.r ?? 0.55) * size
+        const dx = x - cx
+        const dy = y - cy
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        const t = Math.max(0, Math.min(1, dist / rr))
+        r = c2.r + (c1.r - c2.r) * t
+        g = c2.g + (c1.g - c2.g) * t
+        b = c2.b + (c1.b - c2.b) * t
+      }
+    } else if (bgConfig.type === 'confetti') {
+      const density = Math.max(0, Math.min(0.2, bgConfig.params?.density ?? 0.06))
+      const seed = bgConfig.params?.seed ?? 1337
+      const h = ((x * 73856093) ^ (y * 19349663) ^ seed) >>> 0
+      if ((h & 1023) / 1023 < density && ((x + y) % 3 === 0)) {
         r = c2.r; g = c2.g; b = c2.b
       }
     }

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
 
-const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundId = inject<Ref<string>>('backgroundId')
-const padding = inject<Ref<number>>('padding')
-const borderRadius = inject<Ref<number>>('borderRadius')
+const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
+const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
+const padding = inject<Ref<number>>('padding', ref(20))
+const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
 
 const iosIcon = ref<string>('')
 const androidIcon = ref<string>('')
@@ -14,22 +14,20 @@ const updateIcons = async () => {
   
   try {
     const { generateIconDataUrl } = await import('../utils/iconGenerator')
-    // iOS: Force standard border radius for preview (iOS does it automatically anyway)
     iosIcon.value = await generateIconDataUrl({
       imageUrl: uploadedImage.value,
       backgroundId: backgroundId.value,
       padding: padding.value,
-      borderRadius: 22.5, // Force iOS radius for visual preview
+      borderRadius: 22.5,
       size: 180,
       transparentBg: false
     })
     
-    // Android: often uses circular or slight rounded corners, but we show the raw generated one
     androidIcon.value = await generateIconDataUrl({
       imageUrl: uploadedImage.value,
       backgroundId: backgroundId.value,
       padding: padding.value,
-      borderRadius: borderRadius.value, // User selected
+      borderRadius: borderRadius.value,
       size: 192,
       transparentBg: false
     })

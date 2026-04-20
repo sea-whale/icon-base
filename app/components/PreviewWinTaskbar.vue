@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
 
-const uploadedImage = inject<Ref<string | null>>('uploadedImage')
-const backgroundId = inject<Ref<string>>('backgroundId')
-const padding = inject<Ref<number>>('padding')
-const borderRadius = inject<Ref<number>>('borderRadius')
+const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
+const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
+const padding = inject<Ref<number>>('padding', ref(20))
+const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
 
 const generatedIcon = ref<string>('')
 
@@ -13,8 +13,6 @@ const updateIcon = async () => {
   
   try {
     const { generateIconDataUrl } = await import('../utils/iconGenerator')
-    // Windows typically uses less border-radius or even circles for taskbar, but we'll show the actual icon generated.
-    // However, we should also provide a small version.
     generatedIcon.value = await generateIconDataUrl({
       imageUrl: uploadedImage.value,
       backgroundId: backgroundId.value,
