@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
+import { Settings, MessageSquare, Compass, Mail, Calendar, Map, Phone } from 'lucide-vue-next'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -56,30 +57,35 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
 
     <!-- Dock Container -->
     <div class="relative z-10 mb-4 px-4 py-2 self-center bg-white/20 dark:bg-black/20 backdrop-blur-2xl border border-white/20 rounded-[2rem] flex items-center gap-3 shadow-xl">
-      <!-- Finder Icon (placeholder) -->
-      <div class="w-12 h-12 rounded-[10px] bg-blue-400 flex items-center justify-center text-white shadow-sm cursor-pointer hover:-translate-y-2 transition-transform duration-200 ease-out">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smile"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+      <!-- Dock Items -->
+      <div class="w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-700 dark:to-gray-900 rounded-[1.2rem] shadow-sm flex items-center justify-center shrink-0">
+        <Settings :size="28" class="text-gray-600 dark:text-gray-300" />
+      </div>
+      <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-[1.2rem] shadow-sm flex items-center justify-center shrink-0">
+        <MessageSquare :size="28" class="text-white" />
+      </div>
+      <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-[1.2rem] shadow-sm flex items-center justify-center shrink-0 relative overflow-hidden">
+        <Compass :size="32" class="text-white" />
+      </div>
+      <div class="w-14 h-14 bg-gradient-to-br from-blue-300 to-blue-500 rounded-[1.2rem] shadow-sm flex items-center justify-center shrink-0">
+        <Mail :size="28" class="text-white" />
       </div>
       
       <!-- Generated Icon -->
-      <div class="w-12 h-12 cursor-pointer hover:-translate-y-2 transition-transform duration-200 ease-out relative group flex flex-col items-center">
-        <!-- Tooltip -->
-        <div class="absolute -top-10 bg-gray-800/80 text-white text-[11px] px-3 py-1 rounded backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          LogoWear
+      <div class="relative group">
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          App
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900/80 rotate-45"></div>
         </div>
-        
-        <img v-if="generatedIcon" :src="generatedIcon" class="w-full h-full " alt="Mac App Icon" />
-        <div v-else class="w-full h-full bg-gray-300 dark:bg-gray-700 rounded-2xl shadow-sm"></div>
-        <!-- Dot indicator -->
-        <div class="w-1 h-1 rounded-full bg-white/80 absolute -bottom-2.5"></div>
+        <div class="w-14 h-14 shadow-sm shrink-0 transition-transform duration-200 group-hover:-translate-y-2 group-hover:scale-110">
+          <img v-if="generatedIcon" :src="generatedIcon" class="w-full h-full object-contain drop-shadow-md" />
+          <div v-else class="w-full h-full bg-white/20 dark:bg-white/10 animate-pulse rounded-[1.2rem]"></div>
+        </div>
       </div>
-      
-      <!-- Divider -->
-      <div class="w-[1px] h-10 bg-white/30 mx-1"></div>
-      
-      <!-- Trash Icon (placeholder) -->
-      <div class="w-12 h-12 rounded-[10px] bg-white/40 flex items-center justify-center text-gray-800 shadow-sm cursor-pointer hover:-translate-y-2 transition-transform duration-200 ease-out">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+
+      <div class="w-14 h-14 bg-white dark:bg-gray-800 rounded-[1.2rem] shadow-sm flex flex-col items-center justify-center shrink-0 border border-gray-200 dark:border-gray-700">
+        <span class="text-[8px] font-bold text-red-500">JUL</span>
+        <span class="text-xl font-light leading-none mt-0.5 dark:text-white">17</span>
       </div>
     </div>
   </div>

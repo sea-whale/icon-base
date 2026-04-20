@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
+import { Settings, MessageSquare, Compass, Mail, Calendar, Map, Phone, Battery, Wifi, Signal } from 'lucide-vue-next'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -48,6 +49,16 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcons, { immed
       
       <!-- Notch -->
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 dark:bg-gray-900 rounded-b-xl z-20"></div>
+      
+      <!-- Status Bar -->
+      <div class="absolute top-0 w-full h-6 flex justify-between items-center px-4 mt-2 z-20">
+        <span class="text-[10px] font-medium text-white">9:41</span>
+        <div class="flex gap-1 items-center text-white">
+          <Signal :size="12" />
+          <Wifi :size="12" />
+          <Battery :size="14" />
+        </div>
+      </div>
       
       <!-- iOS Home Screen Grid -->
       <div class="relative z-10 w-full h-full p-6 pt-12 grid grid-cols-4 gap-4 auto-rows-max place-items-center">

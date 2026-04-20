@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useHead } from '#imports'
 import { ref, provide, onMounted } from 'vue'
+import { Sun, Moon, Image as ImageIcon } from 'lucide-vue-next'
 
 useHead({
   title: 'LogoWear - Apple-Style Icon Generator',
@@ -57,8 +58,8 @@ onMounted(() => {
           class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-500 hover:text-gray-900 dark:hover:text-gray-100"
           title="Toggle Dark Mode"
         >
-          <svg v-if="isDarkMode" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <Sun v-if="isDarkMode" :size="20" />
+          <Moon v-else :size="20" />
         </button>
       </div>
     </header>
@@ -75,7 +76,7 @@ onMounted(() => {
         <PreviewGrid v-if="uploadedImage" />
         <div v-else class="h-full flex flex-col items-center justify-center text-gray-400 dark:text-gray-500">
           <div class="w-24 h-24 mb-6 opacity-20 border-4 border-dashed border-current rounded-3xl flex items-center justify-center relative overflow-hidden group">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image group-hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            <ImageIcon :size="32" class="group-hover:scale-110 transition-transform" />
           </div>
           <p class="text-xl font-medium text-gray-700 dark:text-gray-300">上传 Logo 开始预览</p>
           <p class="text-sm mt-2 max-w-md text-center">我们将自动应用 Apple 风格背景，并支持一键生成适用于所有平台的标准图标资产。</p>

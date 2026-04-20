@@ -154,7 +154,7 @@ const handleExport = async () => {
       
       <template v-if="!uploadedImage">
         <div class="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload text-gray-500"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+          <Upload :size="20" class="text-gray-500" />
         </div>
         <p class="text-sm font-medium text-gray-700 dark:text-gray-300">点击或拖拽图片上传</p>
         <p class="text-xs text-gray-500 mt-1">支持 PNG, SVG, WEBP (最大 5MB)</p>
@@ -181,7 +181,7 @@ const handleExport = async () => {
               class="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors text-gray-500 hover:text-blue-500 dark:hover:text-blue-400"
               title="随机切换"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l4.1-5.6"/><path d="M3 6h1.4c1.3 0 2.5.6 3.3 1.7l4.1 5.6"/><path d="m21 16-3 3 3 3"/><path d="m21 8-3-3 3-3"/><path d="M22 18h-4.8c-1.3 0-2.5-.6-3.3-1.7l-.8-1.1"/><path d="M22 6h-4.8c-1.3 0-2.5.6-3.3 1.7l-.8 1.1"/></svg>
+              <Shuffle :size="14" />
             </button>
             <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
           </div>
@@ -243,12 +243,12 @@ const handleExport = async () => {
           class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-sm shadow-blue-500/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           <template v-if="isExporting">
-            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            <Loader2 class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" />
             打包生成中...
           </template>
           <template v-else>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-            一键导出所有尺寸
+            <Download :size="18" />
+            打包导出全套图标 (.zip)
           </template>
         </button>
         <p class="text-xs text-center text-gray-500 mt-3">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
+import { Grid2x2, Search, Folder, Wifi } from 'lucide-vue-next'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -38,12 +39,12 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
       
       <!-- Start Button (Placeholder) -->
       <div class="w-10 h-10 rounded hover:bg-white/30 dark:hover:bg-white/10 flex items-center justify-center transition-colors cursor-pointer mr-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4" class="lucide lucide-grid-2x2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 12h18"/><path d="M12 3v18"/></svg>
+        <Grid2x2 :size="22" color="#0078d4" />
       </div>
       
       <!-- Search Button -->
       <div class="w-10 h-10 rounded hover:bg-white/30 dark:hover:bg-white/10 flex items-center justify-center transition-colors cursor-pointer mx-1 text-gray-700 dark:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <Search :size="20" />
       </div>
 
       <!-- Generated App Icon -->
@@ -55,7 +56,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
       
       <!-- Other App (Placeholder) -->
       <div class="w-10 h-10 rounded hover:bg-white/30 dark:hover:bg-white/10 flex items-center justify-center transition-colors cursor-pointer mx-1 text-gray-700 dark:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+        <Folder :size="20" />
       </div>
       
       <!-- Right Side Tray (Time, Battery, Wi-Fi) -->
@@ -65,7 +66,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
           <img v-if="generatedIcon" :src="generatedIcon" class="w-4 h-4 opacity-90" alt="Tray Icon" />
           <div v-else class="w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-sm opacity-90"></div>
           
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>
+          <Wifi :size="14" />
         </div>
         <div class="px-2 h-10 rounded hover:bg-white/30 dark:hover:bg-white/10 flex flex-col items-center justify-center transition-colors cursor-pointer leading-tight">
           <span>10:00 AM</span>

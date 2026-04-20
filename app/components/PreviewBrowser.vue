@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, watch, ref, type Ref } from 'vue'
+import { Search, ChevronLeft, ChevronRight, RotateCw } from 'lucide-vue-next'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -52,7 +53,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
         
         <!-- Inactive Tab -->
         <div class="h-8 min-w-[200px] max-w-[240px] flex items-center px-3 gap-2 opacity-50 hover:opacity-80 transition-opacity">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <Search :size="16" />
           <span class="text-xs text-gray-700 dark:text-gray-200 font-medium truncate">Google Search</span>
         </div>
       </div>
@@ -61,9 +62,9 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
     <!-- Browser Address Bar Area -->
     <div class="h-10 bg-white dark:bg-[#323233] border-b border-gray-200 dark:border-[#1c1c1e] flex items-center px-4 gap-4">
       <div class="flex gap-2 text-gray-400 dark:text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+        <ChevronLeft :size="16" />
+        <ChevronRight :size="16" />
+        <RotateCw :size="16" />
       </div>
       <div class="flex-1 h-6 bg-gray-100 dark:bg-[#1c1c1e] rounded flex items-center px-3 justify-center">
         <span class="text-[11px] text-gray-500 dark:text-gray-400">logowear.app</span>
