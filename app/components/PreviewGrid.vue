@@ -10,24 +10,33 @@ const { t } = useI18n()
 
 <template>
   <div class="space-y-4">
-    <!-- Browser Tabs Preview -->
-    <div class="rounded-xl">
+    <section class="rounded-xl" aria-labelledby="preview-browser-title">
+      <h4 id="preview-browser-title" class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+        {{ t('preview.browser') }}
+      </h4>
       <PreviewBrowser />
-    </div>
+    </section>
 
-    <!-- Dock + Windows full width row -->
     <div class="grid grid-cols-1 gap-4">
-      <div class="rounded-xl">
+      <section class="rounded-xl" aria-labelledby="preview-mac-title">
+        <h4 id="preview-mac-title" class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+          {{ t('preview.macDock') }}
+        </h4>
         <PreviewMacDock />
-      </div>
-      <div class="rounded-xl">
+      </section>
+      <section class="rounded-xl" aria-labelledby="preview-win-title">
+        <h4 id="preview-win-title" class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+          {{ t('preview.winTaskbar') }}
+        </h4>
         <PreviewWinTaskbar />
-      </div>
+      </section>
     </div>
 
-    <!-- Mobile Preview -->
-    <div class="rounded-xl">
+    <section class="rounded-xl" aria-labelledby="preview-mobile-title">
+      <h4 id="preview-mobile-title" class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+        {{ t('preview.mobile') }}
+      </h4>
       <PreviewMobile />
-    </div>
+    </section>
   </div>
 </template>

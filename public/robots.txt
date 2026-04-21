@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+Sitemap: https://iconbase.7-image.com/sitemap.xml
+Sitemap: https://iconbase.7-image.com/sitemap_index.xml

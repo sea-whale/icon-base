@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
 import { Signal, Wifi, Battery, Box, MessageCircle, Mail, Music, Compass, Search, Mic, Hexagon, Phone, Camera, Settings } from 'lucide-vue-next'
+import type { IconShapeMode } from '../utils/iconGenerator'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const shapeMode = inject<Ref<IconShapeMode>>('shapeMode', ref('rounded-rect'))
 
 const iosIcon = ref<string>('')
 const androidIcon = ref<string>('')
@@ -21,6 +23,7 @@ const updateIcons = async () => {
       backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: 22.5,
+      shapeMode: shapeMode.value,
       size: 180,
       transparentBg: false
     })
@@ -30,6 +33,7 @@ const updateIcons = async () => {
       backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value,
+      shapeMode: shapeMode.value,
       size: 192,
       transparentBg: false
     })
@@ -38,7 +42,7 @@ const updateIcons = async () => {
   }
 }
 
-watch([uploadedImage, backgroundId, padding, borderRadius], updateIcons, { immediate: true })
+watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIcons, { immediate: true })
 </script>
 
 <template>

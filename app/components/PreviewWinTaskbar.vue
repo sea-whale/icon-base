@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { inject, ref, watch, type Ref } from 'vue'
 import { Grid2x2, Search, Folder, Wifi } from 'lucide-vue-next'
+import type { IconShapeMode } from '../utils/iconGenerator'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const shapeMode = inject<Ref<IconShapeMode>>('shapeMode', ref('rounded-rect'))
 
 const generatedIcon = ref<string>('')
 
@@ -20,6 +22,7 @@ const updateIcon = async () => {
       backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value,
+      shapeMode: shapeMode.value,
       size: 128,
       transparentBg: false
     })
@@ -28,7 +31,7 @@ const updateIcon = async () => {
   }
 }
 
-watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immediate: true })
+watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIcon, { immediate: true })
 </script>
 
 <template>

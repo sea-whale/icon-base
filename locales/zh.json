@@ -1,62 +1,51 @@
 {
   "app": {
     "title": "IconBase",
-    "subtitle": "Apple-Style Icon Generator",
-    "uploadPrompt": "上传 Logo 开始预览",
-    "uploadDesc": "我们将自动应用 Apple 风格背景，并支持一键生成适用于所有平台的标准图标资产。"
+    "subtitle": "面向 SEO 的 iOS、macOS、favicon 与 PWA 图标生成器"
   },
-  "nav": {
-    "generator": "开始生成"
-  },
-  "hero": {
-    "title": "把你的 Logo 变成全平台图标",
-    "ctaPrimary": "立即生成",
-    "fromLabel": "你的 Logo",
-    "toLabel": "全平台图标",
-    "badge": "",
-    "subtitle": "",
-    "ctaSecondary": "",
-    "note": "",
-    "cardTitle": "实时预览 + 一键导出",
-    "cardSubtitle": "40 款底色模板 · 分类浏览 · 随机切换",
-    "cardTipTitle": "提示",
-    "cardTipDesc": "上传图片后会自动随机选择一个底色模板，也可以在左侧点击随机按钮继续探索。"
+  "navigation": {
+    "language": "语言",
+    "items": {
+      "home": "首页",
+      "ios": "iOS App Icon Generator",
+      "favicon": "Favicon Maker",
+      "mac": "macOS Icon Creator"
+    }
   },
   "footer": {
     "title": "IconBase",
-    "subtitle": "One-page icon generator",
+    "subtitle": "在浏览器中生成精致的 App 图标、favicon 文件和 Apple 风格导出包。",
+    "navigation": "页面",
+    "follow": "关注",
     "x": "X",
-    "github": "GitHub 点赞",
-    "blog": "Blog"
+    "blog": "博客",
+    "copyright": "© {year} JettGu. 保留所有权利。"
+  },
+  "generator": {
+    "workspaceTitle": "开始生成",
+    "controlsTitle": "参数与导出",
+    "previewTitle": "实时预览"
   },
   "panel": {
-    "uploadOrDrag": "点击或拖拽图片上传",
-    "supportedFormats": "支持 PNG, SVG, WEBP (最大 5MB)",
+    "uploadOrDrag": "点击或拖拽上传图片",
+    "supportedFormats": "支持 PNG、JPG、SVG、WEBP",
     "changeImage": "更换图片",
-    "bgTemplate": "底色模板",
-    "padding": "图标缩放间距",
+    "bgTemplate": "背景模板",
+    "padding": "图标内边距",
     "borderRadius": "圆角曲率",
-    "exporting": "打包生成中...",
-    "exportZip": "打包导出 .zip",
-    "exportTitle": "导出全部平台资产",
+    "exporting": "生成中...",
+    "exportZip": "导出 .zip",
     "exportContains": "导出包包含：",
-    "exportBreakdown": {
-      "ico": "兼容传统 Windows 和旧版浏览器的原生 .ico 格式",
-      "apple": "适用于 iPhone 和 iPad 保存到主屏幕的图标",
-      "android": "适用于 Android 系统和 PWA 应用的标准尺寸",
-      "favicon": "适用于现代浏览器的标准高清标签页图标",
-      "manifest": "供浏览器自动识别图标的 PWA 配置文件"
-    },
     "shuffle": "随机切换",
     "sharpCorner": "直角",
-    "demoHint": "当前使用示例图片预览效果，点击上方区域上传你的 Logo 替换",
+    "demoHint": "默认已载入示例图。上传你的 Logo 后可直接预览真实导出效果。",
     "categories": {
-      "solid": "极简纯色 (Solid)",
-      "gradient": "色彩渐变 (Gradient)",
-      "mesh": "网格极光 (Mesh & Grid)",
-      "glass": "玻璃拟物 (Glass)",
-      "pattern": "纹理质感 (Noise & Pattern)",
-      "glow": "点缀光晕 (Glow & Accent)"
+      "solid": "纯色",
+      "gradient": "渐变",
+      "mesh": "网格与 Mesh",
+      "glass": "玻璃质感",
+      "pattern": "纹理与图案",
+      "glow": "光晕与点缀"
     }
   },
   "preview": {
@@ -65,6 +54,276 @@
     "winTaskbar": "Windows 任务栏预览",
     "mobile": "移动端主屏幕预览"
   },
+  "pages": {
+    "home": {
+      "cardDescription": "在同一个浏览器工作区里生成 App 图标、favicon 文件和 Apple 风格导出包。",
+      "generatorIntro": "上传 Logo、选择背景、调整留白，并实时预览图标在浏览器标签页、手机主屏幕、macOS Dock 和 Windows 任务栏中的呈现效果。",
+      "generatorControls": "一个控制面板即可完成上传、模板选择、圆角与留白调整，以及最终导出。",
+      "generatorPreview": "同一套图标状态会实时渲染到浏览器、桌面和移动端的模拟场景中。",
+      "stepsTitle": "IconBase 的工作方式",
+      "faqTitle": "常见问题",
+      "relatedTitle": "查看更多图标页面",
+      "relatedIntro": "如果你希望聚焦 iOS 图标、favicon 或 macOS 图标场景，可以继续访问下面这些专题页面。",
+      "seo": {
+        "title": "IconBase - iOS、macOS、Favicon 与 PWA 图标生成器",
+        "description": "在线生成 Apple 风格 App 图标。实时预览 iOS、macOS、favicon、Windows 和 Android 图标效果，并一键导出完整图标包。",
+        "keywords": "图标生成器, app icon generator, ios app icon generator, favicon maker, mac os icon creator, apple touch icon generator, pwa icon generator",
+        "ogTitle": "IconBase - 为所有平台生成图标",
+        "ogDescription": "创建 Apple 风格 App 图标、浏览器 favicon 以及可直接导出的图标文件，实时预览 iOS、macOS、Windows、Android 与浏览器场景。",
+        "twitterTitle": "IconBase - 图标生成器",
+        "twitterDescription": "把一个 Logo 变成精致的 App 图标、favicon、Apple touch icon 和桌面图标资源。"
+      },
+      "hero": {
+        "eyebrow": "Apple 风格图标生成器",
+        "title": "为 iOS、macOS、浏览器与 PWA 创建精致的 App 图标",
+        "intro": "IconBase 可以把一个 Logo 变成 Apple 风格图标资产，并实时预览它在浏览器标签页、手机主屏幕、macOS Dock 与桌面启动场景中的效果。无需上传到服务端，也不需要设计软件或手动打包。",
+        "cta": "立即开始"
+      },
+      "features": [
+        {
+          "title": "覆盖关键平台的真实预览",
+          "description": "在导出之前就看到同一枚图标作为 favicon、Apple touch icon、Android 主屏图标、macOS Dock 图标和 Windows 任务栏图标时的实际观感。"
+        },
+        {
+          "title": "Apple 风格背景与图标塑形",
+          "description": "结合 Apple 风格圆角矩形、渐变、Mesh、玻璃效果和纹理背景，并通过留白控制让 Logo 在小尺寸下依然平衡。"
+        },
+        {
+          "title": "一键导出生产可用文件",
+          "description": "同时生成 PNG 尺寸、favicon.ico、Apple touch icon、Android Chrome 资源、maskable icon、桌面 PNG 和 site.webmanifest。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "上传你的 Logo",
+          "description": "支持透明 PNG、SVG、JPG、WEBP，并且整个处理过程都在浏览器本地完成。"
+        },
+        {
+          "title": "调整视觉方案",
+          "description": "选择背景模板，微调图标留白与圆角曲率，直到它在多个预览场景中都足够清晰稳定。"
+        },
+        {
+          "title": "导出图标包",
+          "description": "一键下载完整 zip，里面包含 favicon、Apple、Android、桌面图标和 manifest 文件，可直接接入项目。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "IconBase 会把图片上传到服务器吗？",
+          "answer": "不会。图标渲染完全基于浏览器里的 Canvas，本地处理，不会把源图片上传到服务端。"
+        },
+        {
+          "question": "导出包里包含哪些文件？",
+          "answer": "导出包包含 favicon PNG、favicon.ico、apple-touch-icon.png、Android Chrome PNG、maskable icon、桌面 PNG 以及 site.webmanifest。"
+        },
+        {
+          "question": "它可以同时用于网站和 App 图标方案吗？",
+          "answer": "可以。它既适合网站 favicon 套件，也适合验证 Logo 转换成 iOS、macOS 风格 App 图标时的视觉方向。"
+        }
+      ]
+    },
+    "ios-app-icon-generator": {
+      "cardDescription": "生成 Apple touch icon 与 iOS 风格 App 图标，并用真实移动端场景预览效果。",
+      "generatorIntro": "这个页面沿用相同的生成器核心，但内容重点放在 Apple touch icon、iPhone 主屏预览，以及更符合 iOS 设计语境的圆角图标风格。",
+      "generatorControls": "上传品牌标识，调节留白和圆角，让图标在 iPhone 风格场景里更自然。",
+      "generatorPreview": "除了浏览器和桌面预览，这里会重点展示图标在 iPhone 主屏上的呈现效果。",
+      "stepsTitle": "如何生成 iOS 图标",
+      "faqTitle": "iOS 图标常见问题",
+      "relatedTitle": "相关图标工作流",
+      "relatedIntro": "如果你还需要 favicon 或桌面图标导出，可以继续访问这些相关页面。",
+      "seo": {
+        "title": "iOS App Icon Generator - 在线生成 Apple 风格 iOS 图标 | IconBase",
+        "description": "在线创建 iOS App 图标，支持 Apple 风格圆角、iPhone 主屏实时预览，以及适合网站与原型展示的图标导出。",
+        "keywords": "ios app icon generator, apple touch icon generator, iphone app icon maker, ios 图标生成器, apple 风格图标",
+        "ogTitle": "iOS App Icon Generator - Apple 风格图标生成器",
+        "ogDescription": "把 Logo 转成 iOS 风格图标，实时查看 iPhone 预览，并导出可复用的图标文件。",
+        "twitterTitle": "iOS App Icon Generator | IconBase",
+        "twitterDescription": "在浏览器中创建 iPhone 风格 App 图标、Apple touch icon 和圆角方形 Logo 方案。"
+      },
+      "hero": {
+        "eyebrow": "iPhone 与 Apple touch icon 工作流",
+        "title": "生成带 Apple 风格圆角和移动端预览的 iOS 图标",
+        "intro": "如果你的目标是做 iOS App 图标、Apple touch icon 或 iPhone 主屏原型展示，这个页面会更贴合搜索意图。你可以在导出前先检查留白、圆角和视觉重心。",
+        "cta": "开始制作 iOS 图标"
+      },
+      "features": [
+        {
+          "title": "Apple 风格圆角图标处理",
+          "description": "无需重画原始 Logo，就可以快速测试更适合 iPhone 和 iPad 主屏的圆角图标视觉。"
+        },
+        {
+          "title": "实时 iPhone 主屏预览",
+          "description": "把图标放进真实感更强的 iOS 主屏布局里，提前发现尺寸、留白和对比度问题。"
+        },
+        {
+          "title": "适合 Apple 场景的导出资源",
+          "description": "导出包内包含 apple-touch-icon.png，同时保留浏览器和其他平台的相关图标文件。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "上传 App 标识",
+          "description": "从 Logo、Glyph 或品牌图形开始，测试它转成 iOS 图标后的效果。"
+        },
+        {
+          "title": "平衡圆角与留白",
+          "description": "调节留白和圆角曲率，让图标在 rounded square 里获得更自然的视觉中心。"
+        },
+        {
+          "title": "导出 Apple 友好的资源",
+          "description": "下载打包后的文件，用于网站安装图标、产品展示图或下一步设计迭代。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "这个页面只适合原生 iOS App 吗？",
+          "answer": "不是。它同样适合网站的 Apple touch icon、PWA 安装图标，以及早期 App 品牌原型阶段。"
+        },
+        {
+          "question": "为什么 iOS 图标需要特别关注留白？",
+          "answer": "如果 Logo 过于顶满圆角方形，在 iPhone 主屏上会显得拥挤，适当留白能提升清晰度和整体平衡。"
+        },
+        {
+          "question": "导出前可以先看预览吗？",
+          "answer": "可以。页面会实时显示移动端、浏览器和桌面端预览，确认无误后再导出 zip。"
+        }
+      ]
+    },
+    "favicon-maker": {
+      "cardDescription": "生成 favicon.ico、favicon PNG 和适合浏览器标签页的图标导出包。",
+      "generatorIntro": "当你的核心需求是 favicon.ico、浏览器标签页识别度，以及小尺寸图标清晰度时，这个页面会更适合。",
+      "generatorControls": "通过背景、留白和尺寸感知来优化小图标可读性，确保 favicon 在 16x16 和 32x32 依然清晰。",
+      "generatorPreview": "浏览器标签页模拟区域能直接反映图标在真实使用场景中的识别度。",
+      "stepsTitle": "如何制作 favicon 套件",
+      "faqTitle": "Favicon 常见问题",
+      "relatedTitle": "其他图标页面",
+      "relatedIntro": "如果你还需要面向 iOS 或 macOS 的图标落地页，可以继续访问下面这些页面。",
+      "seo": {
+        "title": "Favicon Maker - 在线生成 favicon.ico 与 PNG favicon | IconBase",
+        "description": "在线制作 favicon，支持浏览器标签页实时预览，并导出 favicon.ico、16x16、32x32、Apple touch icon 等文件。",
+        "keywords": "favicon maker, favicon generator, favicon.ico generator, 网站图标生成器, browser tab icon maker",
+        "ogTitle": "Favicon Maker - 生成 favicon.ico 与浏览器图标",
+        "ogDescription": "通过浏览器标签页实时预览创建清晰的 favicon 文件，并导出 favicon.ico、PNG 与相关 Web App 图标资源。",
+        "twitterTitle": "Favicon Maker | IconBase",
+        "twitterDescription": "生成浏览器 favicon、favicon.ico 和适合小尺寸展示的网站图标文件。"
+      },
+      "hero": {
+        "eyebrow": "浏览器 favicon 生成器",
+        "title": "通过实时标签页预览生成 favicon.ico 和网站 favicon PNG",
+        "intro": "如果你的目标是为网站、SaaS 或产品落地页准备完整 favicon 套件，这个页面更适合。你可以先验证 Logo 在极小尺寸下的识别度，再导出全部文件。",
+        "cta": "创建 favicon"
+      },
+      "features": [
+        {
+          "title": "导出前先看浏览器标签页效果",
+          "description": "在浅色和深色标签页环境中预览 favicon，判断图标是否仍然足够清晰和易识别。"
+        },
+        {
+          "title": "生成 favicon.ico 与标准 PNG 尺寸",
+          "description": "同时导出 favicon.ico、16x16 和 32x32 PNG，兼顾现代浏览器与兼容场景。"
+        },
+        {
+          "title": "统一网站图标体系",
+          "description": "让浏览器标签页、书签、Apple touch icon 和 Android 安装图标使用同一套视觉逻辑，而不是手动拼装文件。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "上传网站标识",
+          "description": "使用最适合小尺寸展示的图形符号或紧凑版 Logo 作为起点。"
+        },
+        {
+          "title": "针对小尺寸优化",
+          "description": "调节背景和留白，让 favicon 在 16x16 与 32x32 下仍然保持可读性。"
+        },
+        {
+          "title": "下载 favicon 包",
+          "description": "导出 zip，直接使用其中的 favicon.ico、PNG 与 manifest 文件接入网站。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "导出包里包含 favicon.ico 吗？",
+          "answer": "包含。除了 PNG favicon 文件外，zip 里也会生成 favicon.ico。"
+        },
+        {
+          "question": "为什么要做浏览器标签页预览？",
+          "answer": "因为 favicon 通常以极小尺寸出现，标签页预览能更真实地暴露识别度和对比度问题。"
+        },
+        {
+          "question": "这套导出也适合 PWA 吗？",
+          "answer": "适合。导出包还包含 Apple touch、Android Chrome 和 manifest 文件，可覆盖更广泛的 Web App 安装场景。"
+        }
+      ]
+    },
+    "mac-os-icon-creator": {
+      "cardDescription": "生成 macOS 风格 App 图标，并通过 Dock 预览判断桌面端效果。",
+      "generatorIntro": "这个页面围绕 macOS Dock、桌面图标尺寸和更适合 Apple 桌面语境的视觉质感来组织内容，但底层仍然使用同一个生成器。",
+      "generatorControls": "在兼顾 Web 与移动端导出的同时，优先把图标调到更适合桌面场景的状态。",
+      "generatorPreview": "通过 Dock 预览快速判断图标在桌面端是否足够精致、清晰且有层次感。",
+      "stepsTitle": "如何创建 macOS 图标",
+      "faqTitle": "macOS 图标常见问题",
+      "relatedTitle": "更多图标落地页",
+      "relatedIntro": "如果你的需求更偏向 favicon 或 iOS 主屏图标，也可以继续访问这些相关页面。",
+      "seo": {
+        "title": "macOS Icon Creator - 在线创建 Apple 风格 Mac 图标 | IconBase",
+        "description": "在线创建 macOS App 图标，支持 Apple 风格背景、Dock 实时预览，以及适合桌面场景的导出资源。",
+        "keywords": "mac os icon creator, mac icon generator, mac app icon maker, macOS 图标生成器, apple desktop icon",
+        "ogTitle": "macOS Icon Creator - Apple 风格桌面图标生成器",
+        "ogDescription": "把 Logo 转成更适合 Mac 桌面的精致图标，支持 Dock 预览和桌面导出文件。",
+        "twitterTitle": "macOS Icon Creator | IconBase",
+        "twitterDescription": "创建带 Dock 预览的 Mac 风格图标，并一键导出桌面图标资源。"
+      },
+      "hero": {
+        "eyebrow": "macOS Dock 图标工作流",
+        "title": "通过 Dock 预览与桌面导出创建 macOS 风格 App 图标",
+        "intro": "如果你希望 Logo 在 macOS Dock 或桌面启动场景里看起来更自然，这个页面会更贴近你的需求。你可以针对大尺寸桌面图标优化视觉层次，再统一导出文件。",
+        "cta": "创建 macOS 图标"
+      },
+      "features": [
+        {
+          "title": "面向 Dock 的桌面预览",
+          "description": "不用对着纯色方块猜效果，而是直接在 macOS 风格 Dock 场景里判断图标表现。"
+        },
+        {
+          "title": "Apple 风格桌面视觉处理",
+          "description": "通过圆角方形、玻璃质感、渐变和 Mesh 背景，让简单 Logo 更接近桌面 App 图标的观感。"
+        },
+        {
+          "title": "适合展示与发布的大尺寸导出",
+          "description": "导出包包含 256x256 和 1024x1024 等桌面向 PNG 尺寸，便于用于展示图、发布素材和产品页面。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "上传 App 标识",
+          "description": "从 Glyph、Logo 或简化品牌图形开始，测试它转成桌面图标时的效果。"
+        },
+        {
+          "title": "优化桌面视觉",
+          "description": "尝试不同圆角、玻璃效果、渐变和留白，让图标在 Dock 与桌面尺寸下更精致。"
+        },
+        {
+          "title": "导出完整图标包",
+          "description": "下载完整 zip，让同一套桌面方向同时覆盖浏览器、移动端与展示素材。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "这个页面适合做 Mac App 概念图吗？",
+          "answer": "适合。它既能用于网站图标导出，也很适合在概念阶段探索 Logo 转成 Mac App 图标后的感觉。"
+        },
+        {
+          "question": "会导出大尺寸桌面 PNG 吗？",
+          "answer": "会。导出包包含面向桌面场景的大尺寸 PNG，适合展示和发布素材。"
+        },
+        {
+          "question": "同一套参数也能兼顾 Web 图标吗？",
+          "answer": "可以。这个生成器会基于同一状态导出浏览器、Apple、Android 与桌面图标文件。"
+        }
+      ]
+    }
+  },
   "backgrounds": {
     "apple-dark": "Apple 深色",
     "apple-light": "Apple 浅色",
@@ -72,36 +331,36 @@
     "solid-white": "纯白",
     "solid-graphite": "石墨灰",
     "solid-cream": "奶油白",
-    "grad-sunset": "日落渐变",
-    "grad-ocean": "海洋渐变",
+    "grad-sunset": "日落",
+    "grad-ocean": "海洋",
     "grad-purple": "紫罗兰",
-    "grad-midnight": "午夜深蓝",
-    "grad-lime": "青柠渐变",
-    "grad-peach": "蜜桃渐变",
-    "confetti-mono": "微点噪声",
-    "glass-green-glow": "拟物微光",
-    "glass-frost": "毛玻璃冰霜",
-    "glass-obsidian": "黑曜石微光",
-    "mesh-aurora": "极光网格",
-    "mesh-ocean": "深海网格",
-    "mesh-holo": "全息网格",
-    "mesh-flame": "烈焰网格",
-    "mesh-sunset": "晚霞网格",
-    "mesh-forest": "幽林网格",
-    "noise-charcoal": "碳灰噪点",
+    "grad-midnight": "午夜",
+    "grad-lime": "青柠薄荷",
+    "grad-peach": "蜜桃奶昔",
+    "confetti-mono": "纸屑噪点",
+    "glass-green-glow": "玻璃微光",
+    "glass-frost": "冰霜玻璃",
+    "glass-obsidian": "黑曜石玻璃",
+    "mesh-aurora": "极光 Mesh",
+    "mesh-ocean": "海洋 Mesh",
+    "mesh-holo": "全息 Mesh",
+    "mesh-flame": "烈焰 Mesh",
+    "mesh-sunset": "晚霞 Mesh",
+    "mesh-forest": "森林 Mesh",
+    "noise-charcoal": "炭灰噪点",
     "noise-sand": "暖沙噪点",
     "noise-crimson": "深红噪点",
-    "noise-paper": "糙纸噪点",
+    "noise-paper": "纸感噪点",
     "check-classic": "经典棋盘",
-    "check-pink": "粉白棋盘",
+    "check-pink": "粉色棋盘",
     "check-mint": "薄荷棋盘",
     "check-yellow": "柠檬棋盘",
     "check-slate": "板岩棋盘",
-    "stripes-slate": "斜纹条纹",
-    "stripes-candy": "粉白斜纹",
-    "stripes-warn": "警告斜纹",
-    "stripes-mint": "薄荷斜纹",
-    "stripes-neon": "霓虹斜纹",
+    "stripes-slate": "板岩条纹",
+    "stripes-candy": "糖果条纹",
+    "stripes-warn": "警示条纹",
+    "stripes-mint": "薄荷条纹",
+    "stripes-neon": "霓虹条纹",
     "glow-blue": "蓝色光晕",
     "glow-purple": "紫色光晕",
     "glow-cyber": "赛博光晕",
@@ -111,14 +370,15 @@
     "grid-blueprint": "蓝图网格",
     "grid-matrix": "矩阵网格",
     "grid-retro": "复古网格",
+    "dots-blueprint": "蓝图波点",
     "dots-retro": "复古波点",
     "dots-matrix": "矩阵波点",
     "spotlight-rose": "玫瑰聚光",
     "spotlight-sky": "天空聚光",
     "accent-corner": "角落点缀",
     "accent-diagonal": "对角点缀",
-    "accent-slash": "破折点缀",
-    "accent-corner-blue": "角落亮蓝",
+    "accent-slash": "斜切点缀",
+    "accent-corner-blue": "蓝色角落",
     "pattern-dots": "浅色波点",
     "pattern-grid": "深色网格"
   }

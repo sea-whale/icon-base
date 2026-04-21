@@ -1,0 +1,327 @@
+{
+  "app": {
+    "title": "IconBase",
+    "subtitle": "iOS・macOS・favicon・PWA 向けの SEO 重視アイコンジェネレーター"
+  },
+  "navigation": {
+    "language": "言語",
+    "items": {
+      "home": "ホーム",
+      "ios": "iOS App Icon Generator",
+      "favicon": "Favicon Maker",
+      "mac": "macOS Icon Creator"
+    }
+  },
+  "footer": {
+    "title": "IconBase",
+    "subtitle": "ブラウザだけで App アイコン、favicon セット、Apple 風エクスポートを作成できます。",
+    "navigation": "ページ",
+    "follow": "フォロー",
+    "x": "X",
+    "blog": "ブログ",
+    "copyright": "© {year} JettGu. All rights reserved."
+  },
+  "generator": {
+    "workspaceTitle": "ジェネレーターを試す",
+    "controlsTitle": "設定と書き出し",
+    "previewTitle": "ライブプレビュー"
+  },
+  "panel": {
+    "uploadOrDrag": "クリックまたはドラッグしてアップロード",
+    "supportedFormats": "PNG、JPG、SVG、WEBP に対応",
+    "changeImage": "画像を変更",
+    "bgTemplate": "背景テンプレート",
+    "padding": "余白",
+    "borderRadius": "角丸",
+    "exporting": "生成中...",
+    "exportZip": ".zip を書き出す",
+    "exportContains": "Zip に含まれる内容:",
+    "shuffle": "シャッフル",
+    "sharpCorner": "シャープ",
+    "demoHint": "初期状態ではサンプル画像を表示しています。実際のロゴをアップロードして確認してください。",
+    "categories": {
+      "solid": "ソリッド",
+      "gradient": "グラデーション",
+      "mesh": "Mesh と Grid",
+      "glass": "ガラス表現",
+      "pattern": "パターン",
+      "glow": "グロー"
+    }
+  },
+  "preview": {
+    "browser": "ブラウザタブのプレビュー",
+    "macDock": "macOS Dock のプレビュー",
+    "winTaskbar": "Windows タスクバーのプレビュー",
+    "mobile": "モバイルホーム画面のプレビュー"
+  },
+  "pages": {
+    "home": {
+      "cardDescription": "1 つのワークスペースから App アイコン、favicon、Apple 風エクスポートをまとめて生成します。",
+      "generatorIntro": "ロゴをアップロードし、背景と余白を調整しながら、ブラウザタブ、モバイルホーム画面、macOS Dock、Windows タスクバーでの見え方をリアルタイムに確認できます。",
+      "generatorControls": "アップロード、背景選択、角丸調整、書き出しまでを 1 つのパネルで操作できます。",
+      "generatorPreview": "同じアイコン状態をブラウザ、デスクトップ、モバイルの各モックアップに同時反映します。",
+      "stepsTitle": "IconBase の使い方",
+      "faqTitle": "よくある質問",
+      "relatedTitle": "関連ページを見る",
+      "relatedIntro": "iOS、favicon、macOS など特定用途に寄せたページも用意しています。",
+      "seo": {
+        "title": "IconBase - iOS・macOS・favicon・PWA 向けアイコンジェネレーター",
+        "description": "Apple 風の App アイコンをオンラインで生成。iOS、macOS、favicon、Windows、Android 向けの見え方を確認し、まとめて書き出せます。",
+        "keywords": "app icon generator, ios app icon generator, favicon maker, mac icon creator, apple touch icon generator, pwa icon generator",
+        "ogTitle": "IconBase - すべてのプラットフォーム向けアイコン生成",
+        "ogDescription": "Apple 風 App アイコン、browser favicon、書き出し用アイコンを 1 つのブラウザツールで作成できます。",
+        "twitterTitle": "IconBase - アイコンジェネレーター",
+        "twitterDescription": "ロゴを App アイコン、favicon、Apple touch icon、デスクトップアイコンに変換します。"
+      },
+      "hero": {
+        "eyebrow": "Apple 風アイコンジェネレーター",
+        "title": "iOS、macOS、ブラウザ、PWA 向けの洗練された App アイコンを作成",
+        "intro": "IconBase は 1 つのロゴから Apple 風アイコンセットを作成し、ブラウザタブ、モバイルホーム画面、macOS Dock、デスクトップ環境での見え方をすぐに確認できます。",
+        "cta": "今すぐ作成"
+      },
+      "features": [
+        {
+          "title": "主要プラットフォームをまとめて確認",
+          "description": "favicon、Apple touch icon、Android アイコン、macOS Dock アイコン、Windows タスクバー表示を 1 画面でチェックできます。"
+        },
+        {
+          "title": "Apple 風の背景と形状調整",
+          "description": "角丸、グラデーション、Mesh、ガラス表現、パターンを使い、小さなサイズでも読みやすいアイコンに仕上げます。"
+        },
+        {
+          "title": "制作に使える一括書き出し",
+          "description": "PNG サイズ、favicon.ico、Apple touch icon、Android 用画像、maskable icon、desktop PNG、webmanifest をまとめて出力します。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "ロゴをアップロード",
+          "description": "PNG、SVG、JPG、WEBP に対応し、処理はブラウザ内で完結します。"
+        },
+        {
+          "title": "余白と背景を調整",
+          "description": "背景テンプレート、余白、角丸を調整し、各プレビュー上でバランスを確認します。"
+        },
+        {
+          "title": "アイコンパックを書き出し",
+          "description": "favicon、Apple、Android、desktop、manifest を含む zip をダウンロードします。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "画像はサーバーにアップロードされますか？",
+          "answer": "いいえ。Canvas を使ってブラウザ内で処理するため、元画像は端末内に残ります。"
+        },
+        {
+          "question": "書き出しには何が含まれますか？",
+          "answer": "favicon PNG、favicon.ico、apple-touch-icon.png、Android Chrome 画像、maskable icon、desktop PNG、site.webmanifest が含まれます。"
+        },
+        {
+          "question": "Web サイト用と App 用の両方に使えますか？",
+          "answer": "はい。favicon セットにも、iOS や macOS 風 App アイコンの検討にも使えます。"
+        }
+      ]
+    },
+    "ios-app-icon-generator": {
+      "cardDescription": "Apple touch icon と iOS 風 App アイコンを、iPhone ライクなプレビュー付きで生成します。",
+      "generatorIntro": "このページは iOS App icon、Apple touch icon、iPhone ホーム画面プレビューに焦点を当てています。",
+      "generatorControls": "ロゴ、余白、角丸を調整して iPhone 上で自然に見える形に整えます。",
+      "generatorPreview": "iPhone ホーム画面を中心に、ブラウザとデスクトップの整合性も同時に確認できます。",
+      "stepsTitle": "iOS アイコンの作り方",
+      "faqTitle": "iOS アイコン FAQ",
+      "relatedTitle": "関連ワークフロー",
+      "relatedIntro": "favicon や macOS アイコンも必要な場合は、関連ページも利用してください。",
+      "seo": {
+        "title": "iOS App Icon Generator - Apple 風 iOS アイコンをオンラインで生成 | IconBase",
+        "description": "Apple 風の角丸と iPhone プレビューで iOS App アイコンを作成。Apple touch icon やプロトタイプ用アイコンにも使えます。",
+        "keywords": "ios app icon generator, apple touch icon generator, iphone app icon maker, ios icon maker",
+        "ogTitle": "iOS App Icon Generator - Apple 風アイコンメーカー",
+        "ogDescription": "ロゴを iOS 風アイコンに変換し、iPhone 上で確認しながらエクスポートできます。",
+        "twitterTitle": "iOS App Icon Generator | IconBase",
+        "twitterDescription": "Apple touch icon、iPhone 風 App アイコン、角丸スクエアのロゴ表現をブラウザで作成。"
+      },
+      "hero": {
+        "eyebrow": "iPhone と Apple touch icon 向け",
+        "title": "Apple 風の角丸とモバイルプレビューで iOS アイコンを作成",
+        "intro": "iOS App アイコン、Apple touch icon、iPhone ホーム画面用の見せ方を作りたい場合に最適です。余白、角丸、重心を確認しながら調整できます。",
+        "cta": "iOS アイコンを作る"
+      },
+      "features": [
+        {
+          "title": "Apple 風の角丸処理",
+          "description": "ロゴを描き直さずに、iPhone 向けに見える rounded square スタイルをすばやく検証できます。"
+        },
+        {
+          "title": "iPhone ホーム画面のライブプレビュー",
+          "description": "iOS のホーム画面に近いレイアウトで、余白とコントラストの問題を早めに見つけられます。"
+        },
+        {
+          "title": "Apple 向け出力を含む書き出し",
+          "description": "apple-touch-icon.png を含み、同時に Web や他プラットフォーム向けのアイコンもまとめて出力できます。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "ロゴを読み込む",
+          "description": "App のグリフやブランドマークをアップロードしてスタートします。"
+        },
+        {
+          "title": "角丸と余白を整える",
+          "description": "rounded square 内で視覚的な中心が自然になるように微調整します。"
+        },
+        {
+          "title": "Apple 向けに書き出す",
+          "description": "Apple touch icon と併用できるファイル群を zip でダウンロードします。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "ネイティブ iOS アプリ専用ですか？",
+          "answer": "いいえ。Apple touch icon、PWA インストール用アイコン、構想段階の App ブランディングにも使えます。"
+        },
+        {
+          "question": "なぜ余白が重要ですか？",
+          "answer": "iPhone のホーム画面では、ロゴが詰まりすぎると窮屈に見えるため、適切な余白が視認性を高めます。"
+        },
+        {
+          "question": "書き出す前に確認できますか？",
+          "answer": "はい。モバイル、ブラウザ、デスクトップのプレビューを見ながら調整できます。"
+        }
+      ]
+    },
+    "favicon-maker": {
+      "cardDescription": "favicon.ico、favicon PNG、ブラウザ向けアイコンパックを即座に生成します。",
+      "generatorIntro": "favicon.ico、ブラウザタブでの視認性、小サイズでの読みやすさを重視したページです。",
+      "generatorControls": "16x16 と 32x32 でも崩れないように、背景と余白を小サイズ前提で調整します。",
+      "generatorPreview": "ブラウザタブのモックアップで、実際の favicon 表示に近い見え方を確認できます。",
+      "stepsTitle": "favicon セットの作り方",
+      "faqTitle": "favicon FAQ",
+      "relatedTitle": "その他のページ",
+      "relatedIntro": "iOS や macOS 向けの文脈で同じツールを使いたい場合は、関連ページも参照してください。",
+      "seo": {
+        "title": "Favicon Maker - favicon.ico と PNG favicon を生成 | IconBase",
+        "description": "ブラウザタブのライブプレビュー付きで favicon を作成。favicon.ico、16x16、32x32、Apple touch icon をまとめて出力できます。",
+        "keywords": "favicon maker, favicon generator, favicon.ico generator, website icon generator, browser tab icon maker",
+        "ogTitle": "Favicon Maker - favicon.ico とブラウザアイコン生成",
+        "ogDescription": "ブラウザタブで見え方を確認しながら、favicon.ico と PNG favicon を作成できます。",
+        "twitterTitle": "Favicon Maker | IconBase",
+        "twitterDescription": "browser favicon、favicon.ico、小サイズ向け Web アイコンをまとめて生成。"
+      },
+      "hero": {
+        "eyebrow": "ブラウザ favicon ジェネレーター",
+        "title": "ライブタブプレビューで favicon.ico と favicon PNG を作成",
+        "intro": "Web サイト、SaaS、プロダクトページ向けの favicon セットを作りたい場合に向いています。小さいサイズでも読めるかを先に確認してから書き出せます。",
+        "cta": "favicon を作成"
+      },
+      "features": [
+        {
+          "title": "タブ上での見え方を確認",
+          "description": "ライト/ダーク両方のタブ環境で、favicon が十分に識別できるかを事前にチェックできます。"
+        },
+        {
+          "title": "favicon.ico と PNG サイズを生成",
+          "description": "favicon.ico、16x16、32x32 PNG をまとめて出力し、モダン環境と互換環境をカバーします。"
+        },
+        {
+          "title": "Web アイコンを一貫した見た目で管理",
+          "description": "browser tab、ブックマーク、Apple touch icon、Android install icon まで一つの方向性で揃えられます。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Web 用マークをアップロード",
+          "description": "小サイズでも識別しやすいシンボルや簡略化したロゴを使います。"
+        },
+        {
+          "title": "小サイズ向けに最適化",
+          "description": "余白と背景を調整して、16x16 や 32x32 での読みやすさを高めます。"
+        },
+        {
+          "title": "favicon パックを書き出す",
+          "description": "favicon.ico、PNG、manifest を含む zip をダウンロードしてそのまま利用できます。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "favicon.ico は含まれますか？",
+          "answer": "はい。PNG favicon に加えて favicon.ico も zip に含まれます。"
+        },
+        {
+          "question": "なぜブラウザタブで確認するのですか？",
+          "answer": "favicon は非常に小さいため、実際のタブに近い表示で確認する方が問題を見つけやすいからです。"
+        },
+        {
+          "question": "PWA にも使えますか？",
+          "answer": "はい。Apple touch、Android Chrome、manifest も含まれるため、幅広い Web App シナリオに対応できます。"
+        }
+      ]
+    },
+    "mac-os-icon-creator": {
+      "cardDescription": "macOS 風 App アイコンを作成し、Dock 上での見え方を確認できます。",
+      "generatorIntro": "macOS Dock、desktop icon サイズ、Apple デスクトップ文脈の見え方を意識したページです。",
+      "generatorControls": "Web とモバイルへの互換性を残しつつ、Dock や desktop で映える方向に調整できます。",
+      "generatorPreview": "Dock プレビューにより、デスクトップ上での存在感や仕上がりを確認できます。",
+      "stepsTitle": "macOS アイコンの作り方",
+      "faqTitle": "macOS アイコン FAQ",
+      "relatedTitle": "他のアイコンページ",
+      "relatedIntro": "favicon や iOS 用の文脈に寄せたページも必要に応じて利用してください。",
+      "seo": {
+        "title": "macOS Icon Creator - Apple 風 Mac アイコンをオンラインで作成 | IconBase",
+        "description": "Apple 風背景と Dock プレビューで macOS App アイコンを作成。デスクトップ向けの大きな画像も一括出力できます。",
+        "keywords": "mac os icon creator, mac icon generator, mac app icon maker, macOS app icon",
+        "ogTitle": "macOS Icon Creator - Apple 風デスクトップアイコン生成",
+        "ogDescription": "ロゴを Mac らしい App アイコンに変換し、Dock プレビューと desktop 出力を確認できます。",
+        "twitterTitle": "macOS Icon Creator | IconBase",
+        "twitterDescription": "Dock プレビュー付きで Mac 風アイコンを作成し、一括エクスポート。"
+      },
+      "hero": {
+        "eyebrow": "macOS Dock アイコン向け",
+        "title": "Dock プレビューと desktop 出力で macOS 風 App アイコンを作成",
+        "intro": "ロゴを macOS Dock や desktop の雰囲気に合わせたい場合に向いています。角丸、質感、コントラストを確認しながら仕上げられます。",
+        "cta": "macOS アイコンを作る"
+      },
+      "features": [
+        {
+          "title": "Dock を意識したプレビュー",
+          "description": "単なる四角いキャンバスではなく、Dock 上での見え方に近い形で確認できます。"
+        },
+        {
+          "title": "Apple デスクトップ向けの質感",
+          "description": "rounded square、glass、gradient、mesh を使い、デスクトップらしい仕上がりを作れます。"
+        },
+        {
+          "title": "大きな desktop 画像も書き出し",
+          "description": "256x256 や 1024x1024 など、プレゼンやランチ素材にも使いやすいサイズを含みます。"
+        }
+      ],
+      "steps": [
+        {
+          "title": "マークをアップロード",
+          "description": "glyph、logo、シンプル化したブランドマークからスタートします。"
+        },
+        {
+          "title": "デスクトップ向けに磨く",
+          "description": "角丸、glass、gradient、余白を調整して、Dock での印象を整えます。"
+        },
+        {
+          "title": "アイコンパックを書き出す",
+          "description": "desktop、browser、mobile に展開できる同一方向のアイコンセットを zip で取得します。"
+        }
+      ],
+      "faq": [
+        {
+          "question": "Mac App のコンセプトにも使えますか？",
+          "answer": "はい。Web 用の書き出しだけでなく、Mac App アイコンのコンセプト検討にも役立ちます。"
+        },
+        {
+          "question": "大きな desktop PNG は出力されますか？",
+          "answer": "はい。デスクトップ向けの大きな PNG サイズが含まれます。"
+        },
+        {
+          "question": "同じ設定で Web アイコンも作れますか？",
+          "answer": "はい。同じ状態から browser、Apple、Android、desktop 向けのファイルを書き出せます。"
+        }
+      ]
+    }
+  }
+}

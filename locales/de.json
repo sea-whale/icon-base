@@ -1,0 +1,327 @@
+{
+  "app": {
+    "title": "IconBase",
+    "subtitle": "SEO-orientierter Icon-Generator für iOS, macOS, Favicons und PWAs"
+  },
+  "navigation": {
+    "language": "Sprache",
+    "items": {
+      "home": "Start",
+      "ios": "iOS App Icon Generator",
+      "favicon": "Favicon Maker",
+      "mac": "macOS Icon Creator"
+    }
+  },
+  "footer": {
+    "title": "IconBase",
+    "subtitle": "Erstelle App-Icons, Favicons und Apple-inspirierte Exportpakete direkt im Browser.",
+    "navigation": "Seiten",
+    "follow": "Folgen",
+    "x": "X",
+    "blog": "Blog",
+    "copyright": "© {year} JettGu. All rights reserved."
+  },
+  "generator": {
+    "workspaceTitle": "Generator ausprobieren",
+    "controlsTitle": "Einstellungen und Export",
+    "previewTitle": "Live-Vorschau"
+  },
+  "panel": {
+    "uploadOrDrag": "Klicken oder ziehen zum Hochladen",
+    "supportedFormats": "Unterstützt PNG, JPG, SVG und WEBP",
+    "changeImage": "Bild ändern",
+    "bgTemplate": "Hintergrundvorlage",
+    "padding": "Innenabstand",
+    "borderRadius": "Eckenradius",
+    "exporting": "Wird generiert...",
+    "exportZip": ".zip exportieren",
+    "exportContains": "Im Zip enthalten:",
+    "shuffle": "Zufällig",
+    "sharpCorner": "Scharf",
+    "demoHint": "Standardmäßig ist ein Beispielbild geladen. Lade dein eigenes Logo hoch, um echte Exporte zu prüfen.",
+    "categories": {
+      "solid": "Vollfarben",
+      "gradient": "Verläufe",
+      "mesh": "Mesh & Grid",
+      "glass": "Glas-Effekte",
+      "pattern": "Muster",
+      "glow": "Glow"
+    }
+  },
+  "preview": {
+    "browser": "Browser-Tab-Vorschau",
+    "macDock": "macOS-Dock-Vorschau",
+    "winTaskbar": "Windows-Taskleisten-Vorschau",
+    "mobile": "Mobile-Home-Screen-Vorschau"
+  },
+  "pages": {
+    "home": {
+      "cardDescription": "Erzeuge App-Icons, Favicon-Dateien und Apple-inspirierte Exporte in einem Browser-Workspace.",
+      "generatorIntro": "Lade ein Logo hoch, wähle einen Hintergrund, passe Abstände an und prüfe die Darstellung in Browser-Tabs, mobilen Homescreens, dem macOS Dock und der Windows-Taskleiste.",
+      "generatorControls": "Uploads, Vorlagen, Radius und Export werden in einem Panel gebündelt.",
+      "generatorPreview": "Der gleiche Icon-Zustand wird gleichzeitig in Browser-, Desktop- und Mobile-Vorschauen dargestellt.",
+      "stepsTitle": "So funktioniert IconBase",
+      "faqTitle": "Häufige Fragen",
+      "relatedTitle": "Weitere Icon-Seiten",
+      "relatedIntro": "Für gezieltere Suchintentionen zu iOS, Favicons oder macOS gibt es zusätzliche Landingpages.",
+      "seo": {
+        "title": "IconBase - Icon-Generator für iOS, macOS, Favicons und PWAs",
+        "description": "Erstelle Apple-inspirierte App-Icons online. Prüfe Vorschauen für iOS, macOS, Favicons, Windows und Android und exportiere ein komplettes Icon-Paket.",
+        "keywords": "app icon generator, ios app icon generator, favicon maker, mac icon creator, apple touch icon generator, pwa icon generator",
+        "ogTitle": "IconBase - Icons für jede Plattform erzeugen",
+        "ogDescription": "Erstelle Apple-inspirierte App-Icons, Browser-Favicons und exportierbare Icon-Dateien in einem Browser-Tool.",
+        "twitterTitle": "IconBase - Icon-Generator",
+        "twitterDescription": "Verwandle ein Logo in App-Icons, Favicons, Apple Touch Icons und Desktop-Assets."
+      },
+      "hero": {
+        "eyebrow": "Apple-inspirierter Icon-Generator",
+        "title": "Erstelle hochwertige App-Icons für iOS, macOS, Browser und PWAs",
+        "intro": "IconBase verwandelt ein einzelnes Logo in ein Apple-inspiriertes Icon-System und zeigt sofort, wie es in Browser-Tabs, mobilen Homescreens, dem macOS Dock und Desktop-Oberflächen aussieht.",
+        "cta": "Jetzt starten"
+      },
+      "features": [
+        {
+          "title": "Plattformübergreifende Vorschauen",
+          "description": "Prüfe das gleiche Icon als Favicon, Apple Touch Icon, Android-Home-Icon, macOS-Dock-Icon und Windows-Taskleisten-Icon."
+        },
+        {
+          "title": "Apple-inspirierte Formgebung",
+          "description": "Nutze abgerundete Rechtecke, Verläufe, Mesh, Glas-Effekte und Muster, damit dein Logo auch in kleinen Größen gut lesbar bleibt."
+        },
+        {
+          "title": "Ein Export für echte Projekte",
+          "description": "Das Paket enthält PNG-Größen, favicon.ico, Apple-Touch-Icon, Android-Dateien, Maskable Icons, Desktop-PNGs und ein Webmanifest."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Logo hochladen",
+          "description": "PNG, SVG, JPG und WEBP werden unterstützt. Alles bleibt im Browser."
+        },
+        {
+          "title": "Optik abstimmen",
+          "description": "Wähle Hintergrund, Abstand und Radius, bis das Icon in allen Vorschauen ausgewogen wirkt."
+        },
+        {
+          "title": "Icon-Paket exportieren",
+          "description": "Lade ein Zip mit Favicon-, Apple-, Android-, Desktop- und Manifest-Dateien herunter."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Wird mein Bild auf einen Server hochgeladen?",
+          "answer": "Nein. Die Verarbeitung läuft im Browser per Canvas, daher bleibt dein Bild lokal."
+        },
+        {
+          "question": "Welche Dateien sind im Export enthalten?",
+          "answer": "Das Zip enthält Favicon-PNGs, favicon.ico, apple-touch-icon.png, Android-Chrome-Dateien, Maskable Icons, Desktop-PNGs und site.webmanifest."
+        },
+        {
+          "question": "Kann ich das Tool für Websites und App-Konzepte nutzen?",
+          "answer": "Ja. Es eignet sich sowohl für Favicon-Pakete als auch für iOS- und macOS-inspirierte App-Icon-Studien."
+        }
+      ]
+    },
+    "ios-app-icon-generator": {
+      "cardDescription": "Erzeuge Apple Touch Icons und iOS-inspirierte App-Icons mit mobiler Vorschau.",
+      "generatorIntro": "Diese Seite fokussiert sich auf iOS App Icons, Apple Touch Icons und iPhone-ähnliche Homescreen-Vorschauen.",
+      "generatorControls": "Passe Logo, Padding und Rundung an, bis das Icon auf iPhone-Flächen natürlich wirkt.",
+      "generatorPreview": "Neben Browser- und Desktop-Kontexten steht hier die iPhone-Homescreen-Vorschau im Mittelpunkt.",
+      "stepsTitle": "So erstellst du ein iOS-Icon",
+      "faqTitle": "iOS-Icon FAQ",
+      "relatedTitle": "Verwandte Workflows",
+      "relatedIntro": "Wenn du zusätzlich Favicons oder macOS-Icons brauchst, nutze auch die verwandten Seiten.",
+      "seo": {
+        "title": "iOS App Icon Generator - Apple-inspirierte iOS-Icons online erstellen | IconBase",
+        "description": "Erstelle iOS App Icons mit Apple-artigen Rundungen, iPhone-Vorschau und exportierbaren Dateien für Apple Touch Icons und App-Mockups.",
+        "keywords": "ios app icon generator, apple touch icon generator, iphone app icon maker, ios icon maker",
+        "ogTitle": "iOS App Icon Generator - Apple-inspirierter Icon-Maker",
+        "ogDescription": "Verwandle ein Logo in ein iOS-inspiriertes Icon und prüfe es direkt in einer iPhone-Vorschau.",
+        "twitterTitle": "iOS App Icon Generator | IconBase",
+        "twitterDescription": "Erstelle Apple Touch Icons und iPhone-artige App-Icons direkt im Browser."
+      },
+      "hero": {
+        "eyebrow": "Für iPhone und Apple Touch Icons",
+        "title": "Erzeuge iOS-inspirierte App-Icons mit Apple-artiger Rundung und mobiler Vorschau",
+        "intro": "Diese Seite ist ideal, wenn dein Hauptziel ein iOS App Icon, ein Apple Touch Icon oder ein iPhone-Homescreen-Mockup ist.",
+        "cta": "iOS-Icon erstellen"
+      },
+      "features": [
+        {
+          "title": "Apple-artige Rounded-Square-Optik",
+          "description": "Teste schnell, wie dein Logo als iOS-typisches Rounded-Square-Icon wirkt."
+        },
+        {
+          "title": "Live-Vorschau auf dem iPhone",
+          "description": "Sieh sofort, ob Kontrast, Padding und Gewichtung auf einem Homescreen funktionieren."
+        },
+        {
+          "title": "Apple-freundlicher Export",
+          "description": "Das Paket enthält apple-touch-icon.png und bleibt gleichzeitig für Web- und andere Plattformdateien kompatibel."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Logo hochladen",
+          "description": "Starte mit deinem App-Zeichen, Glyph oder Brand-Symbol."
+        },
+        {
+          "title": "Rundung und Abstand justieren",
+          "description": "Bringe das Icon optisch ins Gleichgewicht, damit es im Rounded Square sauber sitzt."
+        },
+        {
+          "title": "Apple-Dateien exportieren",
+          "description": "Lade ein Zip mit Apple Touch Icon und den ergänzenden Web-Dateien herunter."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Ist diese Seite nur für native iOS-Apps gedacht?",
+          "answer": "Nein. Sie eignet sich ebenso für Apple Touch Icons, PWA-Installationssymbole und Branding-Mockups."
+        },
+        {
+          "question": "Warum ist Padding bei iOS-Icons so wichtig?",
+          "answer": "Wenn ein Logo den Rounded Square zu stark füllt, wirkt es auf dem Homescreen schnell gedrängt. Etwas Luft verbessert die Balance."
+        },
+        {
+          "question": "Kann ich vor dem Export prüfen, wie es aussieht?",
+          "answer": "Ja. Die Vorschauen werden live aktualisiert, bevor du das Zip erzeugst."
+        }
+      ]
+    },
+    "favicon-maker": {
+      "cardDescription": "Erzeuge favicon.ico, PNG-Favicons und browserfertige Icon-Pakete mit Tab-Vorschau.",
+      "generatorIntro": "Diese Seite ist für favicon.ico, Browser-Tab-Sichtbarkeit und kleine Größen optimiert.",
+      "generatorControls": "Passe Hintergrund und Padding gezielt für 16x16 und 32x32 an.",
+      "generatorPreview": "Die Browser-Tab-Vorschau zeigt, ob dein Symbol in realen Tabs erkennbar bleibt.",
+      "stepsTitle": "So erstellst du ein Favicon-Set",
+      "faqTitle": "Favicon FAQ",
+      "relatedTitle": "Weitere Seiten",
+      "relatedIntro": "Für iOS- oder macOS-orientierte Suchintentionen stehen weitere Landingpages bereit.",
+      "seo": {
+        "title": "Favicon Maker - favicon.ico und PNG-Favicons generieren | IconBase",
+        "description": "Erstelle Favicons online mit Live-Tab-Vorschau. Exportiere favicon.ico, 16x16, 32x32, Apple Touch Icon und weitere Web-Icon-Dateien.",
+        "keywords": "favicon maker, favicon generator, favicon.ico generator, website icon generator, browser tab icon maker",
+        "ogTitle": "Favicon Maker - favicon.ico und Browser-Icons generieren",
+        "ogDescription": "Erzeuge klare Favicons mit echter Browser-Tab-Vorschau und exportiere favicon.ico sowie PNG-Größen.",
+        "twitterTitle": "Favicon Maker | IconBase",
+        "twitterDescription": "Erstelle Browser-Favicons, favicon.ico und kleine Web-Icons mit besserer Vorschaukontrolle."
+      },
+      "hero": {
+        "eyebrow": "Browser-Favicon-Generator",
+        "title": "Erstelle favicon.ico und browserfertige Favicon-PNGs mit Live-Tab-Vorschau",
+        "intro": "Diese Seite ist ideal für Websites, SaaS-Produkte und Landingpages, bei denen ein sauberes Favicon-Set Priorität hat.",
+        "cta": "Favicon erstellen"
+      },
+      "features": [
+        {
+          "title": "Tabs vor dem Export prüfen",
+          "description": "Teste dein Favicon in hellen und dunklen Tab-Umgebungen, bevor du Dateien exportierst."
+        },
+        {
+          "title": "favicon.ico plus PNG-Größen",
+          "description": "Erzeuge favicon.ico zusammen mit 16x16 und 32x32 PNG-Dateien für moderne und ältere Browserfälle."
+        },
+        {
+          "title": "Einheitliche Web-Icon-Systeme",
+          "description": "Halte Browser-Tabs, Bookmarks, Apple Touch Icons und Android-Installationssymbole visuell konsistent."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Web-Marke hochladen",
+          "description": "Nutze ein kompaktes Symbol oder eine reduzierte Logo-Variante."
+        },
+        {
+          "title": "Für kleine Größen optimieren",
+          "description": "Passe Padding und Hintergrund so an, dass das Icon bei 16x16 und 32x32 klar bleibt."
+        },
+        {
+          "title": "Favicon-Paket herunterladen",
+          "description": "Exportiere ein Zip mit favicon.ico, PNG-Dateien und Manifest."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Ist favicon.ico enthalten?",
+          "answer": "Ja. Das Zip enthält favicon.ico zusätzlich zu den PNG-Favicon-Dateien."
+        },
+        {
+          "question": "Warum ist die Tab-Vorschau wichtig?",
+          "answer": "Favicons werden extrem klein angezeigt. Eine echte Tab-Vorschau zeigt, ob das Icon wirklich lesbar bleibt."
+        },
+        {
+          "question": "Kann ich den Export auch für PWAs nutzen?",
+          "answer": "Ja. Das Paket enthält außerdem Apple Touch, Android Chrome und Manifest-Dateien."
+        }
+      ]
+    },
+    "mac-os-icon-creator": {
+      "cardDescription": "Erstelle macOS-inspirierte App-Icons und prüfe sie in einer Dock-ähnlichen Vorschau.",
+      "generatorIntro": "Diese Seite richtet sich an macOS Dock, Desktop-Größen und Apple-ähnliche Desktop-Optik.",
+      "generatorControls": "Stimme das Icon auf Desktop-Flächen ab, ohne Web- und Mobile-Kompatibilität zu verlieren.",
+      "generatorPreview": "Die Dock-Vorschau hilft dir, Größe, Kontrast und Finish vor dem Export zu beurteilen.",
+      "stepsTitle": "So erstellst du ein macOS-Icon",
+      "faqTitle": "macOS-Icon FAQ",
+      "relatedTitle": "Weitere Icon-Landingpages",
+      "relatedIntro": "Nutze die verwandten Seiten, wenn dein Fokus eher auf Favicons oder iOS-Homescreens liegt.",
+      "seo": {
+        "title": "macOS Icon Creator - Apple-inspirierte Mac-App-Icons online erstellen | IconBase",
+        "description": "Erstelle macOS App Icons online mit Apple-artigen Hintergründen, Dock-Vorschau und exportierbaren Desktop-Assets.",
+        "keywords": "mac os icon creator, mac icon generator, mac app icon maker, macOS app icon",
+        "ogTitle": "macOS Icon Creator - Apple-inspirierter Desktop-Icon-Generator",
+        "ogDescription": "Verwandle ein Logo in ein poliertes Mac-ähnliches App-Icon mit Dock-Vorschau und Desktop-Export.",
+        "twitterTitle": "macOS Icon Creator | IconBase",
+        "twitterDescription": "Erstelle Mac-artige App-Icons mit Dock-Vorschau und Ein-Klick-Export."
+      },
+      "hero": {
+        "eyebrow": "Für das macOS Dock",
+        "title": "Erstelle macOS-inspirierte App-Icons mit Dock-Vorschau und Desktop-Export",
+        "intro": "Wenn dein Logo im macOS Dock oder auf Desktop-Flächen glaubwürdig wirken soll, ist diese Seite die passende Einstiegspunkte.",
+        "cta": "macOS-Icon erstellen"
+      },
+      "features": [
+        {
+          "title": "Dock-zentrierte Vorschau",
+          "description": "Sieh dein Icon in einer Dock-ähnlichen Umgebung statt auf einer leeren Fläche."
+        },
+        {
+          "title": "Apple-inspiriertes Desktop-Styling",
+          "description": "Nutze Rounded Squares, Glas-Effekte, Verläufe und Mesh-Hintergründe für mehr Desktop-Polish."
+        },
+        {
+          "title": "Große Desktop-Exporte",
+          "description": "Das Paket enthält große PNG-Dateien wie 256x256 und 1024x1024 für Präsentationen und Launch-Assets."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Marke hochladen",
+          "description": "Starte mit Glyph, Logo oder reduzierter Brand-Mark."
+        },
+        {
+          "title": "Desktop-Look verfeinern",
+          "description": "Experimentiere mit Radius, Glas-Effekt, Verläufen und Abstand, bis es im Dock überzeugend wirkt."
+        },
+        {
+          "title": "Paket exportieren",
+          "description": "Lade ein komplettes Zip herunter, das denselben Stil auf Browser, Mobile und Desktop überträgt."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Eignet sich die Seite auch für Mac-App-Konzepte?",
+          "answer": "Ja. Sie ist sowohl für Web-Exporte als auch für frühe Konzeptarbeit zu Mac-App-Icons nützlich."
+        },
+        {
+          "question": "Werden große Desktop-PNGs exportiert?",
+          "answer": "Ja. Das Paket enthält größere PNG-Größen für Desktop-Szenarien."
+        },
+        {
+          "question": "Funktionieren dieselben Einstellungen auch für Web-Icons?",
+          "answer": "Ja. Der gemeinsame Generator exportiert Browser-, Apple-, Android- und Desktop-Dateien aus demselben Zustand."
+        }
+      ]
+    }
+  }
+}

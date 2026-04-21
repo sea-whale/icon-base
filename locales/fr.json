@@ -1,0 +1,327 @@
+{
+  "app": {
+    "title": "IconBase",
+    "subtitle": "Générateur d'icônes orienté SEO pour iOS, macOS, favicons et PWA"
+  },
+  "navigation": {
+    "language": "Langue",
+    "items": {
+      "home": "Accueil",
+      "ios": "iOS App Icon Generator",
+      "favicon": "Favicon Maker",
+      "mac": "macOS Icon Creator"
+    }
+  },
+  "footer": {
+    "title": "IconBase",
+    "subtitle": "Créez directement dans le navigateur des icônes d'application, des favicons et des exports au style Apple.",
+    "navigation": "Pages",
+    "follow": "Suivre",
+    "x": "X",
+    "blog": "Blog",
+    "copyright": "© {year} JettGu. All rights reserved."
+  },
+  "generator": {
+    "workspaceTitle": "Essayer le générateur",
+    "controlsTitle": "Réglages et export",
+    "previewTitle": "Aperçu en direct"
+  },
+  "panel": {
+    "uploadOrDrag": "Cliquez ou glissez pour importer",
+    "supportedFormats": "PNG, JPG, SVG et WEBP pris en charge",
+    "changeImage": "Changer l'image",
+    "bgTemplate": "Modèle d'arrière-plan",
+    "padding": "Marge interne",
+    "borderRadius": "Rayon des coins",
+    "exporting": "Génération...",
+    "exportZip": "Exporter le .zip",
+    "exportContains": "Le zip contient :",
+    "shuffle": "Aléatoire",
+    "sharpCorner": "Angles vifs",
+    "demoHint": "Une image de démonstration est chargée par défaut. Importez votre logo pour vérifier un vrai export.",
+    "categories": {
+      "solid": "Couleurs pleines",
+      "gradient": "Dégradés",
+      "mesh": "Mesh et grille",
+      "glass": "Effets verre",
+      "pattern": "Motifs",
+      "glow": "Halo"
+    }
+  },
+  "preview": {
+    "browser": "Aperçu onglet navigateur",
+    "macDock": "Aperçu macOS Dock",
+    "winTaskbar": "Aperçu barre des tâches Windows",
+    "mobile": "Aperçu écran d'accueil mobile"
+  },
+  "pages": {
+    "home": {
+      "cardDescription": "Générez des icônes d'application, des favicons et des exports au style Apple dans un seul espace de travail navigateur.",
+      "generatorIntro": "Importez un logo, choisissez un fond, ajustez la marge et visualisez le rendu dans un onglet navigateur, sur un écran mobile, dans le Dock macOS et sur la barre des tâches Windows.",
+      "generatorControls": "Import, choix du fond, rayon et export sont réunis dans un seul panneau.",
+      "generatorPreview": "Le même état d'icône est rendu en temps réel dans des aperçus navigateur, desktop et mobile.",
+      "stepsTitle": "Comment fonctionne IconBase",
+      "faqTitle": "Questions fréquentes",
+      "relatedTitle": "Explorer d'autres pages",
+      "relatedIntro": "Des pages dédiées existent aussi pour iOS, les favicons et macOS.",
+      "seo": {
+        "title": "IconBase - Générateur d'icônes pour iOS, macOS, favicons et PWA",
+        "description": "Créez des icônes d'application au style Apple en ligne. Prévisualisez iOS, macOS, favicon, Windows et Android puis exportez un pack complet d'icônes.",
+        "keywords": "app icon generator, ios app icon generator, favicon maker, mac icon creator, apple touch icon generator, pwa icon generator",
+        "ogTitle": "IconBase - Générer des icônes pour chaque plateforme",
+        "ogDescription": "Créez des icônes d'application au style Apple, des favicons de navigateur et des fichiers exportables dans un seul outil web.",
+        "twitterTitle": "IconBase - Générateur d'icônes",
+        "twitterDescription": "Transformez un logo en icônes d'application, favicons, Apple touch icons et ressources desktop."
+      },
+      "hero": {
+        "eyebrow": "Générateur d'icônes au style Apple",
+        "title": "Créez des icônes soignées pour iOS, macOS, navigateurs et PWA",
+        "intro": "IconBase transforme un seul logo en système d'icônes au style Apple et montre immédiatement son rendu dans les onglets navigateur, sur mobile, dans le Dock macOS et sur le bureau.",
+        "cta": "Commencer"
+      },
+      "features": [
+        {
+          "title": "Aperçus sur plusieurs plateformes",
+          "description": "Vérifiez le même visuel comme favicon, Apple touch icon, icône Android, icône Dock macOS et icône de barre des tâches Windows."
+        },
+        {
+          "title": "Traitement visuel inspiré d'Apple",
+          "description": "Utilisez des rectangles arrondis, dégradés, mesh, verre et motifs pour garder un logo lisible même en petite taille."
+        },
+        {
+          "title": "Export prêt pour la production",
+          "description": "Le pack contient les tailles PNG, favicon.ico, Apple touch icon, fichiers Android, maskable icons, PNG desktop et webmanifest."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Importer le logo",
+          "description": "PNG, SVG, JPG et WEBP sont pris en charge, sans traitement côté serveur."
+        },
+        {
+          "title": "Ajuster le rendu",
+          "description": "Choisissez un fond, réglez la marge et le rayon jusqu'à obtenir un bon équilibre sur toutes les surfaces."
+        },
+        {
+          "title": "Exporter le pack d'icônes",
+          "description": "Téléchargez un zip avec les fichiers favicon, Apple, Android, desktop et manifest."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Mon image est-elle envoyée vers un serveur ?",
+          "answer": "Non. Le rendu se fait dans le navigateur avec Canvas, donc votre image source reste sur votre appareil."
+        },
+        {
+          "question": "Quels fichiers sont inclus dans l'export ?",
+          "answer": "Le zip contient des PNG favicon, favicon.ico, apple-touch-icon.png, des fichiers Android Chrome, des maskable icons, des PNG desktop et site.webmanifest."
+        },
+        {
+          "question": "Puis-je l'utiliser pour le web et pour des concepts d'app ?",
+          "answer": "Oui. L'outil convient autant aux packs favicon qu'aux explorations visuelles pour des icônes iOS et macOS."
+        }
+      ]
+    },
+    "ios-app-icon-generator": {
+      "cardDescription": "Créez des Apple touch icons et des icônes iOS avec aperçu mobile.",
+      "generatorIntro": "Cette page met l'accent sur les icônes iOS, les Apple touch icons et les aperçus de type écran d'accueil iPhone.",
+      "generatorControls": "Ajustez logo, marge et arrondi jusqu'à obtenir un rendu naturel sur iPhone.",
+      "generatorPreview": "L'aperçu iPhone reste central, tout en gardant la cohérence avec le web et le desktop.",
+      "stepsTitle": "Créer une icône iOS",
+      "faqTitle": "FAQ icône iOS",
+      "relatedTitle": "Flux liés",
+      "relatedIntro": "Si vous avez aussi besoin de favicons ou d'icônes macOS, utilisez les pages associées.",
+      "seo": {
+        "title": "iOS App Icon Generator - Créer des icônes iOS au style Apple en ligne | IconBase",
+        "description": "Créez des icônes iOS avec des coins arrondis façon Apple, un aperçu iPhone et des exports adaptés aux Apple touch icons et mockups d'apps.",
+        "keywords": "ios app icon generator, apple touch icon generator, iphone app icon maker, ios icon maker",
+        "ogTitle": "iOS App Icon Generator - Créateur d'icônes au style Apple",
+        "ogDescription": "Transformez un logo en icône iOS et vérifiez le rendu dans un aperçu iPhone avant export.",
+        "twitterTitle": "iOS App Icon Generator | IconBase",
+        "twitterDescription": "Créez des Apple touch icons et des icônes d'app iPhone directement dans le navigateur."
+      },
+      "hero": {
+        "eyebrow": "Pour iPhone et Apple touch icons",
+        "title": "Générez des icônes iOS avec arrondis inspirés d'Apple et aperçu mobile",
+        "intro": "Cette page est pensée pour les icônes d'application iOS, les Apple touch icons et les maquettes d'écran d'accueil iPhone.",
+        "cta": "Créer une icône iOS"
+      },
+      "features": [
+        {
+          "title": "Rendu rounded square façon Apple",
+          "description": "Testez rapidement votre logo dans une forme plus proche des icônes iPhone."
+        },
+        {
+          "title": "Aperçu iPhone en direct",
+          "description": "Repérez les problèmes de contraste, de marge et de poids visuel dans une mise en situation mobile."
+        },
+        {
+          "title": "Export compatible Apple",
+          "description": "Le pack inclut apple-touch-icon.png tout en restant compatible avec les besoins web plus larges."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Importer le symbole",
+          "description": "Commencez avec votre glyph ou votre marque d'application."
+        },
+        {
+          "title": "Régler marge et arrondi",
+          "description": "Ajustez l'équilibre optique dans le rounded square."
+        },
+        {
+          "title": "Exporter les fichiers Apple",
+          "description": "Téléchargez un zip prêt à être réutilisé pour Apple touch icons et autres usages web."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Est-ce réservé aux apps iOS natives ?",
+          "answer": "Non. Cela convient aussi aux Apple touch icons, aux PWA et aux maquettes de branding."
+        },
+        {
+          "question": "Pourquoi la marge est-elle importante ?",
+          "answer": "Sur un écran d'accueil iPhone, un logo trop serré paraît vite étouffé. Une marge correcte améliore l'équilibre."
+        },
+        {
+          "question": "Puis-je voir le rendu avant d'exporter ?",
+          "answer": "Oui. Les aperçus sont mis à jour en temps réel pendant les réglages."
+        }
+      ]
+    },
+    "favicon-maker": {
+      "cardDescription": "Générez favicon.ico, PNG favicon et packs d'icônes web avec aperçu d'onglet.",
+      "generatorIntro": "Cette page est optimisée pour favicon.ico, la visibilité dans les onglets navigateur et la lisibilité en très petite taille.",
+      "generatorControls": "Ajustez le fond et la marge en pensant d'abord aux tailles 16x16 et 32x32.",
+      "generatorPreview": "La simulation d'onglet montre si l'icône reste reconnaissable en usage réel.",
+      "stepsTitle": "Créer un pack favicon",
+      "faqTitle": "FAQ favicon",
+      "relatedTitle": "Autres pages",
+      "relatedIntro": "Si vous avez besoin d'une approche davantage orientée iOS ou macOS, utilisez les autres landing pages.",
+      "seo": {
+        "title": "Favicon Maker - Générer favicon.ico et PNG favicon | IconBase",
+        "description": "Créez un favicon avec aperçu d'onglet en direct. Exportez favicon.ico, 16x16, 32x32, Apple touch icon et d'autres fichiers web.",
+        "keywords": "favicon maker, favicon generator, favicon.ico generator, website icon generator, browser tab icon maker",
+        "ogTitle": "Favicon Maker - Générer favicon.ico et icônes navigateur",
+        "ogDescription": "Créez des favicons nets avec aperçu d'onglet réel et exportez favicon.ico ainsi que les tailles PNG.",
+        "twitterTitle": "Favicon Maker | IconBase",
+        "twitterDescription": "Générez favicon.ico, favicons navigateur et petites icônes web avec meilleur contrôle visuel."
+      },
+      "hero": {
+        "eyebrow": "Générateur de favicon navigateur",
+        "title": "Créez favicon.ico et des PNG favicon avec aperçu d'onglet en direct",
+        "intro": "Cette page convient aux sites, SaaS et pages produit qui ont besoin d'un set favicon propre et cohérent.",
+        "cta": "Créer un favicon"
+      },
+      "features": [
+        {
+          "title": "Aperçu des onglets avant export",
+          "description": "Testez le favicon sur des onglets clairs et sombres avant de générer les fichiers."
+        },
+        {
+          "title": "favicon.ico et tailles PNG",
+          "description": "Générez favicon.ico en plus des PNG 16x16 et 32x32 pour couvrir les cas modernes et hérités."
+        },
+        {
+          "title": "Cohérence du système d'icônes web",
+          "description": "Gardez le même traitement visuel sur les onglets, favoris, Apple touch icons et icônes Android."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Importer le symbole web",
+          "description": "Utilisez un pictogramme ou une version compacte du logo."
+        },
+        {
+          "title": "Optimiser pour les petites tailles",
+          "description": "Ajustez marge et fond pour une bonne lisibilité en 16x16 et 32x32."
+        },
+        {
+          "title": "Télécharger le pack favicon",
+          "description": "Exportez un zip contenant favicon.ico, PNG et manifest."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Le fichier favicon.ico est-il inclus ?",
+          "answer": "Oui. Le zip contient favicon.ico en plus des PNG favicon."
+        },
+        {
+          "question": "Pourquoi l'aperçu d'onglet est-il important ?",
+          "answer": "Un favicon est affiché en très petite taille. L'aperçu d'onglet révèle mieux les problèmes réels de lisibilité."
+        },
+        {
+          "question": "Puis-je aussi l'utiliser pour une PWA ?",
+          "answer": "Oui. Le pack inclut également Apple touch, Android Chrome et manifest."
+        }
+      ]
+    },
+    "mac-os-icon-creator": {
+      "cardDescription": "Créez des icônes d'app au style macOS et vérifiez leur rendu dans un Dock simulé.",
+      "generatorIntro": "Cette page est orientée Dock macOS, tailles desktop et rendu plus proche d'un contexte Apple de bureau.",
+      "generatorControls": "Ajustez l'icône pour les surfaces desktop tout en gardant la compatibilité web et mobile.",
+      "generatorPreview": "L'aperçu Dock aide à juger taille, contraste et finition avant export.",
+      "stepsTitle": "Créer une icône macOS",
+      "faqTitle": "FAQ icône macOS",
+      "relatedTitle": "Autres landing pages",
+      "relatedIntro": "Utilisez les pages liées si votre priorité est plutôt favicon ou écran d'accueil iOS.",
+      "seo": {
+        "title": "macOS Icon Creator - Créer des icônes Mac au style Apple en ligne | IconBase",
+        "description": "Créez des icônes d'application macOS avec arrière-plans inspirés d'Apple, aperçu Dock et exports desktop prêts à l'emploi.",
+        "keywords": "mac os icon creator, mac icon generator, mac app icon maker, macOS app icon",
+        "ogTitle": "macOS Icon Creator - Générateur d'icônes desktop au style Apple",
+        "ogDescription": "Transformez un logo en icône de type Mac avec aperçu Dock et exports desktop.",
+        "twitterTitle": "macOS Icon Creator | IconBase",
+        "twitterDescription": "Créez des icônes de style Mac avec aperçu Dock et export en un clic."
+      },
+      "hero": {
+        "eyebrow": "Pour le Dock macOS",
+        "title": "Créez des icônes d'app macOS avec aperçu Dock et export desktop",
+        "intro": "Cette page est idéale si vous voulez que votre logo paraisse naturel dans le Dock macOS ou sur des surfaces desktop.",
+        "cta": "Créer une icône macOS"
+      },
+      "features": [
+        {
+          "title": "Aperçu centré sur le Dock",
+          "description": "Voyez votre icône dans un environnement proche du Dock plutôt que sur un simple carré vide."
+        },
+        {
+          "title": "Finition desktop inspirée d'Apple",
+          "description": "Exploitez rounded squares, verre, dégradés et mesh pour donner plus de relief à votre logo."
+        },
+        {
+          "title": "Exports desktop en grandes tailles",
+          "description": "Le pack inclut de grandes tailles PNG comme 256x256 et 1024x1024 pour présentations et lancements."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Importer le symbole",
+          "description": "Commencez avec votre glyph, logo ou marque simplifiée."
+        },
+        {
+          "title": "Affiner le rendu desktop",
+          "description": "Testez rayon, effet verre, dégradés et marge jusqu'à obtenir un bon rendu dans le Dock."
+        },
+        {
+          "title": "Exporter le pack",
+          "description": "Téléchargez un zip complet capable de couvrir desktop, web et mobile."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Cette page convient-elle aussi aux concepts d'app Mac ?",
+          "answer": "Oui. Elle est utile autant pour les exports web que pour explorer des directions d'icônes d'app Mac."
+        },
+        {
+          "question": "Les grands PNG desktop sont-ils exportés ?",
+          "answer": "Oui. Le pack contient des tailles PNG adaptées aux usages desktop."
+        },
+        {
+          "question": "Les mêmes réglages fonctionnent-ils aussi pour le web ?",
+          "answer": "Oui. Le générateur partagé exporte les fichiers navigateur, Apple, Android et desktop à partir du même état."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "app": {
+    "title": "IconBase",
+    "subtitle": "SEO-ориентированный генератор иконок для iOS, macOS, favicon и PWA"
+  },
+  "navigation": {
+    "language": "Язык",
+    "items": {
+      "home": "Главная",
+      "ios": "iOS App Icon Generator",
+      "favicon": "Favicon Maker",
+      "mac": "macOS Icon Creator"
+    }
+  },
+  "footer": {
+    "title": "IconBase",
+    "subtitle": "Создавайте иконки приложений, favicon и Apple-style экспорт прямо в браузере.",
+    "navigation": "Страницы",
+    "follow": "Следить",
+    "x": "X",
+    "blog": "Блог",
+    "copyright": "© {year} JettGu. All rights reserved."
+  },
+  "generator": {
+    "workspaceTitle": "Попробовать генератор",
+    "controlsTitle": "Настройки и экспорт",
+    "previewTitle": "Живой предпросмотр"
+  },
+  "panel": {
+    "uploadOrDrag": "Нажмите или перетащите для загрузки",
+    "supportedFormats": "Поддерживаются PNG, JPG, SVG и WEBP",
+    "changeImage": "Сменить изображение",
+    "bgTemplate": "Шаблон фона",
+    "padding": "Внутренний отступ",
+    "borderRadius": "Радиус скругления",
+    "exporting": "Генерация...",
+    "exportZip": "Экспорт .zip",
+    "exportContains": "В zip входит:",
+    "shuffle": "Перемешать",
+    "sharpCorner": "Острые углы",
+    "demoHint": "По умолчанию загружено демо-изображение. Добавьте свой логотип, чтобы проверить реальный экспорт.",
+    "categories": {
+      "solid": "Сплошные цвета",
+      "gradient": "Градиенты",
+      "mesh": "Mesh и Grid",
+      "glass": "Стекло",
+      "pattern": "Паттерны",
+      "glow": "Свечение"
+    }
+  },
+  "preview": {
+    "browser": "Предпросмотр вкладки браузера",
+    "macDock": "Предпросмотр macOS Dock",
+    "winTaskbar": "Предпросмотр панели задач Windows",
+    "mobile": "Предпросмотр мобильного экрана"
+  },
+  "pages": {
+    "home": {
+      "cardDescription": "Создавайте иконки приложений, favicon и Apple-style наборы в одном браузерном рабочем пространстве.",
+      "generatorIntro": "Загрузите логотип, выберите фон, настройте отступ и сразу проверьте результат во вкладке браузера, на мобильном экране, в macOS Dock и на панели задач Windows.",
+      "generatorControls": "Загрузка, выбор шаблона, настройка радиуса и экспорт собраны в одной панели.",
+      "generatorPreview": "Одно и то же состояние иконки одновременно отображается в браузерных, desktop и mobile предпросмотрах.",
+      "stepsTitle": "Как работает IconBase",
+      "faqTitle": "Частые вопросы",
+      "relatedTitle": "Другие страницы",
+      "relatedIntro": "Для iOS, favicon и macOS есть отдельные SEO-страницы с тем же генератором.",
+      "seo": {
+        "title": "IconBase - Генератор иконок для iOS, macOS, favicon и PWA",
+        "description": "Создавайте Apple-style иконки онлайн. Проверяйте превью для iOS, macOS, favicon, Windows и Android и экспортируйте полный пакет иконок.",
+        "keywords": "app icon generator, ios app icon generator, favicon maker, mac icon creator, apple touch icon generator, pwa icon generator",
+        "ogTitle": "IconBase - Генерация иконок для всех платформ",
+        "ogDescription": "Создавайте Apple-style иконки приложений, favicon для браузера и файлы для экспорта в одном веб-инструменте.",
+        "twitterTitle": "IconBase - Генератор иконок",
+        "twitterDescription": "Преобразуйте логотип в иконки приложений, favicon, Apple touch icon и desktop-ресурсы."
+      },
+      "hero": {
+        "eyebrow": "Apple-style генератор иконок",
+        "title": "Создавайте аккуратные иконки для iOS, macOS, браузеров и PWA",
+        "intro": "IconBase превращает один логотип в набор иконок в стиле Apple и сразу показывает, как он выглядит во вкладках браузера, на мобильном домашнем экране, в macOS Dock и на desktop-поверхностях.",
+        "cta": "Начать"
+      },
+      "features": [
+        {
+          "title": "Предпросмотры для ключевых платформ",
+          "description": "Проверьте одну и ту же иконку как favicon, Apple touch icon, Android home icon, иконку Dock macOS и иконку панели задач Windows."
+        },
+        {
+          "title": "Apple-style обработка формы",
+          "description": "Используйте скруглённые прямоугольники, градиенты, mesh, стеклянные эффекты и паттерны, чтобы логотип читался даже в маленьком размере."
+        },
+        {
+          "title": "Экспорт, готовый к использованию",
+          "description": "Пакет включает PNG-размеры, favicon.ico, Apple touch icon, Android-файлы, maskable icons, desktop PNG и webmanifest."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Загрузите логотип",
+          "description": "Поддерживаются PNG, SVG, JPG и WEBP. Всё обрабатывается прямо в браузере."
+        },
+        {
+          "title": "Настройте внешний вид",
+          "description": "Выберите фон, отступ и радиус, пока иконка не станет сбалансированной на всех превью."
+        },
+        {
+          "title": "Экспортируйте пакет",
+          "description": "Скачайте zip с favicon, Apple, Android, desktop и manifest файлами."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Изображение загружается на сервер?",
+          "answer": "Нет. Рендер идёт в браузере через Canvas, поэтому исходный файл остаётся на вашем устройстве."
+        },
+        {
+          "question": "Какие файлы входят в экспорт?",
+          "answer": "В zip входят favicon PNG, favicon.ico, apple-touch-icon.png, Android Chrome файлы, maskable icons, desktop PNG и site.webmanifest."
+        },
+        {
+          "question": "Можно ли использовать это для сайта и для концептов приложений?",
+          "answer": "Да. Инструмент подходит и для favicon-пакетов, и для проверки того, как логотип выглядит как iOS/macOS icon."
+        }
+      ]
+    },
+    "ios-app-icon-generator": {
+      "cardDescription": "Создавайте Apple touch icon и iOS-style app icon с мобильным предпросмотром.",
+      "generatorIntro": "Эта страница сфокусирована на iOS app icon, Apple touch icon и превью в стиле домашнего экрана iPhone.",
+      "generatorControls": "Настройте логотип, отступ и скругление так, чтобы иконка естественно смотрелась на iPhone.",
+      "generatorPreview": "Здесь основной акцент сделан на iPhone preview, при этом сохраняется согласованность с web и desktop.",
+      "stepsTitle": "Как создать iOS icon",
+      "faqTitle": "FAQ по iOS icon",
+      "relatedTitle": "Связанные сценарии",
+      "relatedIntro": "Если вам также нужны favicon или macOS icons, используйте связанные страницы.",
+      "seo": {
+        "title": "iOS App Icon Generator - Создание iOS иконок в стиле Apple онлайн | IconBase",
+        "description": "Создавайте iOS иконки с Apple-style скруглением, iPhone preview и файлами для Apple touch icon и app mockups.",
+        "keywords": "ios app icon generator, apple touch icon generator, iphone app icon maker, ios icon maker",
+        "ogTitle": "iOS App Icon Generator - Генератор иконок в стиле Apple",
+        "ogDescription": "Преобразуйте логотип в iOS-style icon и проверьте результат в iPhone preview перед экспортом.",
+        "twitterTitle": "iOS App Icon Generator | IconBase",
+        "twitterDescription": "Создавайте Apple touch icon и iPhone-style app icon прямо в браузере."
+      },
+      "hero": {
+        "eyebrow": "Для iPhone и Apple touch icon",
+        "title": "Генерируйте iOS-style иконки с Apple-inspired скруглением и мобильным preview",
+        "intro": "Эта страница подходит для iOS app icon, Apple touch icon и макетов домашнего экрана iPhone.",
+        "cta": "Создать iOS icon"
+      },
+      "features": [
+        {
+          "title": "Apple-style rounded square",
+          "description": "Быстро проверьте, как ваш логотип выглядит в форме, близкой к иконкам iPhone."
+        },
+        {
+          "title": "Живой iPhone preview",
+          "description": "Сразу видно, есть ли проблемы с отступом, контрастом и визуальным весом на мобильном экране."
+        },
+        {
+          "title": "Экспорт, удобный для Apple",
+          "description": "Пакет включает apple-touch-icon.png и остаётся совместимым с web-иконками."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Загрузите символ",
+          "description": "Начните с glyph, логотипа или знака приложения."
+        },
+        {
+          "title": "Настройте отступ и скругление",
+          "description": "Добейтесь визуального баланса внутри rounded square."
+        },
+        {
+          "title": "Экспортируйте Apple-файлы",
+          "description": "Скачайте zip с Apple touch icon и сопутствующими web-файлами."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Это только для нативных iOS-приложений?",
+          "answer": "Нет. Страница также подходит для Apple touch icon, PWA и ранних брендовых концептов."
+        },
+        {
+          "question": "Почему важен отступ?",
+          "answer": "Если логотип слишком плотно заполняет rounded square, на экране iPhone он выглядит тесно. Отступ улучшает баланс."
+        },
+        {
+          "question": "Можно ли посмотреть результат до экспорта?",
+          "answer": "Да. Все превью обновляются в реальном времени."
+        }
+      ]
+    },
+    "favicon-maker": {
+      "cardDescription": "Генерируйте favicon.ico, PNG favicon и browser-ready наборы иконок с preview вкладки.",
+      "generatorIntro": "Эта страница оптимизирована под favicon.ico, видимость во вкладке браузера и читаемость на маленьких размерах.",
+      "generatorControls": "Настраивайте фон и отступ специально под 16x16 и 32x32.",
+      "generatorPreview": "Preview вкладки показывает, останется ли знак узнаваемым в реальном браузерном интерфейсе.",
+      "stepsTitle": "Как сделать favicon-пакет",
+      "faqTitle": "FAQ по favicon",
+      "relatedTitle": "Другие страницы",
+      "relatedIntro": "Для iOS- или macOS-фокуса используйте связанные landing pages.",
+      "seo": {
+        "title": "Favicon Maker - Генерация favicon.ico и PNG favicon | IconBase",
+        "description": "Создавайте favicon онлайн с живым preview вкладки. Экспортируйте favicon.ico, 16x16, 32x32, Apple touch icon и другие web-файлы.",
+        "keywords": "favicon maker, favicon generator, favicon.ico generator, website icon generator, browser tab icon maker",
+        "ogTitle": "Favicon Maker - Генерация favicon.ico и browser icons",
+        "ogDescription": "Создавайте чёткие favicon с реальным preview вкладки и экспортируйте favicon.ico и PNG-размеры.",
+        "twitterTitle": "Favicon Maker | IconBase",
+        "twitterDescription": "Создавайте browser favicon, favicon.ico и small web icons с удобным preview."
+      },
+      "hero": {
+        "eyebrow": "Генератор browser favicon",
+        "title": "Создавайте favicon.ico и PNG favicon с живым preview вкладки",
+        "intro": "Эта страница подходит для сайтов, SaaS и продуктовых лендингов, которым нужен аккуратный favicon-пакет.",
+        "cta": "Создать favicon"
+      },
+      "features": [
+        {
+          "title": "Проверка вкладок до экспорта",
+          "description": "Тестируйте favicon в светлых и тёмных вкладках до генерации файлов."
+        },
+        {
+          "title": "favicon.ico плюс PNG-размеры",
+          "description": "Создавайте favicon.ico вместе с PNG 16x16 и 32x32 для современных и legacy-сценариев."
+        },
+        {
+          "title": "Согласованная web icon system",
+          "description": "Сохраняйте единый визуальный подход для browser tab, закладок, Apple touch icon и Android install icons."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Загрузите web-символ",
+          "description": "Используйте компактный знак или упрощённую версию логотипа."
+        },
+        {
+          "title": "Оптимизируйте под маленькие размеры",
+          "description": "Подберите отступ и фон так, чтобы иконка читалась в 16x16 и 32x32."
+        },
+        {
+          "title": "Скачайте favicon-пакет",
+          "description": "Экспортируйте zip с favicon.ico, PNG и manifest."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Входит ли favicon.ico?",
+          "answer": "Да. Zip содержит favicon.ico помимо PNG favicon."
+        },
+        {
+          "question": "Зачем нужен preview вкладки?",
+          "answer": "Favicon отображается очень маленьким, поэтому preview вкладки лучше показывает реальные проблемы читаемости."
+        },
+        {
+          "question": "Подходит ли экспорт для PWA?",
+          "answer": "Да. В пакет также входят Apple touch, Android Chrome и manifest."
+        }
+      ]
+    },
+    "mac-os-icon-creator": {
+      "cardDescription": "Создавайте macOS-style icons и проверяйте их в Dock-like preview.",
+      "generatorIntro": "Эта страница ориентирована на macOS Dock, desktop icon sizes и более Apple-подобный desktop контекст.",
+      "generatorControls": "Настраивайте иконку под desktop-сценарии, сохраняя совместимость с web и mobile.",
+      "generatorPreview": "Dock preview помогает оценить размер, контраст и общую полировку перед экспортом.",
+      "stepsTitle": "Как создать macOS icon",
+      "faqTitle": "FAQ по macOS icon",
+      "relatedTitle": "Другие landing pages",
+      "relatedIntro": "Если вам нужен фокус на favicon или iOS, используйте связанные страницы.",
+      "seo": {
+        "title": "macOS Icon Creator - Создание Mac-иконок в стиле Apple онлайн | IconBase",
+        "description": "Создавайте macOS app icons с Apple-style фонами, Dock preview и готовыми desktop-ресурсами.",
+        "keywords": "mac os icon creator, mac icon generator, mac app icon maker, macOS app icon",
+        "ogTitle": "macOS Icon Creator - Генератор desktop icons в стиле Apple",
+        "ogDescription": "Преобразуйте логотип в polished Mac-style icon с Dock preview и desktop export.",
+        "twitterTitle": "macOS Icon Creator | IconBase",
+        "twitterDescription": "Создавайте Mac-style app icons с Dock preview и экспортом в один клик."
+      },
+      "hero": {
+        "eyebrow": "Для macOS Dock",
+        "title": "Создавайте macOS-style app icons с Dock preview и desktop export",
+        "intro": "Если вы хотите, чтобы логотип выглядел естественно в macOS Dock или на desktop-поверхностях, эта страница подходит лучше всего.",
+        "cta": "Создать macOS icon"
+      },
+      "features": [
+        {
+          "title": "Dock-oriented preview",
+          "description": "Смотрите на иконку в среде, близкой к Dock, а не на пустом квадрате."
+        },
+        {
+          "title": "Apple-inspired desktop styling",
+          "description": "Используйте rounded squares, glass, gradients и mesh, чтобы добавить desktop-polish."
+        },
+        {
+          "title": "Большие desktop exports",
+          "description": "Пакет включает крупные PNG вроде 256x256 и 1024x1024 для презентаций и launch assets."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Загрузите знак",
+          "description": "Начните с glyph, логотипа или упрощённого бренд-знака."
+        },
+        {
+          "title": "Доведите desktop-look",
+          "description": "Экспериментируйте с радиусом, glass, gradients и отступом, пока иконка не будет убедительно смотреться в Dock."
+        },
+        {
+          "title": "Экспортируйте пакет",
+          "description": "Скачайте полный zip, чтобы использовать ту же визуальную систему для browser, mobile и desktop."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Подходит ли страница для концептов Mac app?",
+          "answer": "Да. Она полезна как для web-export, так и для ранней проработки концепции Mac app icon."
+        },
+        {
+          "question": "Будут ли экспортироваться большие desktop PNG?",
+          "answer": "Да. Пакет включает крупные PNG-размеры для desktop-сценариев."
+        },
+        {
+          "question": "Те же настройки подходят и для web icons?",
+          "answer": "Да. Общий генератор экспортирует browser, Apple, Android и desktop файлы из одного и того же состояния."
+        }
+      ]
+    }
+  }
+}

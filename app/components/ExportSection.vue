@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { inject, ref, type Ref } from 'vue'
 import { generateAllIcons } from '../utils/exportZip'
+import type { IconShapeMode } from '../utils/iconGenerator'
 import { Download, Loader2, FileJson, FileImage } from 'lucide-vue-next'
 import { useI18n } from '#imports'
 
@@ -10,6 +11,7 @@ const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const shapeMode = inject<Ref<IconShapeMode>>('shapeMode', ref('rounded-rect'))
 
 const isExporting = ref(false)
 
@@ -21,7 +23,8 @@ const handleExport = async () => {
       imageUrl: uploadedImage.value,
       backgroundId: backgroundId.value,
       padding: padding.value,
-      borderRadius: borderRadius.value
+      borderRadius: borderRadius.value,
+      shapeMode: shapeMode.value
     })
   } catch (error) {
     console.error('Failed to export icons:', error)

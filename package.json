@@ -5,8 +5,8 @@
   "author": {
     "name": "Jett Gu",
     "email": "seawhale.xm@gmail.com"
-   },
-   "homepage": "https://iconbase.7-image.com/",
+  },
+  "homepage": "https://iconbase.7-image.com/",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nuxtjs/i18n": "^10.2.4",
+    "@nuxtjs/sitemap": "^8.0.13",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",

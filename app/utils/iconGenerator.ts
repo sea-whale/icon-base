@@ -1,12 +1,41 @@
 import { getBackground } from './backgrounds'
 
+export type IconShapeMode = 'rounded-rect' | 'apple-official'
+
 export interface IconConfig {
   imageUrl: string
   backgroundId: string
   padding: number
   borderRadius: number
   size: number
+  shapeMode?: IconShapeMode
   transparentBg?: boolean
+}
+
+const drawAppleOfficialPath = (ctx: CanvasRenderingContext2D, size: number) => {
+  // Superellipse approximation aligned with Apple's modern icon silhouette.
+  const n = 5.6
+  const half = size / 2
+  const radius = half * 0.97
+  const steps = 180
+
+  ctx.beginPath()
+
+  for (let i = 0; i <= steps; i++) {
+    const theta = (Math.PI * 2 * i) / steps
+    const cos = Math.cos(theta)
+    const sin = Math.sin(theta)
+    const x = half + radius * Math.sign(cos) * Math.pow(Math.abs(cos), 2 / n)
+    const y = half + radius * Math.sign(sin) * Math.pow(Math.abs(sin), 2 / n)
+
+    if (i === 0) {
+      ctx.moveTo(x, y)
+    } else {
+      ctx.lineTo(x, y)
+    }
+  }
+
+  ctx.closePath()
 }
 
 const hexToRgba = (hex: string, alpha: number) => {
@@ -34,20 +63,27 @@ export const generateIconDataUrl = async (config: IconConfig): Promise<string> =
 
       if (!config.transparentBg) {
         const bg = getBackground(config.backgroundId)
-        const radius = (config.borderRadius / 100) * config.size
+        const shapeMode = config.shapeMode || 'rounded-rect'
 
-        ctx.beginPath()
-        ctx.moveTo(radius, 0)
-        ctx.lineTo(config.size - radius, 0)
-        ctx.quadraticCurveTo(config.size, 0, config.size, radius)
-        ctx.lineTo(config.size, config.size - radius)
-        ctx.quadraticCurveTo(config.size, config.size, config.size - radius, config.size)
-        ctx.lineTo(radius, config.size)
-        ctx.quadraticCurveTo(0, config.size, 0, config.size - radius)
-        ctx.lineTo(0, radius)
-        ctx.quadraticCurveTo(0, 0, radius, 0)
-        ctx.closePath()
-        ctx.clip()
+        if (shapeMode === 'apple-official') {
+          drawAppleOfficialPath(ctx, config.size)
+          ctx.clip()
+        } else {
+          const radius = (config.borderRadius / 100) * config.size
+
+          ctx.beginPath()
+          ctx.moveTo(radius, 0)
+          ctx.lineTo(config.size - radius, 0)
+          ctx.quadraticCurveTo(config.size, 0, config.size, radius)
+          ctx.lineTo(config.size, config.size - radius)
+          ctx.quadraticCurveTo(config.size, config.size, config.size - radius, config.size)
+          ctx.lineTo(radius, config.size)
+          ctx.quadraticCurveTo(0, config.size, 0, config.size - radius)
+          ctx.lineTo(0, radius)
+          ctx.quadraticCurveTo(0, 0, radius, 0)
+          ctx.closePath()
+          ctx.clip()
+        }
 
         if (bg.type === 'solid') {
           ctx.fillStyle = bg.colors[0]

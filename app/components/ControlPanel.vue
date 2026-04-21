@@ -1,22 +1,44 @@
 <script setup lang="ts">
-import { inject, ref, onMounted, computed, type Ref, type ComputedRef } from 'vue'
+import { inject, ref, onMounted, computed, watch, type Ref, type ComputedRef } from 'vue'
 import { BACKGROUNDS } from '../utils/backgrounds'
-import { generateIconDataUrl } from '../utils/iconGenerator'
+import { generateIconDataUrl, type IconShapeMode } from '../utils/iconGenerator'
 import { Upload, Shuffle, Info } from 'lucide-vue-next'
 import { useI18n } from '#imports'
+import appleIconShapeUrl from '../assets/svgs/Apple-Icon-Shape.svg'
 
-const { t } = useI18n()
+const { t, te, locale } = useI18n()
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const shapeMode = inject<Ref<IconShapeMode>>('shapeMode', ref('rounded-rect'))
 const isDefaultImage = inject<ComputedRef<boolean>>('isDefaultImage', computed(() => true))
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const isDragging = ref(false)
 
 const backgroundPreviews = ref<Record<string, string>>({})
+
+const shapeCopy = computed(() => {
+  if (locale.value.startsWith('zh')) {
+    return {
+      title: '图标形状',
+      standard: '标准圆角',
+      official: 'Apple 官方方案',
+      officialHint: '使用固定的 Apple 官方图标轮廓，圆角滑块将不再生效。'
+    }
+  }
+
+  return {
+    title: 'Icon Shape',
+    standard: 'Standard Rounded',
+    official: 'Apple Official',
+    officialHint: 'Uses the fixed Apple icon contour. The border radius slider is disabled in this mode.'
+  }
+})
+
+const getPreviewKey = (id: string) => `${shapeMode.value}:${id}`
 
 const generatePreviews = async () => {
   // We generate blank icons without foreground images to show just the background
@@ -25,22 +47,28 @@ const generatePreviews = async () => {
 
   // We don't want to block the UI, so we generate them in the background
   for (const bg of BACKGROUNDS) {
-    if (!backgroundPreviews.value[bg.id]) {
+    const key = getPreviewKey(bg.id)
+    if (!backgroundPreviews.value[key]) {
       try {
         const url = await generateIconDataUrl({
           imageUrl: transparent1x1,
           backgroundId: bg.id,
           padding: 0,
           borderRadius: 22.5,
+          shapeMode: shapeMode.value,
           size: 64, // small size for thumbnails
           transparentBg: false
         })
-        backgroundPreviews.value = { ...backgroundPreviews.value, [bg.id]: url }
+        backgroundPreviews.value = { ...backgroundPreviews.value, [key]: url }
       } catch (e) {
         console.error('Failed to generate preview for', bg.id, e)
       }
     }
   }
+}
+
+const getBackgroundLabel = (id: string, fallback: string) => {
+  return te(`backgrounds.${id}`) ? t(`backgrounds.${id}`) : fallback
 }
 
 const groupedBackgrounds = computed(() => {
@@ -67,6 +95,10 @@ const groupedBackgrounds = computed(() => {
 })
 
 onMounted(() => {
+  generatePreviews()
+})
+
+watch(shapeMode, () => {
   generatePreviews()
 })
 const handleFileUpload = (event: Event) => {
@@ -158,13 +190,48 @@ const randomizeBackground = () => {
     </div>
 
     <!-- Background Section Header (fixed) -->
+    <div class="shrink-0 mt-4">
+      <div class="flex justify-between items-center">
+        <label class="text-xs font-semibold text-[#2d3430]">{{ shapeCopy.title }}</label>
+        <span class="text-[10px] font-mono text-[#536350] bg-[#536350]/5 px-1.5 py-0.5 rounded-md">
+          {{ shapeMode === 'apple-official' ? shapeCopy.official : shapeCopy.standard }}
+        </span>
+      </div>
+
+      <div class="mt-2 grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          @click="shapeMode = 'rounded-rect'"
+          class="rounded-xl border p-2.5 text-left transition-all"
+          :class="shapeMode === 'rounded-rect' ? 'border-[#536350] bg-[#536350]/5 ring-1 ring-[#536350]/20' : 'border-[#e4e2de] bg-white hover:border-[#acb4ae]'"
+        >
+          <div class="h-16 rounded-[18px] bg-[linear-gradient(135deg,#d9f99d,#5eead4)] shadow-sm"></div>
+          <div class="mt-2 text-xs font-semibold text-[#2d3430]">{{ shapeCopy.standard }}</div>
+        </button>
+
+        <button
+          type="button"
+          @click="shapeMode = 'apple-official'"
+          class="rounded-xl border p-2.5 text-left transition-all"
+          :class="shapeMode === 'apple-official' ? 'border-[#536350] bg-[#536350]/5 ring-1 ring-[#536350]/20' : 'border-[#e4e2de] bg-white hover:border-[#acb4ae]'"
+        >
+          <div class="h-16 rounded-[18px] bg-[linear-gradient(135deg,#111827,#334155)] shadow-sm flex items-center justify-center">
+            <img :src="appleIconShapeUrl" alt="" class="w-12 h-12 opacity-95" />
+          </div>
+          <div class="mt-2 text-xs font-semibold text-[#2d3430]">{{ shapeCopy.official }}</div>
+        </button>
+      </div>
+
+      <p v-if="shapeMode === 'apple-official'" class="mt-2 text-[11px] leading-snug text-[#536350]">
+        {{ shapeCopy.officialHint }}
+      </p>
+    </div>
+
     <div class="shrink-0 flex justify-between items-center mt-4">
       <label class="text-xs font-semibold text-[#2d3430]">{{ t('panel.bgTemplate') }}</label>
       <div class="flex items-center gap-1.5">
         <span
-          class="text-[10px] font-mono text-[#536350] bg-[#536350]/5 px-1.5 py-0.5 rounded-md truncate max-w-[100px]">{{t('backgrounds.'
-            + BACKGROUNDS.find(b => b.id ===
-              backgroundId)?.id) || BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
+          class="text-[10px] font-mono text-[#536350] bg-[#536350]/5 px-1.5 py-0.5 rounded-md truncate max-w-[100px]">{{ getBackgroundLabel(BACKGROUNDS.find(b => b.id === backgroundId)?.id || '', BACKGROUNDS.find(b => b.id === backgroundId)?.name || '') }}</span>
         <button @click="randomizeBackground"
           class="p-1 hover:bg-[#536350]/5 rounded-md transition-colors text-[#757c77] hover:text-[#536350]"
           :title="t('panel.shuffle')">
@@ -179,10 +246,10 @@ const randomizeBackground = () => {
         <p class="text-[10px] text-[#757c77] font-semibold uppercase tracking-wider mb-1.5">{{ groupName }}</p>
         <div class="grid grid-cols-5 sm:grid-cols-6 gap-1.5">
           <button v-for="bg in bgList" :key="bg.id" @click="backgroundId = bg.id"
-            :title="t('backgrounds.' + bg.id) || bg.name"
+            :title="getBackgroundLabel(bg.id, bg.name)"
             class="w-full aspect-square rounded-lg border border-[#acb4ae]/30 transition-all overflow-hidden bg-[#fdfbf7] relative group"
             :class="backgroundId === bg.id ? 'ring-2 ring-[#536350] ring-offset-1 scale-110 shadow-[0_2px_8px_rgba(45,52,48,0.12)] z-10' : 'hover:scale-105 hover:shadow-[0_2px_8px_rgba(45,52,48,0.06)]'">
-            <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]"
+            <img v-if="backgroundPreviews[getPreviewKey(bg.id)]" :src="backgroundPreviews[getPreviewKey(bg.id)]"
               class="w-full h-full object-cover" />
             <div v-else class="w-full h-full animate-pulse bg-[#e4e2de]"></div>
           </button>
@@ -209,7 +276,7 @@ const randomizeBackground = () => {
       </div>
 
       <!-- Border Radius -->
-      <div class="space-y-1.5">
+      <div class="space-y-1.5" :class="shapeMode === 'apple-official' ? 'opacity-50' : ''">
         <div class="flex justify-between items-center">
           <label class="text-xs font-semibold text-[#2d3430]">{{ t('panel.borderRadius') }}</label>
           <span class="text-[10px] font-mono text-[#536350] bg-[#536350]/10 px-1.5 py-0.5 rounded-md">{{ borderRadius }}%</span>
@@ -220,7 +287,8 @@ const randomizeBackground = () => {
               :style="{ width: `${borderRadius * 2}%` }"></div>
           </div>
           <input type="range" v-model.number="borderRadius" min="0" max="50"
-            class="absolute top-0 left-0 w-full h-4 -translate-y-1 opacity-0 cursor-pointer" />
+            :disabled="shapeMode === 'apple-official'"
+            class="absolute top-0 left-0 w-full h-4 -translate-y-1 opacity-0 cursor-pointer disabled:cursor-not-allowed" />
         </div>
       </div>
     </div>

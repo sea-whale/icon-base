@@ -1,6 +1,6 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { generateIconDataUrl } from './iconGenerator'
+import { generateIconDataUrl, type IconShapeMode } from './iconGenerator'
 import { getBackground } from './backgrounds'
 
 export interface ExportConfig {
@@ -8,6 +8,7 @@ export interface ExportConfig {
   backgroundId: string
   padding: number
   borderRadius: number
+  shapeMode?: IconShapeMode
 }
 
 const ICONS = [
@@ -92,8 +93,8 @@ export const generateAllIcons = async (config: ExportConfig) => {
   const themeColor = bgConfig.colors[0]
 
   const webmanifest = {
-    name: "My App",
-    short_name: "App",
+    name: "IconBase",
+    short_name: "IconBase",
     icons: [
       {
         src: "/android-chrome-192x192.png",

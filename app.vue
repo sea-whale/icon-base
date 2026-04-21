@@ -1,7 +1,5 @@
-<script setup lang="ts">
-import AppRoot from './app/app.vue'
-</script>
-
 <template>
-  <AppRoot />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { inject, watch, ref, type Ref } from 'vue'
 import { Search, ChevronLeft, ChevronRight, RotateCw } from 'lucide-vue-next'
+import type { IconShapeMode } from '../utils/iconGenerator'
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const shapeMode = inject<Ref<IconShapeMode>>('shapeMode', ref('rounded-rect'))
 
 const generatedIcon = ref<string>('')
 
@@ -20,6 +22,7 @@ const updateIcon = async () => {
       backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value,
+      shapeMode: shapeMode.value,
       size: 64,
       transparentBg: false
     })
@@ -28,7 +31,7 @@ const updateIcon = async () => {
   }
 }
 
-watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immediate: true })
+watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIcon, { immediate: true })
 </script>
 
 <template>
@@ -78,7 +81,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
         <RotateCw :size="16" />
       </div>
       <div class="flex-1 h-6 bg-[#fdfbf7] border border-[#e4e2de] rounded-md flex items-center px-3 justify-center">
-        <span class="text-[11px] font-medium text-[#757c77]">logowear.app</span>
+        <span class="text-[11px] font-medium text-[#757c77]">iconbase.7-image.com</span>
       </div>
     </div>
   </div>
