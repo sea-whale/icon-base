@@ -1,8 +1,8 @@
 export default defineAppConfig({
   links: {
-    x: 'https://x.com/',
-    github: 'https://github.com/',
-    blog: 'https://example.com/blog'
+    x: 'https://x.com/jett_gu',
+    github: 'https://github.com/sea-whale/icon-base',
+    blog: ''
   }
 })
 

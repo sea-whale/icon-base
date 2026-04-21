@@ -1,7 +1,12 @@
 {
-  "name": "IconBase",
+  "name": "icon-base",
   "type": "module",
   "private": true,
+  "author": {
+    "name": "Jett Gu",
+    "email": "seawhale.xm@gmail.com"
+   },
+   "homepage": "https://iconbase.7-image.com/",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

@@ -76,11 +76,14 @@ const toggleLanguage = () => {
   setLocale(locale.value === 'zh' ? 'en' : 'zh')
 }
 
-const links = computed(() => ({
-  x: appConfig.links?.x as string | undefined,
-  github: appConfig.links?.github as string | undefined,
-  blog: appConfig.links?.blog as string | undefined
-}))
+const links = computed(() => {
+  const l = appConfig.links as Record<string, string> | undefined
+  return {
+    x: (l?.x && l.x.trim()) || undefined,
+    github: (l?.github && l.github.trim()) || undefined,
+    blog: (l?.blog && l.blog.trim()) || undefined
+  }
+})
 </script>
 
 <template>
