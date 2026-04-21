@@ -44,10 +44,23 @@ provide('isDefaultImage', isDefaultImage)
         </p>
       </div>
 
-      <div class="lg:grid lg:grid-cols-[380px_1fr] lg:gap-6">
+      <div class="lg:grid lg:grid-cols-[minmax(320px,0.78fr)_minmax(0,1.22fr)] lg:gap-6 xl:grid-cols-[minmax(340px,0.72fr)_minmax(0,1.28fr)]">
         <div
-          class="rounded-2xl border border-[#e4e2de] bg-white/80 backdrop-blur-xl p-5 mb-6 lg:mb-0 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:overflow-hidden">
+          class="order-2 rounded-2xl bg-[#f0efed] p-4 sm:p-6 min-h-[600px] lg:order-1 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
           <div class="mb-4">
+            <h3 class="text-lg font-semibold tracking-tight text-slate-900">
+              {{ t('generator.previewTitle') }}
+            </h3>
+            <p class="mt-1 text-sm text-slate-500">
+              {{ t(`pages.${pageKey}.generatorPreview`) }}
+            </p>
+          </div>
+          <PreviewGrid />
+        </div>
+
+        <div
+          class="order-1 mb-6 rounded-2xl border border-[#e4e2de] bg-white/80 p-5 backdrop-blur-xl lg:order-2 lg:mb-0 lg:min-h-[600px] lg:p-6">
+          <div class="mb-4 max-w-2xl">
             <h3 class="text-lg font-semibold tracking-tight text-slate-900">
               {{ t('generator.controlsTitle') }}
             </h3>
@@ -58,18 +71,6 @@ provide('isDefaultImage', isDefaultImage)
 
           <ControlPanel />
           <ExportSection />
-        </div>
-
-        <div class="rounded-2xl bg-[#f0efed] p-4 sm:p-6 min-h-[600px]">
-          <div class="mb-4">
-            <h3 class="text-lg font-semibold tracking-tight text-slate-900">
-              {{ t('generator.previewTitle') }}
-            </h3>
-            <p class="mt-1 text-sm text-slate-500">
-              {{ t(`pages.${pageKey}.generatorPreview`) }}
-            </p>
-          </div>
-          <PreviewGrid />
         </div>
       </div>
     </div>

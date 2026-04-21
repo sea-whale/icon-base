@@ -72,7 +72,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateGen
 
 <template>
   <div
-    class="relative h-44 overflow-hidden rounded-[24px] border border-[#d9d6cf] shadow-[0_18px_45px_rgba(45,52,48,0.10)] transition-colors">
+    class="relative h-40 sm:h-44 overflow-hidden rounded-[24px] border border-[#d9d6cf] shadow-[0_18px_45px_rgba(45,52,48,0.10)] transition-colors">
     <div class="absolute inset-0 bg-[url('/bg/mac.jpeg')] bg-cover bg-center scale-[1.02]"></div>
     <div
       class="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,251,255,0.10),rgba(8,12,22,0.06)_42%,rgba(8,12,22,0.24))]">
@@ -83,24 +83,22 @@ watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateGen
     <div class="absolute inset-x-0 top-0 h-12 bg-[linear-gradient(180deg,rgba(255,255,255,0.22),rgba(255,255,255,0))]">
     </div>
 
-    <div class="relative z-10 flex h-full items-end justify-center px-4 pb-4">
+    <div class="relative z-10 flex h-full items-end justify-center px-3 sm:px-4 pb-3.5 sm:pb-4">
       <div class="absolute bottom-[18px] h-4 w-[78%] rounded-full bg-black/20 blur-xl"></div>
 
       <div
-        class="relative flex items-end gap-2 rounded-[28px] border border-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.40),rgba(255,255,255,0.16))] px-3 py-2.5 shadow-[0_20px_45px_rgba(9,16,32,0.24)] backdrop-blur-[22px]">
+        class="relative flex items-end gap-1.5 sm:gap-2 rounded-[24px] sm:rounded-[28px] border border-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.40),rgba(255,255,255,0.16))] px-2.5 sm:px-3 py-2 sm:py-2.5 shadow-[0_20px_45px_rgba(9,16,32,0.24)] backdrop-blur-[22px]">
 
         <div v-for="iconId in ['layers', 'airplay', 'compass', 'mail']" :key="iconId"
           class="group relative flex flex-col items-center">
-          <div class="relative h-11 w-11">
+          <div class="relative h-9 w-9 shrink-0 sm:h-11 sm:w-11">
             <img v-if="dockIcons[iconId]" :src="dockIcons[iconId]"
               class="h-full w-full object-contain drop-shadow-[0_10px_16px_rgba(0,0,0,0.20)]" />
-            <div v-else class="h-full w-full animate-pulse rounded-[14px] bg-white/25"></div>
           </div>
-          <div class="mt-1.5 h-1 w-1 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.6)]"></div>
         </div>
 
         <div
-          class="mx-0.5 h-10 w-px self-center bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0.58),rgba(255,255,255,0))]">
+          class="mx-0.5 h-8 sm:h-10 w-px self-center bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0.58),rgba(255,255,255,0))]">
         </div>
 
         <div class="group relative flex flex-col items-center">
@@ -109,24 +107,22 @@ watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateGen
             App
             <div class="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-slate-950/78"></div>
           </div>
-          <div class="relative transition-transform duration-200 group-hover:-translate-y-2 group-hover:scale-[1.08]">
-            <div class="absolute inset-x-2 -bottom-3 h-3 rounded-full bg-black/20 blur-md"></div>
-            <div class="relative h-11 w-11 shrink-0">
+          <div
+            class="relative transition-transform duration-200 group-hover:-translate-y-1.5 sm:group-hover:-translate-y-2 group-hover:scale-[1.06] sm:group-hover:scale-[1.08]">
+            <div class="relative h-9 w-9 shrink-0 sm:h-11 sm:w-11">
               <img v-if="generatedIcon" :src="generatedIcon"
                 class="h-full w-full object-contain drop-shadow-[0_10px_16px_rgba(0,0,0,0.22)]" />
               <div v-else class="h-full w-full animate-pulse rounded-[14px] bg-white/25"></div>
             </div>
           </div>
-          <div class="mt-1.5 h-1 w-1 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.85)]"></div>
         </div>
 
         <div class="group relative flex flex-col items-center">
-          <div class="relative h-11 w-11">
+          <div class="relative h-9 w-9 sm:h-11 sm:w-11">
             <img v-if="dockIcons.calendar" :src="dockIcons.calendar"
               class="h-full w-full object-contain drop-shadow-[0_10px_16px_rgba(0,0,0,0.16)]" />
             <div v-else class="h-full w-full animate-pulse rounded-[14px] bg-white/25"></div>
           </div>
-          <div class="mt-1.5 h-1 w-1 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.6)]"></div>
         </div>
       </div>
     </div>

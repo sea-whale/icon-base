@@ -46,15 +46,15 @@ watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIco
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 gap-4">
 
     <!-- iOS Preview -->
     <div
-      class="rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(45,52,48,0.12)] border-[5px] border-[#2d3430] transition-colors relative flex items-center justify-center bg-[url('/bg/iphone.jpg')] bg-cover bg-center h-72">
+      class="mx-auto w-full  rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(45,52,48,0.12)] border-[5px] border-[#2d3430] transition-colors relative flex items-center justify-center bg-[url('/bg/iphone.jpg')] bg-cover bg-center h-[19rem]">
       <div class="absolute inset-0 bg-black/10 backdrop-blur-[2px]"></div>
 
       <!-- Notch -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[100px] h-6 bg-[#2d3430] rounded-b-2xl z-20"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[92px] h-6 bg-[#2d3430] rounded-b-2xl z-20"></div>
 
       <!-- Status Bar -->
       <div class="absolute top-0 w-full h-6 flex justify-between items-center px-4 mt-1 z-20">
@@ -74,7 +74,6 @@ watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIco
           <div class="w-11 h-11 rounded-[11px] shadow-md overflow-hidden bg-white/10 relative">
             <img v-if="iosIcon" :src="iosIcon" class="w-full h-full" alt="iOS App Icon" />
             <div v-else class="w-full h-full bg-[#e4e2de] animate-pulse"></div>
-            <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none"></div>
           </div>
           <span class="text-[9px] text-white font-semibold drop-shadow-md">IconBase</span>
         </div>
@@ -113,7 +112,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIco
 
     <!-- Android Preview -->
     <div
-      class="rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(45,52,48,0.12)] border-[5px] border-[#2d3430] transition-colors relative flex items-center justify-center bg-[url('/bg/android.jpg')] bg-cover bg-center h-72">
+      class="mx-auto w-full  rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(45,52,48,0.12)] border-[5px] border-[#2d3430] transition-colors relative flex items-center justify-center bg-[url('/bg/android.jpg')] bg-cover bg-center h-[19rem]">
       <div class="absolute inset-0 bg-black/20 backdrop-blur-[1px]"></div>
 
       <!-- Camera Hole -->
