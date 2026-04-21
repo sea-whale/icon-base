@@ -70,6 +70,7 @@ export default defineNuxtConfig({
     head: {
       meta: [
         { charset: 'utf-8' },
+        { name: 'google-site-verification', content: 'bX16LW08pjYPNP25MJNDg5TvTGRolaSj_XVlvWNMSJE'},
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' }
       ],
