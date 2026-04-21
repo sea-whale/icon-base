@@ -7,13 +7,16 @@ const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const imageBorderRadius = inject<Ref<number>>('imageBorderRadius', ref(0))
+const imageOffsetX = inject<Ref<number>>('imageOffsetX', ref(0))
+const imageOffsetY = inject<Ref<number>>('imageOffsetY', ref(0))
 const shapeMode = inject<Ref<IconShapeMode>>('shapeMode', ref('rounded-rect'))
 
 const generatedIcon = ref<string>('')
 
 const updateIcon = async () => {
   if (!import.meta.client) return
-  if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
+  if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius || !imageBorderRadius || !imageOffsetX || !imageOffsetY) return
 
   try {
     const { generateIconDataUrl } = await import('../utils/iconGenerator')
@@ -22,6 +25,9 @@ const updateIcon = async () => {
       backgroundId: backgroundId.value,
       padding: padding.value,
       borderRadius: borderRadius.value,
+      imageBorderRadius: imageBorderRadius.value,
+      imageOffsetX: imageOffsetX.value,
+      imageOffsetY: imageOffsetY.value,
       shapeMode: shapeMode.value,
       size: 64,
       transparentBg: false
@@ -31,7 +37,7 @@ const updateIcon = async () => {
   }
 }
 
-watch([uploadedImage, backgroundId, padding, borderRadius, shapeMode], updateIcon, { immediate: true })
+watch([uploadedImage, backgroundId, padding, borderRadius, imageBorderRadius, imageOffsetX, imageOffsetY, shapeMode], updateIcon, { immediate: true })
 </script>
 
 <template>

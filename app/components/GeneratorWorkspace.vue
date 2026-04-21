@@ -20,16 +20,33 @@ const uploadedImage = ref<string | null>('/logo.svg')
 const backgroundId = ref<string>(props.defaultBackgroundId)
 const padding = ref<number>(20)
 const borderRadius = ref<number>(22.5)
+const imageBorderRadius = ref<number>(0)
+const imageOffsetX = ref<number>(0)
+const imageOffsetY = ref<number>(0)
 const shapeMode = ref<IconShapeMode>('rounded-rect')
 
 const isDefaultImage = computed(() => uploadedImage.value === '/logo.svg')
+
+const resetGeneratorSettings = () => {
+  backgroundId.value = props.defaultBackgroundId
+  padding.value = 20
+  borderRadius.value = 22.5
+  imageBorderRadius.value = 0
+  imageOffsetX.value = 0
+  imageOffsetY.value = 0
+  shapeMode.value = 'rounded-rect'
+}
 
 provide('uploadedImage', uploadedImage)
 provide('backgroundId', backgroundId)
 provide('padding', padding)
 provide('borderRadius', borderRadius)
+provide('imageBorderRadius', imageBorderRadius)
+provide('imageOffsetX', imageOffsetX)
+provide('imageOffsetY', imageOffsetY)
 provide('shapeMode', shapeMode)
 provide('isDefaultImage', isDefaultImage)
+provide('resetGeneratorSettings', resetGeneratorSettings)
 </script>
 
 <template>
@@ -69,8 +86,9 @@ provide('isDefaultImage', isDefaultImage)
             </p>
           </div>
 
-          <ControlPanel />
-          <ExportSection />
+          <ControlPanel>
+            <ExportSection />
+          </ControlPanel>
         </div>
       </div>
     </div>

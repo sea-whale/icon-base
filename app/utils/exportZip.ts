@@ -8,6 +8,9 @@ export interface ExportConfig {
   backgroundId: string
   padding: number
   borderRadius: number
+  imageBorderRadius?: number
+  imageOffsetX?: number
+  imageOffsetY?: number
   shapeMode?: IconShapeMode
 }
 

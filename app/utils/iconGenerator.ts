@@ -7,9 +7,35 @@ export interface IconConfig {
   backgroundId: string
   padding: number
   borderRadius: number
+  imageBorderRadius?: number
+  imageOffsetX?: number
+  imageOffsetY?: number
   size: number
   shapeMode?: IconShapeMode
   transparentBg?: boolean
+}
+
+const drawRoundedRectPath = (
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number
+) => {
+  const safeRadius = Math.max(0, Math.min(radius, Math.min(width, height) / 2))
+
+  ctx.beginPath()
+  ctx.moveTo(x + safeRadius, y)
+  ctx.lineTo(x + width - safeRadius, y)
+  ctx.quadraticCurveTo(x + width, y, x + width, y + safeRadius)
+  ctx.lineTo(x + width, y + height - safeRadius)
+  ctx.quadraticCurveTo(x + width, y + height, x + width - safeRadius, y + height)
+  ctx.lineTo(x + safeRadius, y + height)
+  ctx.quadraticCurveTo(x, y + height, x, y + height - safeRadius)
+  ctx.lineTo(x, y + safeRadius)
+  ctx.quadraticCurveTo(x, y, x + safeRadius, y)
+  ctx.closePath()
 }
 
 const drawAppleOfficialPath = (ctx: CanvasRenderingContext2D, size: number) => {
@@ -70,18 +96,7 @@ export const generateIconDataUrl = async (config: IconConfig): Promise<string> =
           ctx.clip()
         } else {
           const radius = (config.borderRadius / 100) * config.size
-
-          ctx.beginPath()
-          ctx.moveTo(radius, 0)
-          ctx.lineTo(config.size - radius, 0)
-          ctx.quadraticCurveTo(config.size, 0, config.size, radius)
-          ctx.lineTo(config.size, config.size - radius)
-          ctx.quadraticCurveTo(config.size, config.size, config.size - radius, config.size)
-          ctx.lineTo(radius, config.size)
-          ctx.quadraticCurveTo(0, config.size, 0, config.size - radius)
-          ctx.lineTo(0, radius)
-          ctx.quadraticCurveTo(0, 0, radius, 0)
-          ctx.closePath()
+          drawRoundedRectPath(ctx, 0, 0, config.size, config.size, radius)
           ctx.clip()
         }
 
@@ -263,10 +278,27 @@ export const generateIconDataUrl = async (config: IconConfig): Promise<string> =
         drawW = drawSize * imgRatio
       }
 
-      const x = (config.size - drawW) / 2
-      const y = (config.size - drawH) / 2
+      const offsetX = ((config.imageOffsetX ?? 0) / 100) * drawSize
+      const offsetY = ((config.imageOffsetY ?? 0) / 100) * drawSize
+      const x = (config.size - drawW) / 2 + offsetX
+      const y = (config.size - drawH) / 2 + offsetY
 
-      ctx.drawImage(img, x, y, drawW, drawH)
+      if ((config.imageBorderRadius ?? 0) > 0) {
+        ctx.save()
+        drawRoundedRectPath(
+          ctx,
+          x,
+          y,
+          drawW,
+          drawH,
+          ((config.imageBorderRadius ?? 0) / 100) * Math.min(drawW, drawH)
+        )
+        ctx.clip()
+        ctx.drawImage(img, x, y, drawW, drawH)
+        ctx.restore()
+      } else {
+        ctx.drawImage(img, x, y, drawW, drawH)
+      }
       
       resolve(canvas.toDataURL('image/png'))
     }
