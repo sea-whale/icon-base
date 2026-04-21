@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { useHead, useI18n } from '#imports'
-import { ref, provide, onMounted } from 'vue'
-import { ImageIcon } from 'lucide-vue-next'
+import { useAppConfig, useHead, useI18n } from '#imports'
+import { computed, ref, provide } from 'vue'
+import { ImageIcon, Upload, Palette } from 'lucide-vue-next'
+import ControlPanel from './components/ControlPanel.vue'
+import PreviewGrid from './components/PreviewGrid.vue'
+import ExportSection from './components/ExportSection.vue'
 
 const { t, locale, setLocale } = useI18n()
+const appConfig = useAppConfig()
 
 useHead({
   title: 'LogoWear - Apple-Style Icon Generator',
   bodyAttrs: {
-    class: 'antialiased bg-gray-50 text-gray-900 transition-colors duration-200 min-h-screen'
+    class: 'antialiased bg-[#fbfbfd] text-slate-900 min-h-screen'
   }
 })
 
@@ -17,85 +21,140 @@ const uploadedImage = ref<string | null>(null)
 const backgroundId = ref<string>('apple-dark') // Default apple-like dark background
 const padding = ref<number>(20) // Percentage of padding (0-50)
 const borderRadius = ref<number>(22.5) // Apple standard is roughly 22.5% of width
-const isDarkMode = ref<boolean>(false) // Force light mode always
 
 // Provide state to components
 provide('uploadedImage', uploadedImage)
 provide('backgroundId', backgroundId)
 provide('padding', padding)
 provide('borderRadius', borderRadius)
-provide('isDarkMode', isDarkMode)
 
 const toggleLanguage = () => {
   setLocale(locale.value === 'zh' ? 'en' : 'zh')
 }
 
-onMounted(() => {
-  document.documentElement.classList.remove('dark')
-})
+const links = computed(() => ({
+  x: appConfig.links?.x as string | undefined,
+  github: appConfig.links?.github as string | undefined,
+  blog: appConfig.links?.blog as string | undefined
+}))
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col font-sans">
-    <!-- Header -->
-    <header class="h-16 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-[#1c1c1e]/80 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between px-6">
-      <div class="flex items-center gap-3">
-        <img src="/logo.png" alt="LogoWear" class="w-8 h-8 rounded-lg shadow-sm object-cover" />
-        <h1 class="text-xl font-semibold tracking-tight">{{ t('app.title') }}</h1>
-      </div>
-      <div class="flex items-center gap-4">
-        <button 
-          @click="toggleLanguage" 
-          class="h-8 px-3 rounded-full border border-gray-200 hover:bg-gray-100 transition-colors text-sm font-medium text-gray-600 hover:text-gray-900 flex items-center gap-1"
-          title="Toggle Language"
-        >
-          {{ locale === 'zh' ? 'EN' : '中' }}
-        </button>
+  <div class="min-h-screen font-sans">
+    <div class="absolute inset-x-0 top-0 h-[720px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(59,130,246,0.18),rgba(59,130,246,0)_70%),radial-gradient(40%_40%_at_15%_15%,rgba(236,72,153,0.14),rgba(236,72,153,0)_70%),radial-gradient(35%_35%_at_90%_20%,rgba(16,185,129,0.12),rgba(16,185,129,0)_70%)] pointer-events-none"></div>
+
+    <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <img src="/logo.png" alt="LogoWear" class="w-8 h-8 rounded-lg shadow-sm object-cover" />
+          <span class="text-[15px] font-semibold tracking-tight">{{ t('app.title') }}</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <a href="#generator" class="hidden sm:inline-flex h-9 px-4 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700">
+            <span class="leading-9">{{ t('nav.generator') }}</span>
+          </a>
+          <button
+            @click="toggleLanguage"
+            class="h-9 px-3 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700"
+            title="Toggle Language"
+          >
+            {{ locale === 'zh' ? 'EN' : '中' }}
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col lg:flex-row overflow-hidden h-[calc(100vh-4rem)]">
-      <!-- Left Panel: Controls -->
-      <aside class="w-full lg:w-80 border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1c1c1e] p-6 overflow-y-auto shrink-0 flex flex-col gap-8 custom-scrollbar">
-        <ControlPanel />
-      </aside>
-
-      <!-- Right Panel: Previews -->
-      <section class="flex-1 bg-gray-50 dark:bg-[#121212] overflow-y-auto p-6 lg:p-10 relative custom-scrollbar">
-        <PreviewGrid v-if="uploadedImage" />
-        <div v-else class="h-full flex flex-col items-center justify-center text-gray-400 dark:text-gray-500">
-          <div class="w-24 h-24 mb-6 opacity-20 border-4 border-dashed border-current rounded-3xl flex items-center justify-center relative overflow-hidden group">
-            <ImageIcon :size="32" class="group-hover:scale-110 transition-transform" />
+    <section class="relative pt-14 sm:pt-24 pb-16">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex flex-col items-center text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white/70 shadow-sm text-xs font-semibold text-slate-600 mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span>{{ t('hero.badge') }}</span>
           </div>
-          <p class="text-xl font-medium text-gray-700">{{ t('app.uploadPrompt') }}</p>
-          <p class="text-sm mt-2 max-w-md text-center">{{ t('app.uploadDesc') }}</p>
+          
+          <h1 class="text-[44px] leading-[1.1] sm:text-[64px] font-extrabold tracking-tight text-slate-950 max-w-4xl">
+            {{ t('hero.title') }}
+          </h1>
+          
+          <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
+            {{ t('hero.subtitle') }}
+          </p>
+          
+          <div class="mt-10 flex flex-wrap justify-center gap-4 relative">
+            <a
+              href="#generator"
+              class="h-14 px-8 rounded-full bg-[#536350] text-[#ecfee5] hover:bg-[#475744] transition-colors text-[15px] font-semibold inline-flex items-center gap-2 shadow-[0_12px_40px_rgba(45,52,48,0.06)]"
+            >
+              <Upload :size="18" />
+              <span>{{ t('hero.ctaPrimary') }}</span>
+            </a>
+            <a
+              href="#templates"
+              class="h-14 px-8 rounded-full border border-[#acb4ae]/30 bg-[#fdfbf7] hover:bg-[#e4e2de] transition-colors text-[15px] font-semibold text-[#536350] inline-flex items-center gap-2"
+            >
+              <Palette :size="18" />
+              <span>{{ t('hero.ctaSecondary') }}</span>
+            </a>
+          </div>
+          <p class="mt-5 text-xs text-slate-500">
+            {{ t('hero.note') }}
+          </p>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+
+    <section id="generator" class="relative py-14 sm:py-20">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8">
+        <div class="flex flex-col gap-10 items-center">
+          
+          <div class="w-full">
+            <div class="rounded-[2.5rem] border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-6 sm:p-10">
+              <ControlPanel />
+            </div>
+          </div>
+
+          <div class="w-full rounded-[2.5rem] border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-6 sm:p-10" id="templates">
+            <PreviewGrid v-if="uploadedImage" />
+            <div v-else class="py-14 sm:py-20 flex flex-col items-center justify-center text-[#757c77]">
+              <div class="w-24 h-24 mb-6 opacity-30 border-[3px] border-dashed border-[#acb4ae] rounded-[1.5rem] flex items-center justify-center bg-[#fdfbf7]">
+                <ImageIcon :size="32" class="text-[#536350]" />
+              </div>
+              <p class="text-xl font-bold text-[#2d3430]">{{ t('app.uploadPrompt') }}</p>
+              <p class="text-sm mt-2 max-w-md text-center text-[#757c77]">{{ t('app.uploadDesc') }}</p>
+            </div>
+          </div>
+
+          <!-- Export Section -->
+          <div v-if="uploadedImage" class="w-full rounded-[2.5rem] border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-6 sm:p-10">
+            <ExportSection />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="LogoWear" class="w-9 h-9 rounded-xl shadow-sm object-cover" />
+          <div>
+            <div class="text-sm font-semibold text-slate-900">{{ t('footer.title') }}</div>
+            <div class="text-xs text-slate-500">{{ t('footer.subtitle') }}</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a v-if="links.x" :href="links.x" target="_blank" rel="noreferrer" class="h-9 px-4 rounded-full border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-700">
+            {{ t('footer.x') }}
+          </a>
+          <a v-if="links.github" :href="links.github" target="_blank" rel="noreferrer" class="h-9 px-4 rounded-full border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-700">
+            {{ t('footer.github') }}
+          </a>
+          <a v-if="links.blog" :href="links.blog" target="_blank" rel="noreferrer" class="h-9 px-4 rounded-full border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-700">
+            {{ t('footer.blog') }}
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
-
-<style>
-/* Custom Scrollbar for sleek UI */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #333333;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
-}
-</style>

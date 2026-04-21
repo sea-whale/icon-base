@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { inject, ref, onMounted, computed, type Ref } from 'vue'
-import { generateAllIcons } from '../utils/exportZip'
 import { BACKGROUNDS, type BgType } from '../utils/backgrounds'
 import { generateIconDataUrl } from '../utils/iconGenerator'
-import { Upload, Shuffle, Download, Loader2 } from 'lucide-vue-next'
+import { Upload, Shuffle, Download, Loader2, Info } from 'lucide-vue-next'
 import { useI18n } from '#imports'
 
 const { t } = useI18n()
@@ -23,7 +22,7 @@ const generatePreviews = async () => {
   // We generate blank icons without foreground images to show just the background
   // For previews, we use a 1x1 transparent image to trick the generator into just drawing the background
   const transparent1x1 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
-  
+
   // We don't want to block the UI, so we generate them in the background
   for (const bg of BACKGROUNDS) {
     if (!backgroundPreviews.value[bg.id]) {
@@ -111,152 +110,111 @@ const randomizeBackground = () => {
     backgroundId.value = randomBg.id
   }
 }
-
-const handleExport = async () => {
-  if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
-  isExporting.value = true
-  try {
-    await generateAllIcons({
-      imageUrl: uploadedImage.value,
-      backgroundId: backgroundId.value,
-      padding: padding.value,
-      borderRadius: borderRadius.value
-    })
-  } catch (error) {
-    console.error('Failed to export icons:', error)
-    alert('Failed to export icons. Please try again.')
-  } finally {
-    isExporting.value = false
-  }
-}
 </script>
 
 <template>
   <div class="flex flex-col gap-6">
     <!-- Upload Area -->
-    <div 
-      class="border-2 border-dashed rounded-2xl p-6 flex flex-col items-center justify-center text-center transition-all cursor-pointer relative overflow-hidden"
+    <div
+      class="border-[3px] border-dashed rounded-[2rem] p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer relative overflow-hidden"
       :class="[
-        isDragging 
-          ? 'border-blue-500 bg-blue-50' 
-          : 'border-gray-300 hover:border-gray-400',
-        uploadedImage ? 'h-32' : 'h-48'
-      ]"
-      @dragover.prevent="isDragging = true"
-      @dragleave.prevent="isDragging = false"
-      @drop.prevent="handleDrop"
-      @click="triggerUpload"
-    >
-      <input 
-        type="file" 
-        ref="fileInput" 
-        class="hidden" 
-        accept="image/png, image/jpeg, image/svg+xml, image/webp"
-        @change="handleFileUpload" 
-      />
-      
+        isDragging
+          ? 'border-[#536350] bg-[#536350]/5'
+          : 'border-[#e4e2de] hover:border-[#acb4ae]',
+        uploadedImage ? 'h-36' : 'h-56'
+      ]" @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false" @drop.prevent="handleDrop"
+      @click="triggerUpload">
+      <input type="file" ref="fileInput" class="hidden" accept="image/png, image/jpeg, image/svg+xml, image/webp"
+        @change="handleFileUpload" />
+
       <template v-if="!uploadedImage">
-        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mb-3">
-          <Upload :size="20" class="text-gray-500" />
+        <div class="w-14 h-14 bg-[#fdfbf7] border border-[#e4e2de] rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+          <Upload :size="24" class="text-[#536350]" />
         </div>
-        <p class="text-sm font-medium text-gray-700">{{ t('panel.uploadOrDrag') }}</p>
-        <p class="text-xs text-gray-500 mt-1">{{ t('panel.supportedFormats') }}</p>
+        <p class="text-base font-bold text-[#2d3430]">{{ t('panel.uploadOrDrag') }}</p>
+        <p class="text-sm text-[#757c77] mt-1.5">{{ t('panel.supportedFormats') }}</p>
       </template>
       <template v-else>
-        <div class="absolute inset-0 w-full h-full opacity-20" :style="{ backgroundImage: `url(${uploadedImage})`, backgroundPosition: 'center', backgroundSize: 'cover', filter: 'blur(8px)' }"></div>
+        <div class="absolute inset-0 w-full h-full opacity-30"
+          :style="{ backgroundImage: `url(${uploadedImage})`, backgroundPosition: 'center', backgroundSize: 'cover', filter: 'blur(12px)' }">
+        </div>
         <div class="relative z-10 flex flex-col items-center">
-          <div class="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-md shadow border border-white/20 p-2 mb-2">
+          <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-xl shadow-lg border border-white/40 p-2.5 mb-3">
             <img :src="uploadedImage" class="w-full h-full object-contain" />
           </div>
-          <p class="text-xs font-medium text-gray-900 bg-white/50 px-2 py-1 rounded backdrop-blur-md">{{ t('panel.changeImage') }}</p>
+          <p class="text-xs font-bold text-[#2d3430] bg-white/60 px-3 py-1.5 rounded-lg backdrop-blur-md shadow-sm border border-white/40">{{
+            t('panel.changeImage') }}</p>
         </div>
       </template>
     </div>
 
     <template v-if="uploadedImage">
       <!-- Background Style Categories -->
-      <div class="space-y-5">
+      <div class="space-y-6 pt-4">
         <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700">{{ t('panel.bgTemplate') }}</label>
           <div class="flex items-center gap-2">
-            <button 
-              @click="randomizeBackground" 
-              class="p-1 hover:bg-gray-100 rounded-md transition-colors text-gray-500 hover:text-blue-500"
-              :title="t('panel.shuffle')"
-            >
-              <Shuffle :size="14" />
+            <div class="w-8 h-8 rounded-lg bg-[#536350]/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[#536350] text-sm" style="font-variation-settings: 'FILL' 1;">palette</span>
+            </div>
+            <label class="text-base font-bold text-[#2d3430]">{{ t('panel.bgTemplate') }}</label>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono text-[#536350] bg-[#536350]/5 px-2 py-1 rounded-md">{{t('backgrounds.' + BACKGROUNDS.find(b => b.id ===
+              backgroundId)?.id) || BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
+            <button @click="randomizeBackground"
+              class="p-1.5 hover:bg-[#536350]/5 rounded-lg transition-colors text-[#757c77] hover:text-[#536350]"
+              :title="t('panel.shuffle')">
+              <Shuffle :size="16" />
             </button>
-            <span class="text-xs font-mono text-gray-500">{{ t('backgrounds.' + BACKGROUNDS.find(b => b.id === backgroundId)?.id) || BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
           </div>
         </div>
-        
-        <div v-for="[groupName, bgList] in groupedBackgrounds" :key="groupName" class="space-y-2">
-          <p class="text-xs text-gray-500 font-medium">{{ groupName }}</p>
-          <div class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-6 xl:grid-cols-8 gap-2">
-            <button
-              v-for="bg in bgList"
-              :key="bg.id"
-              @click="backgroundId = bg.id"
+
+        <div v-for="[groupName, bgList] in groupedBackgrounds" :key="groupName" class="space-y-3">
+          <p class="text-xs text-[#757c77] font-semibold uppercase tracking-wider">{{ groupName }}</p>
+          <div class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2.5">
+            <button v-for="bg in bgList" :key="bg.id" @click="backgroundId = bg.id"
               :title="t('backgrounds.' + bg.id) || bg.name"
-              class="w-10 h-10 rounded-xl border border-gray-200 transition-all overflow-hidden bg-gray-100"
-              :class="backgroundId === bg.id ? 'ring-2 ring-blue-500 scale-110 shadow-md z-10' : 'hover:scale-105'"
-            >
-              <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]" class="w-full h-full object-cover" />
-              <div v-else class="w-full h-full animate-pulse bg-gray-200"></div>
+              class="w-12 h-12 rounded-2xl border border-[#acb4ae]/30 transition-all overflow-hidden bg-[#fdfbf7] relative group"
+              :class="backgroundId === bg.id ? 'ring-2 ring-[#536350] ring-offset-2 scale-110 shadow-[0_4px_12px_rgba(45,52,48,0.12)] z-10' : 'hover:scale-105 hover:shadow-[0_4px_12px_rgba(45,52,48,0.06)]'">
+              <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]"
+                class="w-full h-full object-cover" />
+              <div v-else class="w-full h-full animate-pulse bg-[#e4e2de]"></div>
+              
+              <div v-if="backgroundId === bg.id" class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl pointer-events-none"></div>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Padding -->
-      <div class="space-y-3">
-        <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700">{{ t('panel.padding') }}</label>
-          <span class="text-xs font-mono text-gray-500">{{ padding }}%</span>
+      <!-- Settings Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 border-t border-[#e4e2de]/50 mb-4">
+        <!-- Padding -->
+        <div class="space-y-4">
+          <div class="flex justify-between items-center">
+            <label class="text-sm font-semibold text-[#2d3430]">{{ t('panel.padding') }}</label>
+            <span class="text-xs font-mono text-[#536350] bg-[#536350]/10 px-2 py-1 rounded-md">{{ padding }}%</span>
+          </div>
+          <div class="relative pt-2">
+            <div class="w-full h-2 bg-[#e4e2de] rounded-full relative overflow-hidden pointer-events-none">
+              <div class="absolute top-0 left-0 h-full bg-[#536350] rounded-full transition-all" :style="{ width: `${padding * 2}%` }"></div>
+            </div>
+            <input type="range" v-model.number="padding" min="0" max="50" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
+          </div>
         </div>
-        <input 
-          type="range" 
-          v-model.number="padding" 
-          min="0" 
-          max="50" 
-          class="w-full accent-blue-500"
-        />
-      </div>
 
-      <!-- Border Radius -->
-      <div class="space-y-3">
-        <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700">{{ t('panel.borderRadius') }}</label>
-          <span class="text-xs font-mono text-gray-500">{{ borderRadius }}%</span>
+        <!-- Border Radius -->
+        <div class="space-y-4">
+          <div class="flex justify-between items-center">
+            <label class="text-sm font-semibold text-[#2d3430]">{{ t('panel.borderRadius') }}</label>
+            <span class="text-xs font-mono text-[#536350] bg-[#536350]/10 px-2 py-1 rounded-md">{{ borderRadius }}%</span>
+          </div>
+          <div class="relative pt-2">
+            <div class="w-full h-2 bg-[#e4e2de] rounded-full relative overflow-hidden pointer-events-none">
+              <div class="absolute top-0 left-0 h-full bg-[#536350] rounded-full transition-all" :style="{ width: `${borderRadius * 2}%` }"></div>
+            </div>
+            <input type="range" v-model.number="borderRadius" min="0" max="50" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
+          </div>
         </div>
-        <input 
-          type="range" 
-          v-model.number="borderRadius" 
-          min="0" 
-          max="50" 
-          class="w-full accent-blue-500"
-        />
-      </div>
-
-      <!-- Export Button -->
-      <div class="pt-4 border-t border-gray-200">
-        <button 
-          @click="handleExport" 
-          :disabled="isExporting"
-          class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-sm shadow-blue-500/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-        >
-          <template v-if="isExporting">
-            <Loader2 class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" />
-            {{ t('panel.exporting') }}
-          </template>
-          <template v-else>
-            <Download :size="18" />
-            {{ t('panel.exportZip') }}
-          </template>
-        </button>
-        <p class="text-xs text-center text-gray-500 mt-3">
-          {{ t('panel.exportDesc') }}
-        </p>
       </div>
     </template>
   </div>

@@ -5,6 +5,28 @@
     "uploadPrompt": "Upload Logo to Preview",
     "uploadDesc": "We will automatically apply Apple-style backgrounds and support generating standard icon assets for all platforms with one click."
   },
+  "nav": {
+    "generator": "Start"
+  },
+  "hero": {
+    "badge": "Apple-style icon generator",
+    "title": "Turn your logo into production-ready icons",
+    "subtitle": "Pick a background template, fine-tune padding and corner radius, then preview across browser tabs, macOS Dock, Windows taskbar and mobile homescreen.",
+    "ctaPrimary": "Start generating",
+    "ctaSecondary": "Browse templates",
+    "note": "Export includes standard .png sizes + favicon.ico",
+    "cardTitle": "Live preview + one-click export",
+    "cardSubtitle": "40 templates · grouped by style · shuffle mode",
+    "cardTipTitle": "Tip",
+    "cardTipDesc": "After upload we auto-pick a random background template. Use the shuffle button to keep exploring."
+  },
+  "footer": {
+    "title": "LogoWear",
+    "subtitle": "One-page icon generator",
+    "x": "X",
+    "github": "Star on GitHub",
+    "blog": "Blog"
+  },
   "panel": {
     "uploadOrDrag": "Click or drag to upload",
     "supportedFormats": "Supports PNG, SVG, WEBP (Max 5MB)",
@@ -13,8 +35,16 @@
     "padding": "Icon Padding",
     "borderRadius": "Border Radius",
     "exporting": "Generating...",
-    "exportZip": "Export All Icons (.zip)",
-    "exportDesc": "Auto-generate favicon, apple-touch-icon, android-chrome, and more standard sizes",
+    "exportZip": "Export .zip",
+    "exportTitle": "Export Platform Assets",
+    "exportContains": "Zip package includes:",
+    "exportBreakdown": {
+      "ico": "Native format compatible with Windows and legacy browsers",
+      "apple": "Icon for 'Add to Home Screen' on iPhone and iPad",
+      "android": "Standard sizes for Android devices and PWA apps",
+      "favicon": "Standard high-definition icons for modern browsers",
+      "manifest": "PWA configuration file for automatic browser detection"
+    },
     "shuffle": "Shuffle",
     "categories": {
       "solid": "Solid Colors",

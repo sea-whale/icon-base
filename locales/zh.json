@@ -5,6 +5,28 @@
     "uploadPrompt": "上传 Logo 开始预览",
     "uploadDesc": "我们将自动应用 Apple 风格背景，并支持一键生成适用于所有平台的标准图标资产。"
   },
+  "nav": {
+    "generator": "开始生成"
+  },
+  "hero": {
+    "badge": "Apple 风格图标生成器",
+    "title": "把你的 Logo 一键变成全平台图标资产",
+    "subtitle": "选择精致底色模板、微调圆角与留白，并预览在浏览器、macOS Dock、Windows 任务栏与移动端主屏幕中的真实效果。",
+    "ctaPrimary": "开始生成",
+    "ctaSecondary": "浏览模板",
+    "note": "导出包含 .png 全尺寸规范 + favicon.ico",
+    "cardTitle": "实时预览 + 一键导出",
+    "cardSubtitle": "40 款底色模板 · 分类浏览 · 随机切换",
+    "cardTipTitle": "提示",
+    "cardTipDesc": "上传图片后会自动随机选择一个底色模板，也可以在左侧点击随机按钮继续探索。"
+  },
+  "footer": {
+    "title": "LogoWear",
+    "subtitle": "One-page icon generator",
+    "x": "X",
+    "github": "GitHub 点赞",
+    "blog": "Blog"
+  },
   "panel": {
     "uploadOrDrag": "点击或拖拽图片上传",
     "supportedFormats": "支持 PNG, SVG, WEBP (最大 5MB)",
@@ -13,8 +35,16 @@
     "padding": "图标缩放间距",
     "borderRadius": "圆角曲率",
     "exporting": "打包生成中...",
-    "exportZip": "打包导出全套图标 (.zip)",
-    "exportDesc": "自动生成 favicon, apple-touch-icon, android-chrome 等多尺寸规范图标",
+    "exportZip": "打包导出 .zip",
+    "exportTitle": "导出全部平台资产",
+    "exportContains": "导出包包含：",
+    "exportBreakdown": {
+      "ico": "兼容传统 Windows 和旧版浏览器的原生 .ico 格式",
+      "apple": "适用于 iPhone 和 iPad 保存到主屏幕的图标",
+      "android": "适用于 Android 系统和 PWA 应用的标准尺寸",
+      "favicon": "适用于现代浏览器的标准高清标签页图标",
+      "manifest": "供浏览器自动识别图标的 PWA 配置文件"
+    },
     "shuffle": "随机切换",
     "categories": {
       "solid": "极简纯色 (Solid)",
