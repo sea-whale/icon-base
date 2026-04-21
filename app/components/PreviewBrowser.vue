@@ -10,6 +10,7 @@ const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
 const generatedIcon = ref<string>('')
 
 const updateIcon = async () => {
+  if (!import.meta.client) return
   if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
 
   try {

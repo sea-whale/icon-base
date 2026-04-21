@@ -11,6 +11,7 @@ const iosIcon = ref<string>('')
 const androidIcon = ref<string>('')
 
 const updateIcons = async () => {
+  if (!import.meta.client) return
   if (!uploadedImage?.value || !backgroundId || !padding || !borderRadius) return
 
   try {
