@@ -77,18 +77,20 @@ const toggleLanguage = () => {
 }
 
 const links = computed(() => {
-  const l = appConfig.links as Record<string, string> | undefined
+  const l = appConfig.links
   return {
-    x: (l?.x && l.x.trim()) || undefined,
-    github: (l?.github && l.github.trim()) || undefined,
-    blog: (l?.blog && l.blog.trim()) || undefined
+    x: (l?.x?.trim()) || undefined,
+    github: (l?.github?.trim()) || undefined,
+    blog: (l?.blog?.trim()) || undefined
   }
 })
 </script>
 
 <template>
   <div class="min-h-screen font-sans">
-    <div class="absolute inset-x-0 top-0 h-[720px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(59,130,246,0.18),rgba(59,130,246,0)_70%),radial-gradient(40%_40%_at_15%_15%,rgba(236,72,153,0.14),rgba(236,72,153,0)_70%),radial-gradient(35%_35%_at_90%_20%,rgba(16,185,129,0.12),rgba(16,185,129,0)_70%)] pointer-events-none"></div>
+    <div
+      class="absolute inset-x-0 top-0 h-[720px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(59,130,246,0.18),rgba(59,130,246,0)_70%),radial-gradient(40%_40%_at_15%_15%,rgba(236,72,153,0.14),rgba(236,72,153,0)_70%),radial-gradient(35%_35%_at_90%_20%,rgba(16,185,129,0.12),rgba(16,185,129,0)_70%)] pointer-events-none">
+    </div>
 
     <header class="relative z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
@@ -101,11 +103,9 @@ const links = computed(() => {
             class="h-9 px-3 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors inline-flex items-center gap-1.5 text-slate-600">
             <Github :size="16" />
           </a>
-          <button
-            @click="toggleLanguage"
+          <button @click="toggleLanguage"
             class="h-9 px-3 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700"
-            title="Toggle Language"
-          >
+            title="Toggle Language">
             {{ locale === 'zh' ? 'EN' : '中' }}
           </button>
         </div>
@@ -123,7 +123,8 @@ const links = computed(() => {
           <div class="mt-12 flex items-center gap-6 sm:gap-10">
             <!-- From: Original Logo -->
             <div class="flex flex-col items-center gap-3">
-              <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-2 border-dashed border-[#acb4ae] bg-white flex items-center justify-center p-3 shadow-sm">
+              <div
+                class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-2 border-dashed border-[#acb4ae] bg-white flex items-center justify-center p-3 shadow-sm">
                 <img src="/logo.svg" alt="Logo" class="w-full h-full object-contain" />
               </div>
               <span class="text-xs font-semibold text-[#757c77]">{{ t('hero.fromLabel') }}</span>
@@ -168,10 +169,8 @@ const links = computed(() => {
           </div>
 
           <!-- Single CTA Button -->
-          <a
-            href="#generator"
-            class="mt-10 h-12 px-8 rounded-full bg-[#536350] text-[#ecfee5] hover:bg-[#475744] transition-colors text-[15px] font-semibold inline-flex items-center gap-2 shadow-[0_12px_40px_rgba(45,52,48,0.08)]"
-          >
+          <a href="#generator"
+            class="mt-10 h-12 px-8 rounded-full bg-[#536350] text-[#ecfee5] hover:bg-[#475744] transition-colors text-[15px] font-semibold inline-flex items-center gap-2 shadow-[0_12px_40px_rgba(45,52,48,0.08)]">
             <span>{{ t('hero.ctaPrimary') }}</span>
             <ArrowRight :size="18" />
           </a>
@@ -183,7 +182,8 @@ const links = computed(() => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="lg:grid lg:grid-cols-[380px_1fr] lg:gap-6">
           <!-- Left Panel -->
-          <div class="rounded-2xl border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-5 mb-6 lg:mb-0 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:overflow-hidden">
+          <div
+            class="rounded-2xl border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-5 mb-6 lg:mb-0 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:overflow-hidden">
             <ControlPanel />
             <ExportSection />
           </div>
@@ -198,15 +198,18 @@ const links = computed(() => {
 
     <footer class="border-t border-slate-200 bg-white">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between text-sm">
-        <span class="text-slate-500">{{ t('footer.title') }} &middot; {{ t('footer.subtitle') }}</span>
+        <span class="text-slate-500">&copy; {{ new Date().getFullYear() }} JettGu. All rights reserved.</span>
         <div class="flex items-center gap-4">
-          <a v-if="links.x" :href="links.x" target="_blank" rel="noreferrer" class="text-slate-500 hover:text-slate-700 transition-colors font-medium">
+          <a v-if="links.x" :href="links.x" target="_blank" rel="noreferrer"
+            class="text-slate-500 hover:text-slate-700 transition-colors font-medium">
             {{ t('footer.x') }}
           </a>
-          <a v-if="links.github" :href="links.github" target="_blank" rel="noreferrer" class="text-slate-500 hover:text-slate-700 transition-colors font-medium">
-            {{ t('footer.github') }}
+          <a v-if="links.github" :href="links.github" target="_blank" rel="noreferrer"
+            class="text-slate-500 hover:text-slate-700 transition-colors flex items-center">
+            <Github :size="18" />
           </a>
-          <a v-if="links.blog" :href="links.blog" target="_blank" rel="noreferrer" class="text-slate-500 hover:text-slate-700 transition-colors font-medium">
+          <a v-if="links.blog" :href="links.blog" target="_blank" rel="noreferrer"
+            class="text-slate-500 hover:text-slate-700 transition-colors font-medium">
             {{ t('footer.blog') }}
           </a>
         </div>

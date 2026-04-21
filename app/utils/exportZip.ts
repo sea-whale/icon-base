@@ -24,7 +24,7 @@ const ICONS = [
 
 export const generateAllIcons = async (config: ExportConfig) => {
   const zip = new JSZip()
-  
+
   // 1. Generate standard PNG icons
   const promises = ICONS.map(async (icon) => {
     const dataUrl = await generateIconDataUrl({
@@ -33,11 +33,11 @@ export const generateAllIcons = async (config: ExportConfig) => {
       borderRadius: icon.borderRadius !== undefined ? icon.borderRadius : config.borderRadius,
       transparentBg: false
     })
-    
+
     const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "")
     zip.file(icon.name, base64Data, { base64: true })
   })
-  
+
   await Promise.all(promises)
 
   // 2. Generate ICO file using the 32x32 icon canvas directly
@@ -53,7 +53,7 @@ export const generateAllIcons = async (config: ExportConfig) => {
       img.onload = resolve
       img.onerror = reject
     })
-    
+
     const canvas = document.createElement('canvas')
     canvas.width = 32
     canvas.height = 32
@@ -61,7 +61,7 @@ export const generateAllIcons = async (config: ExportConfig) => {
     if (ctx) {
       ctx.drawImage(img, 0, 0)
       const imgData = ctx.getImageData(0, 0, 32, 32)
-      
+
       // Create ICO file format manually
       // ICO header (6 bytes)
       const header = new Uint8Array([0, 0, 1, 0, 1, 0])
@@ -71,14 +71,14 @@ export const generateAllIcons = async (config: ExportConfig) => {
         0, 0, 0, 0, // size of image data (to be filled)
         22, 0, 0, 0 // offset of image data
       ])
-      
+
       // Generate PNG for the ICO body
       const pngBlob = await new Promise<Blob | null>(res => canvas.toBlob(res, 'image/png'))
       if (pngBlob) {
         const pngBuffer = await pngBlob.arrayBuffer()
         const size = pngBuffer.byteLength
         new DataView(dir.buffer).setUint32(8, size, true) // fill size (little endian)
-        
+
         const icoBlob = new Blob([header, dir, pngBuffer], { type: 'image/x-icon' })
         zip.file('favicon.ico', icoBlob)
       }
@@ -90,7 +90,7 @@ export const generateAllIcons = async (config: ExportConfig) => {
   // 3. Add a manifest.json
   const bgConfig = getBackground(config.backgroundId)
   const themeColor = bgConfig.colors[0]
-  
+
   const webmanifest = {
     name: "My App",
     short_name: "App",
@@ -116,9 +116,9 @@ export const generateAllIcons = async (config: ExportConfig) => {
     background_color: themeColor,
     display: "standalone"
   }
-  
+
   zip.file("site.webmanifest", JSON.stringify(webmanifest, null, 2))
 
   const content = await zip.generateAsync({ type: 'blob' })
-  saveAs(content, 'logowear-icons.zip')
+  saveAs(content, 'iconbase-icons.zip')
 }
