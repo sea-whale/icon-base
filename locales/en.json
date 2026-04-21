@@ -46,6 +46,7 @@
       "manifest": "PWA configuration file for automatic browser detection"
     },
     "shuffle": "Shuffle",
+    "demoHint": "Previewing with a sample image. Click above to upload your own logo",
     "categories": {
       "solid": "Solid Colors",
       "gradient": "Gradients",

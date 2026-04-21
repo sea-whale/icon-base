@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAppConfig, useHead, useI18n } from '#imports'
 import { computed, ref, provide } from 'vue'
-import { ImageIcon, Upload, Palette } from 'lucide-vue-next'
+import { Upload, Palette } from 'lucide-vue-next'
 import ControlPanel from './components/ControlPanel.vue'
 import PreviewGrid from './components/PreviewGrid.vue'
 import ExportSection from './components/ExportSection.vue'
@@ -17,16 +17,19 @@ useHead({
 })
 
 // Global State
-const uploadedImage = ref<string | null>(null)
-const backgroundId = ref<string>('apple-dark') // Default apple-like dark background
-const padding = ref<number>(20) // Percentage of padding (0-50)
-const borderRadius = ref<number>(22.5) // Apple standard is roughly 22.5% of width
+const uploadedImage = ref<string | null>('/logo.svg')
+const backgroundId = ref<string>('glass-green-glow')
+const padding = ref<number>(20)
+const borderRadius = ref<number>(22.5)
+
+const isDefaultImage = computed(() => uploadedImage.value === '/logo.svg')
 
 // Provide state to components
 provide('uploadedImage', uploadedImage)
 provide('backgroundId', backgroundId)
 provide('padding', padding)
 provide('borderRadius', borderRadius)
+provide('isDefaultImage', isDefaultImage)
 
 const toggleLanguage = () => {
   setLocale(locale.value === 'zh' ? 'en' : 'zh')
@@ -43,16 +46,13 @@ const links = computed(() => ({
   <div class="min-h-screen font-sans">
     <div class="absolute inset-x-0 top-0 h-[720px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(59,130,246,0.18),rgba(59,130,246,0)_70%),radial-gradient(40%_40%_at_15%_15%,rgba(236,72,153,0.14),rgba(236,72,153,0)_70%),radial-gradient(35%_35%_at_90%_20%,rgba(16,185,129,0.12),rgba(16,185,129,0)_70%)] pointer-events-none"></div>
 
-    <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
+    <header class="relative z-50 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
       <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         <a href="#" class="flex items-center gap-3">
           <img src="/logo.png" alt="LogoWear" class="w-8 h-8 rounded-lg shadow-sm object-cover" />
           <span class="text-[15px] font-semibold tracking-tight">{{ t('app.title') }}</span>
         </a>
         <div class="flex items-center gap-3">
-          <a href="#generator" class="hidden sm:inline-flex h-9 px-4 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700">
-            <span class="leading-9">{{ t('nav.generator') }}</span>
-          </a>
           <button
             @click="toggleLanguage"
             class="h-9 px-3 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors text-sm font-medium text-slate-700"
@@ -67,11 +67,6 @@ const links = computed(() => ({
     <section class="relative pt-14 sm:pt-24 pb-16">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="flex flex-col items-center text-center">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white/70 shadow-sm text-xs font-semibold text-slate-600 mb-8">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            <span>{{ t('hero.badge') }}</span>
-          </div>
-          
           <h1 class="text-[44px] leading-[1.1] sm:text-[64px] font-extrabold tracking-tight text-slate-950 max-w-4xl">
             {{ t('hero.title') }}
           </h1>
@@ -103,32 +98,19 @@ const links = computed(() => ({
       </div>
     </section>
 
-    <section id="generator" class="relative py-14 sm:py-20">
-      <div class="max-w-4xl mx-auto px-5 sm:px-8">
-        <div class="flex flex-col gap-10 items-center">
-          
-          <div class="w-full">
-            <div class="rounded-[2.5rem] border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-6 sm:p-10">
-              <ControlPanel />
-            </div>
-          </div>
-
-          <div class="w-full rounded-[2.5rem] border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-6 sm:p-10" id="templates">
-            <PreviewGrid v-if="uploadedImage" />
-            <div v-else class="py-14 sm:py-20 flex flex-col items-center justify-center text-[#757c77]">
-              <div class="w-24 h-24 mb-6 opacity-30 border-[3px] border-dashed border-[#acb4ae] rounded-[1.5rem] flex items-center justify-center bg-[#fdfbf7]">
-                <ImageIcon :size="32" class="text-[#536350]" />
-              </div>
-              <p class="text-xl font-bold text-[#2d3430]">{{ t('app.uploadPrompt') }}</p>
-              <p class="text-sm mt-2 max-w-md text-center text-[#757c77]">{{ t('app.uploadDesc') }}</p>
-            </div>
-          </div>
-
-          <!-- Export Section -->
-          <div v-if="uploadedImage" class="w-full rounded-[2.5rem] border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-6 sm:p-10">
+    <section id="generator" class="relative py-8 lg:py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="lg:grid lg:grid-cols-[380px_1fr] lg:gap-6">
+          <!-- Left Panel -->
+          <div class="rounded-2xl border border-[#e4e2de] bg-white shadow-[0_8px_30px_rgba(45,52,48,0.04)] p-5 mb-6 lg:mb-0 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:overflow-hidden">
+            <ControlPanel />
             <ExportSection />
           </div>
 
+          <!-- Right Canvas -->
+          <div class="rounded-2xl bg-[#f0efed] p-4 sm:p-6 min-h-[600px]" id="templates">
+            <PreviewGrid />
+          </div>
         </div>
       </div>
     </section>

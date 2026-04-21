@@ -31,7 +31,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
 </script>
 
 <template>
-  <div class="h-48 rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(45,52,48,0.06)] border border-[#e4e2de] transition-colors relative flex flex-col justify-end bg-[url('https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=beautiful%20windows%2011%20wallpaper%2C%20blue%20bloom%2C%20abstract%20ribbons%2C%20high%20detail&image_size=landscape_16_9')] bg-cover bg-center">
+  <div class="h-36 rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(45,52,48,0.06)] border border-[#e4e2de] transition-colors relative flex flex-col justify-end bg-[url('https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=beautiful%20windows%2011%20wallpaper%2C%20blue%20bloom%2C%20abstract%20ribbons%2C%20high%20detail&image_size=landscape_16_9')] bg-cover bg-center">
     
     <!-- Windows 11 Taskbar -->
     <div class="h-12 w-full bg-[#f3f3f3]/80 backdrop-blur-2xl relative z-10 flex items-center justify-center border-t border-white/60 shadow-[0_-1px_10px_rgba(0,0,0,0.05)]">

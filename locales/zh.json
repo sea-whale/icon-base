@@ -9,7 +9,7 @@
     "generator": "开始生成"
   },
   "hero": {
-    "badge": "Apple 风格图标生成器",
+    "badge": "",
     "title": "把你的 Logo 一键变成全平台图标资产",
     "subtitle": "选择精致底色模板、微调圆角与留白，并预览在浏览器、macOS Dock、Windows 任务栏与移动端主屏幕中的真实效果。",
     "ctaPrimary": "开始生成",
@@ -46,6 +46,7 @@
       "manifest": "供浏览器自动识别图标的 PWA 配置文件"
     },
     "shuffle": "随机切换",
+    "demoHint": "当前使用示例图片预览效果，点击上方区域上传你的 Logo 替换",
     "categories": {
       "solid": "极简纯色 (Solid)",
       "gradient": "色彩渐变 (Gradient)",

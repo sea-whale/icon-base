@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject, ref, onMounted, computed, type Ref } from 'vue'
-import { BACKGROUNDS, type BgType } from '../utils/backgrounds'
+import { inject, ref, onMounted, computed, type Ref, type ComputedRef } from 'vue'
+import { BACKGROUNDS } from '../utils/backgrounds'
 import { generateIconDataUrl } from '../utils/iconGenerator'
-import { Upload, Shuffle, Download, Loader2, Info } from 'lucide-vue-next'
+import { Upload, Shuffle, Info } from 'lucide-vue-next'
 import { useI18n } from '#imports'
 
 const { t } = useI18n()
@@ -11,10 +11,10 @@ const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
 const padding = inject<Ref<number>>('padding', ref(20))
 const borderRadius = inject<Ref<number>>('borderRadius', ref(22.5))
+const isDefaultImage = inject<ComputedRef<boolean>>('isDefaultImage', computed(() => true))
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const isDragging = ref(false)
-const isExporting = ref(false)
 
 const backgroundPreviews = ref<Record<string, string>>({})
 
@@ -113,109 +113,116 @@ const randomizeBackground = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-6">
-    <!-- Upload Area -->
+  <div class="flex flex-col min-h-0 lg:flex-1">
+    <!-- Upload Area (fixed) -->
     <div
-      class="border-[3px] border-dashed rounded-[2rem] p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer relative overflow-hidden"
+      class="shrink-0 border-2 border-dashed rounded-xl p-4 flex flex-col items-center justify-center text-center transition-all cursor-pointer relative overflow-hidden"
       :class="[
         isDragging
           ? 'border-[#536350] bg-[#536350]/5'
           : 'border-[#e4e2de] hover:border-[#acb4ae]',
-        uploadedImage ? 'h-36' : 'h-56'
+        uploadedImage ? 'h-24' : 'h-32'
       ]" @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false" @drop.prevent="handleDrop"
       @click="triggerUpload">
       <input type="file" ref="fileInput" class="hidden" accept="image/png, image/jpeg, image/svg+xml, image/webp"
         @change="handleFileUpload" />
 
       <template v-if="!uploadedImage">
-        <div class="w-14 h-14 bg-[#fdfbf7] border border-[#e4e2de] rounded-2xl flex items-center justify-center mb-4 shadow-sm">
-          <Upload :size="24" class="text-[#536350]" />
+        <div
+          class="w-9 h-9 bg-[#fdfbf7] border border-[#e4e2de] rounded-xl flex items-center justify-center mb-2.5 shadow-sm">
+          <Upload :size="18" class="text-[#536350]" />
         </div>
-        <p class="text-base font-bold text-[#2d3430]">{{ t('panel.uploadOrDrag') }}</p>
-        <p class="text-sm text-[#757c77] mt-1.5">{{ t('panel.supportedFormats') }}</p>
+        <p class="text-sm font-bold text-[#2d3430]">{{ t('panel.uploadOrDrag') }}</p>
+        <p class="text-[11px] text-[#757c77] mt-1">{{ t('panel.supportedFormats') }}</p>
       </template>
       <template v-else>
         <div class="absolute inset-0 w-full h-full opacity-30"
           :style="{ backgroundImage: `url(${uploadedImage})`, backgroundPosition: 'center', backgroundSize: 'cover', filter: 'blur(12px)' }">
         </div>
-        <div class="relative z-10 flex flex-col items-center">
-          <div class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-xl shadow-lg border border-white/40 p-2.5 mb-3">
+        <div class="relative z-10 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-xl shadow-lg border border-white/40 p-1.5">
             <img :src="uploadedImage" class="w-full h-full object-contain" />
           </div>
-          <p class="text-xs font-bold text-[#2d3430] bg-white/60 px-3 py-1.5 rounded-lg backdrop-blur-md shadow-sm border border-white/40">{{
-            t('panel.changeImage') }}</p>
+          <p
+            class="text-xs font-bold text-[#2d3430] bg-white/60 px-2.5 py-1 rounded-md backdrop-blur-md shadow-sm border border-white/40">{{
+              t('panel.changeImage') }}</p>
         </div>
       </template>
     </div>
 
-    <template v-if="uploadedImage">
-      <!-- Background Style Categories -->
-      <div class="space-y-6 pt-4">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-[#536350]/10 flex items-center justify-center">
-              <span class="material-symbols-outlined text-[#536350] text-sm" style="font-variation-settings: 'FILL' 1;">palette</span>
-            </div>
-            <label class="text-base font-bold text-[#2d3430]">{{ t('panel.bgTemplate') }}</label>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-mono text-[#536350] bg-[#536350]/5 px-2 py-1 rounded-md">{{t('backgrounds.' + BACKGROUNDS.find(b => b.id ===
+    <!-- Default Image Hint (fixed) -->
+    <div v-if="isDefaultImage"
+      class="shrink-0 flex items-center gap-2 mt-4 px-3 py-2 bg-[#536350]/5 border border-[#536350]/10 rounded-lg">
+      <Info :size="14" class="text-[#536350] shrink-0" />
+      <p class="text-[11px] text-[#536350] leading-snug">{{ t('panel.demoHint') }}</p>
+    </div>
+
+    <!-- Background Section Header (fixed) -->
+    <div class="shrink-0 flex justify-between items-center mt-4">
+      <label class="text-xs font-semibold text-[#2d3430]">{{ t('panel.bgTemplate') }}</label>
+      <div class="flex items-center gap-1.5">
+        <span
+          class="text-[10px] font-mono text-[#536350] bg-[#536350]/5 px-1.5 py-0.5 rounded-md truncate max-w-[100px]">{{t('backgrounds.'
+            + BACKGROUNDS.find(b => b.id ===
               backgroundId)?.id) || BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
-            <button @click="randomizeBackground"
-              class="p-1.5 hover:bg-[#536350]/5 rounded-lg transition-colors text-[#757c77] hover:text-[#536350]"
-              :title="t('panel.shuffle')">
-              <Shuffle :size="16" />
-            </button>
-          </div>
-        </div>
+        <button @click="randomizeBackground"
+          class="p-1 hover:bg-[#536350]/5 rounded-md transition-colors text-[#757c77] hover:text-[#536350]"
+          :title="t('panel.shuffle')">
+          <Shuffle :size="14" />
+        </button>
+      </div>
+    </div>
 
-        <div v-for="[groupName, bgList] in groupedBackgrounds" :key="groupName" class="space-y-3">
-          <p class="text-xs text-[#757c77] font-semibold uppercase tracking-wider">{{ groupName }}</p>
-          <div class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2.5">
-            <button v-for="bg in bgList" :key="bg.id" @click="backgroundId = bg.id"
-              :title="t('backgrounds.' + bg.id) || bg.name"
-              class="w-12 h-12 rounded-2xl border border-[#acb4ae]/30 transition-all overflow-hidden bg-[#fdfbf7] relative group"
-              :class="backgroundId === bg.id ? 'ring-2 ring-[#536350] ring-offset-2 scale-110 shadow-[0_4px_12px_rgba(45,52,48,0.12)] z-10' : 'hover:scale-105 hover:shadow-[0_4px_12px_rgba(45,52,48,0.06)]'">
-              <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]"
-                class="w-full h-full object-cover" />
-              <div v-else class="w-full h-full animate-pulse bg-[#e4e2de]"></div>
-              
-              <div v-if="backgroundId === bg.id" class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl pointer-events-none"></div>
-            </button>
+    <!-- Background Grid (scrollable) -->
+    <div class="mt-2.5 flex-1 min-h-0 overflow-y-auto">
+      <div v-for="[groupName, bgList] in groupedBackgrounds" :key="groupName" class="mb-2.5">
+        <p class="text-[10px] text-[#757c77] font-semibold uppercase tracking-wider mb-1.5">{{ groupName }}</p>
+        <div class="grid grid-cols-5 sm:grid-cols-6 gap-1.5">
+          <button v-for="bg in bgList" :key="bg.id" @click="backgroundId = bg.id"
+            :title="t('backgrounds.' + bg.id) || bg.name"
+            class="w-full aspect-square rounded-lg border border-[#acb4ae]/30 transition-all overflow-hidden bg-[#fdfbf7] relative group"
+            :class="backgroundId === bg.id ? 'ring-2 ring-[#536350] ring-offset-1 scale-110 shadow-[0_2px_8px_rgba(45,52,48,0.12)] z-10' : 'hover:scale-105 hover:shadow-[0_2px_8px_rgba(45,52,48,0.06)]'">
+            <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]"
+              class="w-full h-full object-cover" />
+            <div v-else class="w-full h-full animate-pulse bg-[#e4e2de]"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings (fixed) -->
+    <div class="shrink-0 space-y-3 pt-3 mt-3 border-t border-[#e4e2de]/50">
+      <!-- Padding -->
+      <div class="space-y-1.5">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-[#2d3430]">{{ t('panel.padding') }}</label>
+          <span class="text-[10px] font-mono text-[#536350] bg-[#536350]/10 px-1.5 py-0.5 rounded-md">{{ padding }}%</span>
+        </div>
+        <div class="relative">
+          <div class="w-full h-1.5 bg-[#e4e2de] rounded-full relative overflow-hidden pointer-events-none">
+            <div class="absolute top-0 left-0 h-full bg-[#536350] rounded-full transition-all"
+              :style="{ width: `${padding * 2}%` }"></div>
           </div>
+          <input type="range" v-model.number="padding" min="0" max="50"
+            class="absolute top-0 left-0 w-full h-4 -translate-y-1 opacity-0 cursor-pointer" />
         </div>
       </div>
 
-      <!-- Settings Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 border-t border-[#e4e2de]/50 mb-4">
-        <!-- Padding -->
-        <div class="space-y-4">
-          <div class="flex justify-between items-center">
-            <label class="text-sm font-semibold text-[#2d3430]">{{ t('panel.padding') }}</label>
-            <span class="text-xs font-mono text-[#536350] bg-[#536350]/10 px-2 py-1 rounded-md">{{ padding }}%</span>
-          </div>
-          <div class="relative pt-2">
-            <div class="w-full h-2 bg-[#e4e2de] rounded-full relative overflow-hidden pointer-events-none">
-              <div class="absolute top-0 left-0 h-full bg-[#536350] rounded-full transition-all" :style="{ width: `${padding * 2}%` }"></div>
-            </div>
-            <input type="range" v-model.number="padding" min="0" max="50" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+      <!-- Border Radius -->
+      <div class="space-y-1.5">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-[#2d3430]">{{ t('panel.borderRadius') }}</label>
+          <span class="text-[10px] font-mono text-[#536350] bg-[#536350]/10 px-1.5 py-0.5 rounded-md">{{ borderRadius }}%</span>
         </div>
-
-        <!-- Border Radius -->
-        <div class="space-y-4">
-          <div class="flex justify-between items-center">
-            <label class="text-sm font-semibold text-[#2d3430]">{{ t('panel.borderRadius') }}</label>
-            <span class="text-xs font-mono text-[#536350] bg-[#536350]/10 px-2 py-1 rounded-md">{{ borderRadius }}%</span>
+        <div class="relative">
+          <div class="w-full h-1.5 bg-[#e4e2de] rounded-full relative overflow-hidden pointer-events-none">
+            <div class="absolute top-0 left-0 h-full bg-[#536350] rounded-full transition-all"
+              :style="{ width: `${borderRadius * 2}%` }"></div>
           </div>
-          <div class="relative pt-2">
-            <div class="w-full h-2 bg-[#e4e2de] rounded-full relative overflow-hidden pointer-events-none">
-              <div class="absolute top-0 left-0 h-full bg-[#536350] rounded-full transition-all" :style="{ width: `${borderRadius * 2}%` }"></div>
-            </div>
-            <input type="range" v-model.number="borderRadius" min="0" max="50" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <input type="range" v-model.number="borderRadius" min="0" max="50"
+            class="absolute top-0 left-0 w-full h-4 -translate-y-1 opacity-0 cursor-pointer" />
         </div>
       </div>
-    </template>
+    </div>
   </div>
 </template>
