@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "LogoWear",
+    "title": "IconBase",
     "subtitle": "Apple-Style Icon Generator",
     "uploadPrompt": "Upload Logo to Preview",
     "uploadDesc": "We will automatically apply Apple-style backgrounds and support generating standard icon assets for all platforms with one click."
@@ -9,19 +9,21 @@
     "generator": "Start"
   },
   "hero": {
-    "badge": "Apple-style icon generator",
-    "title": "Turn your logo into production-ready icons",
-    "subtitle": "Pick a background template, fine-tune padding and corner radius, then preview across browser tabs, macOS Dock, Windows taskbar and mobile homescreen.",
-    "ctaPrimary": "Start generating",
-    "ctaSecondary": "Browse templates",
-    "note": "Export includes standard .png sizes + favicon.ico",
+    "title": "Turn your logo into icons for every platform",
+    "ctaPrimary": "Generate Now",
+    "fromLabel": "Your Logo",
+    "toLabel": "All-platform Icons",
+    "badge": "",
+    "subtitle": "",
+    "ctaSecondary": "",
+    "note": "",
     "cardTitle": "Live preview + one-click export",
     "cardSubtitle": "40 templates · grouped by style · shuffle mode",
     "cardTipTitle": "Tip",
     "cardTipDesc": "After upload we auto-pick a random background template. Use the shuffle button to keep exploring."
   },
   "footer": {
-    "title": "LogoWear",
+    "title": "IconBase",
     "subtitle": "One-page icon generator",
     "x": "X",
     "github": "Star on GitHub",
@@ -46,6 +48,7 @@
       "manifest": "PWA configuration file for automatic browser detection"
     },
     "shuffle": "Shuffle",
+    "sharpCorner": "Sharp",
     "demoHint": "Previewing with a sample image. Click above to upload your own logo",
     "categories": {
       "solid": "Solid Colors",

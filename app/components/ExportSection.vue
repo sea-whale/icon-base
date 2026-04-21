@@ -67,6 +67,11 @@ const handleExport = async () => {
         <span class="text-[9px] font-mono text-[#536350] bg-[#536350]/10 px-1 py-px rounded">512x512</span>
       </div>
       <div class="flex items-center gap-2">
+        <FileImage :size="12" class="text-[#ec4899] shrink-0" />
+        <span class="text-[#2d3430] font-medium">icon-sharp-512x512.png</span>
+        <span class="text-[9px] font-mono text-[#536350] bg-[#536350]/10 px-1 py-px rounded">512 / {{ t('panel.sharpCorner') }}</span>
+      </div>
+      <div class="flex items-center gap-2">
         <FileImage :size="12" class="text-[#8b5cf6] shrink-0" />
         <span class="text-[#2d3430] font-medium">desktop-*.png</span>
         <span class="text-[9px] font-mono text-[#536350] bg-[#536350]/10 px-1 py-px rounded">256/1024</span>

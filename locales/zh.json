@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "LogoWear",
+    "title": "IconBase",
     "subtitle": "Apple-Style Icon Generator",
     "uploadPrompt": "上传 Logo 开始预览",
     "uploadDesc": "我们将自动应用 Apple 风格背景，并支持一键生成适用于所有平台的标准图标资产。"
@@ -9,19 +9,21 @@
     "generator": "开始生成"
   },
   "hero": {
+    "title": "把你的 Logo 变成全平台图标",
+    "ctaPrimary": "立即生成",
+    "fromLabel": "你的 Logo",
+    "toLabel": "全平台图标",
     "badge": "",
-    "title": "把你的 Logo 一键变成全平台图标资产",
-    "subtitle": "选择精致底色模板、微调圆角与留白，并预览在浏览器、macOS Dock、Windows 任务栏与移动端主屏幕中的真实效果。",
-    "ctaPrimary": "开始生成",
-    "ctaSecondary": "浏览模板",
-    "note": "导出包含 .png 全尺寸规范 + favicon.ico",
+    "subtitle": "",
+    "ctaSecondary": "",
+    "note": "",
     "cardTitle": "实时预览 + 一键导出",
     "cardSubtitle": "40 款底色模板 · 分类浏览 · 随机切换",
     "cardTipTitle": "提示",
     "cardTipDesc": "上传图片后会自动随机选择一个底色模板，也可以在左侧点击随机按钮继续探索。"
   },
   "footer": {
-    "title": "LogoWear",
+    "title": "IconBase",
     "subtitle": "One-page icon generator",
     "x": "X",
     "github": "GitHub 点赞",
@@ -46,6 +48,7 @@
       "manifest": "供浏览器自动识别图标的 PWA 配置文件"
     },
     "shuffle": "随机切换",
+    "sharpCorner": "直角",
     "demoHint": "当前使用示例图片预览效果，点击上方区域上传你的 Logo 替换",
     "categories": {
       "solid": "极简纯色 (Solid)",

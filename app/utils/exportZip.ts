@@ -17,6 +17,7 @@ const ICONS = [
   { name: 'android-chrome-192x192.png', size: 192 },
   { name: 'android-chrome-512x512.png', size: 512 },
   { name: 'icon-maskable-512x512.png', size: 512 },
+  { name: 'icon-sharp-512x512.png', size: 512, borderRadius: 0 },
   { name: 'desktop-256x256.png', size: 256 },
   { name: 'desktop-1024x1024.png', size: 1024 }
 ]
@@ -29,6 +30,7 @@ export const generateAllIcons = async (config: ExportConfig) => {
     const dataUrl = await generateIconDataUrl({
       ...config,
       size: icon.size,
+      borderRadius: icon.borderRadius !== undefined ? icon.borderRadius : config.borderRadius,
       transparentBg: false
     })
     

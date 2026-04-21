@@ -69,7 +69,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcons, { immed
             <div v-else class="w-full h-full bg-[#e4e2de] animate-pulse"></div>
             <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none"></div>
           </div>
-          <span class="text-[9px] text-white font-semibold drop-shadow-md">LogoWear</span>
+          <span class="text-[9px] text-white font-semibold drop-shadow-md">IconBase</span>
         </div>
 
         <!-- Dummy Icons -->
@@ -132,7 +132,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcons, { immed
             <img v-if="androidIcon" :src="androidIcon" class="w-full h-full" alt="Android App Icon" />
             <div v-else class="w-full h-full bg-[#e4e2de] animate-pulse"></div>
           </div>
-          <span class="text-[9px] text-white font-semibold drop-shadow-md">LogoWear</span>
+          <span class="text-[9px] text-white font-semibold drop-shadow-md">IconBase</span>
         </div>
       </div>
 

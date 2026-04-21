@@ -47,7 +47,7 @@ watch([uploadedImage, backgroundId, padding, borderRadius], updateIcon, { immedi
         <div class="h-8 min-w-[200px] max-w-[240px] bg-white rounded-t-lg flex items-center px-3 gap-2 shadow-[0_-2px_6px_rgba(45,52,48,0.05)] border-x border-t border-[#e4e2de]">
           <img v-if="generatedIcon" :src="generatedIcon" class="w-4 h-4 object-contain" alt="Favicon" />
           <div v-else class="w-4 h-4 bg-[#e4e2de] rounded-sm"></div>
-          <span class="text-xs text-[#2d3430] font-bold truncate">LogoWear - Apple-Style...</span>
+          <span class="text-xs text-[#2d3430] font-bold truncate">IconBase</span>
         </div>
         
         <!-- Inactive Tab -->
