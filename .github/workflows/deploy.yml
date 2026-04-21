@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deploy target environment'
+        required: true
+        type: choice
+        default: 'staging'
+        options:
+          - staging
+          - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: ${{ github.event.inputs.environment || 'staging' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add SSH Host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          IFS=',' read -ra HOSTS <<< "${{ vars.DEPLOY_HOSTS }}"
+          for HOST in "${HOSTS[@]}"; do
+            ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+            chmod 600 ~/.ssh/known_hosts
+          done
+
+      - name: Restart Docker Compose
+        run: |
+          IFS=',' read -ra HOSTS <<< "${{ vars.DEPLOY_HOSTS }}"
+          for HOST in "${HOSTS[@]}"; do
+            echo "Restarting Docker Compose on $HOST"
+            ssh ${{ vars.DEPLOY_USER }}@$HOST <<EOF
+              cd ${{ vars.DEPLOY_PATH }}
+              # Pull latest images
+              docker compose pull
+
+              # Restart services
+              docker compose down
+              docker compose up -d
+          EOF
+          done
