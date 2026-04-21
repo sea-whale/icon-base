@@ -2,7 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
+      { code: 'zh', iso: 'zh-CN', file: 'zh.json', name: '中文' }
+    ],
+    defaultLocale: 'zh',
+    strategy: 'no_prefix',
+    lazy: false,
+    langDir: '../locales'
+  },
   app: {
     head: {
       title: 'LogoWear - Apple-Style Icon Generator',

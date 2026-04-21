@@ -4,6 +4,9 @@ import { generateAllIcons } from '../utils/exportZip'
 import { BACKGROUNDS, type BgType } from '../utils/backgrounds'
 import { generateIconDataUrl } from '../utils/iconGenerator'
 import { Upload, Shuffle, Download, Loader2 } from 'lucide-vue-next'
+import { useI18n } from '#imports'
+
+const { t } = useI18n()
 
 const uploadedImage = inject<Ref<string | null>>('uploadedImage', ref(null))
 const backgroundId = inject<Ref<string>>('backgroundId', ref('apple-dark'))
@@ -43,21 +46,21 @@ const generatePreviews = async () => {
 
 const groupedBackgrounds = computed(() => {
   const map: Record<string, typeof BACKGROUNDS> = {
-    '极简纯色 (Solid)': [],
-    '色彩渐变 (Gradient)': [],
-    '网格极光 (Mesh & Grid)': [],
-    '玻璃拟物 (Glass)': [],
-    '纹理质感 (Noise & Pattern)': [],
-    '点缀光晕 (Glow & Accent)': []
+    [t('panel.categories.solid')]: [],
+    [t('panel.categories.gradient')]: [],
+    [t('panel.categories.mesh')]: [],
+    [t('panel.categories.glass')]: [],
+    [t('panel.categories.pattern')]: [],
+    [t('panel.categories.glow')]: []
   }
 
   BACKGROUNDS.forEach(bg => {
-    if (bg.type === 'solid') map['极简纯色 (Solid)'].push(bg)
-    else if (bg.type === 'linear') map['色彩渐变 (Gradient)'].push(bg)
-    else if (bg.type === 'mesh' || bg.type === 'grid') map['网格极光 (Mesh & Grid)'].push(bg)
-    else if (bg.type === 'glass') map['玻璃拟物 (Glass)'].push(bg)
-    else if (bg.type === 'noise' || bg.type === 'confetti' || bg.type === 'dots' || bg.type === 'stripes' || bg.type === 'checkerboard') map['纹理质感 (Noise & Pattern)'].push(bg)
-    else if (bg.type === 'radial' || bg.type === 'spotlight' || bg.type === 'accent') map['点缀光晕 (Glow & Accent)'].push(bg)
+    if (bg.type === 'solid') map[t('panel.categories.solid')].push(bg)
+    else if (bg.type === 'linear') map[t('panel.categories.gradient')].push(bg)
+    else if (bg.type === 'mesh' || bg.type === 'grid') map[t('panel.categories.mesh')].push(bg)
+    else if (bg.type === 'glass') map[t('panel.categories.glass')].push(bg)
+    else if (bg.type === 'noise' || bg.type === 'confetti' || bg.type === 'dots' || bg.type === 'stripes' || bg.type === 'checkerboard') map[t('panel.categories.pattern')].push(bg)
+    else if (bg.type === 'radial' || bg.type === 'spotlight' || bg.type === 'accent') map[t('panel.categories.glow')].push(bg)
   })
 
   // Filter out empty groups
@@ -135,8 +138,8 @@ const handleExport = async () => {
       class="border-2 border-dashed rounded-2xl p-6 flex flex-col items-center justify-center text-center transition-all cursor-pointer relative overflow-hidden"
       :class="[
         isDragging 
-          ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
-          : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600',
+          ? 'border-blue-500 bg-blue-50' 
+          : 'border-gray-300 hover:border-gray-400',
         uploadedImage ? 'h-32' : 'h-48'
       ]"
       @dragover.prevent="isDragging = true"
@@ -153,11 +156,11 @@ const handleExport = async () => {
       />
       
       <template v-if="!uploadedImage">
-        <div class="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
+        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mb-3">
           <Upload :size="20" class="text-gray-500" />
         </div>
-        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">点击或拖拽图片上传</p>
-        <p class="text-xs text-gray-500 mt-1">支持 PNG, SVG, WEBP (最大 5MB)</p>
+        <p class="text-sm font-medium text-gray-700">{{ t('panel.uploadOrDrag') }}</p>
+        <p class="text-xs text-gray-500 mt-1">{{ t('panel.supportedFormats') }}</p>
       </template>
       <template v-else>
         <div class="absolute inset-0 w-full h-full opacity-20" :style="{ backgroundImage: `url(${uploadedImage})`, backgroundPosition: 'center', backgroundSize: 'cover', filter: 'blur(8px)' }"></div>
@@ -165,7 +168,7 @@ const handleExport = async () => {
           <div class="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-md shadow border border-white/20 p-2 mb-2">
             <img :src="uploadedImage" class="w-full h-full object-contain" />
           </div>
-          <p class="text-xs font-medium text-gray-900 dark:text-gray-100 bg-white/50 dark:bg-black/50 px-2 py-1 rounded backdrop-blur-md">更换图片</p>
+          <p class="text-xs font-medium text-gray-900 bg-white/50 px-2 py-1 rounded backdrop-blur-md">{{ t('panel.changeImage') }}</p>
         </div>
       </template>
     </div>
@@ -174,16 +177,16 @@ const handleExport = async () => {
       <!-- Background Style Categories -->
       <div class="space-y-5">
         <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700 dark:text-gray-300">底色模板</label>
+          <label class="text-sm font-medium text-gray-700">{{ t('panel.bgTemplate') }}</label>
           <div class="flex items-center gap-2">
             <button 
               @click="randomizeBackground" 
-              class="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors text-gray-500 hover:text-blue-500 dark:hover:text-blue-400"
-              title="随机切换"
+              class="p-1 hover:bg-gray-100 rounded-md transition-colors text-gray-500 hover:text-blue-500"
+              :title="t('panel.shuffle')"
             >
               <Shuffle :size="14" />
             </button>
-            <span class="text-xs font-mono text-gray-500">{{ BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
+            <span class="text-xs font-mono text-gray-500">{{ t('backgrounds.' + BACKGROUNDS.find(b => b.id === backgroundId)?.id) || BACKGROUNDS.find(b => b.id === backgroundId)?.name }}</span>
           </div>
         </div>
         
@@ -194,12 +197,12 @@ const handleExport = async () => {
               v-for="bg in bgList"
               :key="bg.id"
               @click="backgroundId = bg.id"
-              :title="bg.name"
-              class="w-10 h-10 rounded-xl border border-gray-200 dark:border-gray-700 transition-all overflow-hidden bg-gray-100 dark:bg-gray-800"
+              :title="t('backgrounds.' + bg.id) || bg.name"
+              class="w-10 h-10 rounded-xl border border-gray-200 transition-all overflow-hidden bg-gray-100"
               :class="backgroundId === bg.id ? 'ring-2 ring-blue-500 scale-110 shadow-md z-10' : 'hover:scale-105'"
             >
               <img v-if="backgroundPreviews[bg.id]" :src="backgroundPreviews[bg.id]" class="w-full h-full object-cover" />
-              <div v-else class="w-full h-full animate-pulse bg-gray-200 dark:bg-gray-700"></div>
+              <div v-else class="w-full h-full animate-pulse bg-gray-200"></div>
             </button>
           </div>
         </div>
@@ -208,7 +211,7 @@ const handleExport = async () => {
       <!-- Padding -->
       <div class="space-y-3">
         <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700 dark:text-gray-300">图标缩放间距</label>
+          <label class="text-sm font-medium text-gray-700">{{ t('panel.padding') }}</label>
           <span class="text-xs font-mono text-gray-500">{{ padding }}%</span>
         </div>
         <input 
@@ -223,7 +226,7 @@ const handleExport = async () => {
       <!-- Border Radius -->
       <div class="space-y-3">
         <div class="flex justify-between items-center">
-          <label class="text-sm font-medium text-gray-700 dark:text-gray-300">圆角曲率</label>
+          <label class="text-sm font-medium text-gray-700">{{ t('panel.borderRadius') }}</label>
           <span class="text-xs font-mono text-gray-500">{{ borderRadius }}%</span>
         </div>
         <input 
@@ -236,7 +239,7 @@ const handleExport = async () => {
       </div>
 
       <!-- Export Button -->
-      <div class="pt-4 border-t border-gray-200 dark:border-gray-800">
+      <div class="pt-4 border-t border-gray-200">
         <button 
           @click="handleExport" 
           :disabled="isExporting"
@@ -244,15 +247,15 @@ const handleExport = async () => {
         >
           <template v-if="isExporting">
             <Loader2 class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" />
-            打包生成中...
+            {{ t('panel.exporting') }}
           </template>
           <template v-else>
             <Download :size="18" />
-            打包导出全套图标 (.zip)
+            {{ t('panel.exportZip') }}
           </template>
         </button>
         <p class="text-xs text-center text-gray-500 mt-3">
-          自动生成 favicon, apple-touch-icon, android-chrome 等多尺寸规范图标
+          {{ t('panel.exportDesc') }}
         </p>
       </div>
     </template>

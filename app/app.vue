@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { useHead } from '#imports'
+import { useHead, useI18n } from '#imports'
 import { ref, provide, onMounted } from 'vue'
-import { Sun, Moon, Image as ImageIcon } from 'lucide-vue-next'
+import { ImageIcon } from 'lucide-vue-next'
+
+const { t, locale, setLocale } = useI18n()
 
 useHead({
   title: 'LogoWear - Apple-Style Icon Generator',
   bodyAttrs: {
-    class: 'antialiased bg-gray-50 text-gray-900 dark:bg-[#121212] dark:text-gray-100 transition-colors duration-200 min-h-screen'
+    class: 'antialiased bg-gray-50 text-gray-900 transition-colors duration-200 min-h-screen'
   }
 })
 
@@ -15,7 +17,7 @@ const uploadedImage = ref<string | null>(null)
 const backgroundId = ref<string>('apple-dark') // Default apple-like dark background
 const padding = ref<number>(20) // Percentage of padding (0-50)
 const borderRadius = ref<number>(22.5) // Apple standard is roughly 22.5% of width
-const isDarkMode = ref<boolean>(true) // default to dark mode preview for tech tools
+const isDarkMode = ref<boolean>(false) // Force light mode always
 
 // Provide state to components
 provide('uploadedImage', uploadedImage)
@@ -24,21 +26,12 @@ provide('padding', padding)
 provide('borderRadius', borderRadius)
 provide('isDarkMode', isDarkMode)
 
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value
-  updateThemeClass()
-}
-
-const updateThemeClass = () => {
-  if (isDarkMode.value) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
+const toggleLanguage = () => {
+  setLocale(locale.value === 'zh' ? 'en' : 'zh')
 }
 
 onMounted(() => {
-  updateThemeClass()
+  document.documentElement.classList.remove('dark')
 })
 </script>
 
@@ -47,19 +40,16 @@ onMounted(() => {
     <!-- Header -->
     <header class="h-16 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-[#1c1c1e]/80 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between px-6">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center shadow-sm">
-          <span class="text-white dark:text-black font-bold text-sm">LW</span>
-        </div>
-        <h1 class="text-xl font-semibold tracking-tight">LogoWear</h1>
+        <img src="/logo.png" alt="LogoWear" class="w-8 h-8 rounded-lg shadow-sm object-cover" />
+        <h1 class="text-xl font-semibold tracking-tight">{{ t('app.title') }}</h1>
       </div>
       <div class="flex items-center gap-4">
         <button 
-          @click="toggleTheme" 
-          class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-500 hover:text-gray-900 dark:hover:text-gray-100"
-          title="Toggle Dark Mode"
+          @click="toggleLanguage" 
+          class="h-8 px-3 rounded-full border border-gray-200 hover:bg-gray-100 transition-colors text-sm font-medium text-gray-600 hover:text-gray-900 flex items-center gap-1"
+          title="Toggle Language"
         >
-          <Sun v-if="isDarkMode" :size="20" />
-          <Moon v-else :size="20" />
+          {{ locale === 'zh' ? 'EN' : '中' }}
         </button>
       </div>
     </header>
@@ -78,8 +68,8 @@ onMounted(() => {
           <div class="w-24 h-24 mb-6 opacity-20 border-4 border-dashed border-current rounded-3xl flex items-center justify-center relative overflow-hidden group">
             <ImageIcon :size="32" class="group-hover:scale-110 transition-transform" />
           </div>
-          <p class="text-xl font-medium text-gray-700 dark:text-gray-300">上传 Logo 开始预览</p>
-          <p class="text-sm mt-2 max-w-md text-center">我们将自动应用 Apple 风格背景，并支持一键生成适用于所有平台的标准图标资产。</p>
+          <p class="text-xl font-medium text-gray-700">{{ t('app.uploadPrompt') }}</p>
+          <p class="text-sm mt-2 max-w-md text-center">{{ t('app.uploadDesc') }}</p>
         </div>
       </section>
     </main>
