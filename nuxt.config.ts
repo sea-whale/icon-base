@@ -68,6 +68,20 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      script: [
+        ...(process.env.NODE_ENV === 'production' ? [
+          {
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-4F9P0R922R',
+            async: true
+          },
+          {
+            innerHTML: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4F9P0R922R');`
+          }
+        ] : [])
+      ],
       meta: [
         { charset: 'utf-8' },
         { name: 'google-site-verification', content: 'bX16LW08pjYPNP25MJNDg5TvTGRolaSj_XVlvWNMSJE'},
