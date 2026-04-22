@@ -84,7 +84,8 @@ gtag('config', 'G-4F9P0R922R');`
       ],
       meta: [
         { charset: 'utf-8' },
-        { name: 'google-site-verification', content: 'bX16LW08pjYPNP25MJNDg5TvTGRolaSj_XVlvWNMSJE'},
+        { name: 'google-site-verification', content: 'bX16LW08pjYPNP25MJNDg5TvTGRolaSj_XVlvWNMSJE' },
+        { name: 'baidu-site-verification', content: 'codeva-7AxCCufmAq' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' }
       ],
